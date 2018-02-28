@@ -1,2 +1,5 @@
 python/env/
 java/face/target/
+java/face/.project
+java/face/.classpath
+java/face/.settings/
