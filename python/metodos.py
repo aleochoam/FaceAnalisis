@@ -1,22 +1,34 @@
 from math import exp, cos
 
 def f(x):
-    return exp(3*x-12)+x*cos(3*x) -x**2 +4
+    return x**3+4*x**2-10
 
 def punto_fijo(xa, tol, nIter):
     def g(x):
-        return (10/(x+4))**(1/2)
+        # return (10/(x+4))**(1/2)
+        return x-((x**3+4*x**2-10)/(3*x**2+8*x))
 
     fx = f(xa)
     contador = 0
     error = tol + 1
 
-    while abs(fx) < tol and error > tol and contador < nIter:
+    while abs(fx) != tol and error > tol and contador < nIter:
+        # print("n:", contador)
+        # print("xa:", xa)
+        # print("fx:", fx)
+        # print("Error:", error)
+        # print("---------------------------")
         xn = g(xa)
         fx = f(xn)
-        error = abs(xn-xa)
+        error = abs((xn-xa)/xn)
         xa = xn
         contador = contador + 1
+
+    # print("n:", contador)
+    # print("xa:", xa)
+    # print("fx:", fx)
+    # print("Error:", error)
+    # print("---------------------------")
 
     if fx == 0:
         print (xa, "es raíz")
@@ -25,13 +37,14 @@ def punto_fijo(xa, tol, nIter):
     else:
         print("El método fracasó en {} iteraciones".format(nIter))
 
+
 def regla_falsa(xa, xb, tol, nIter):
     fxa = f(xa)
     fxb = f(xb)
 
-    if abs(fxa) < tol:
+    if abs(fxa) == 0:
         print(xa, "es raíz")
-    if abs(fxb) < tol:
+    if abs(fxb) == 0:
         print(xb, "es raíz")
 
     if fxa * fxb > 0:
@@ -44,13 +57,13 @@ def regla_falsa(xa, xb, tol, nIter):
     contador = 1
     error = tol + 1
 
-    while error > tol and abs(fxm) > tol and contador < nIter:
-        print("xa: {}".format(xa))
-        print("xb: {}".format(xb))
-        print("xm: {}".format(xm))
-        print("fxm: {}".format(fxm))
-        print("error: {}".format(error))
-        print("--------------------")
+    while error > tol and fxm != 0 and contador < nIter:
+        # print("xa: {}".format(xa))
+        # print("xb: {}".format(xb))
+        # print("xm: {}".format(xm))
+        # print("fxm: {}".format(fxm))
+        # print("error: {}".format(error))
+        # print("--------------------")
 
         if fxa * fxm < 0:
             xb = xm
@@ -67,7 +80,7 @@ def regla_falsa(xa, xb, tol, nIter):
         error = abs(xm - x_ant)
         contador = contador +1
 
-    if abs(fxm) < tol:
+    if fxm == 0:
         print(xm, "es raiz")
     elif error < tol:
         print(xm, "es aproximación a una raíz con una tolerancia =", tol)
@@ -80,9 +93,9 @@ def biseccion(xa, xb, tol, nIter):
     fxa = f(xa)
     fxb = f(xb)
 
-    if abs(fxa) < tol:
+    if abs(fxa) == 0:
         print(xa, "es raíz")
-    if abs(fxb) < tol:
+    if abs(fxb) == 0:
         print(xb, "es raíz")
 
     if fxa * fxb > 0:
@@ -94,7 +107,7 @@ def biseccion(xa, xb, tol, nIter):
     contador = 1
     error = tol + 1
 
-    while error > tol and abs(fxm) > tol and contador < nIter:
+    while error > tol and fxm != 0 and contador < nIter:
 
         if fxa * fxm < 0:
             xb = xm
@@ -111,7 +124,7 @@ def biseccion(xa, xb, tol, nIter):
         error = abs(xm - x_ant)
         contador = contador +1
 
-    if abs(fxm) < tol:
+    if fxm == 0:
         print(xm, "es raiz")
     elif error < tol:
         print(xm, "es aproximación a una raíz con una tolerancia =", tol)
@@ -150,9 +163,9 @@ def busquedas_incrementales(x0, deltaX, tol, nIter):
 
 
 def main():
-    biseccion(2,3,0.5e-3, 100)
-    regla_falsa(2,3,0.5e-3, 100)
-    punto_fijo(-0.5, 1e-5, 100)
+    biseccion(1,2,1e-8, 100)
+    regla_falsa(1,2,1e-8, 100)
+    punto_fijo(1.5, 1e-8, 100)
 
 
 if __name__ == '__main__':
