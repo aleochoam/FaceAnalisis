@@ -8,9 +8,9 @@ public class Evaluator {
 
     public Evaluator() {
     }
-    
-    
-    
+
+
+
     public double evaluatorExpression(String function, double x){
         try{
             Expression exp = new ExpressionBuilder(function)
@@ -18,13 +18,13 @@ public class Evaluator {
                .build()
                .setVariable("x", x);
             return exp.evaluate();
-                 
+
         }catch(Exception e){
             System.out.println("Invalid Expression");
             System.exit(0);
         }
-        
+
         return -1;
     }
-    
+
 }
