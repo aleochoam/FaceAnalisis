@@ -1,4 +1,7 @@
 python/env/
+python/face/face/server_cnf.py
+python/face/api/__pycache__/
+python/face/face/__pycache__/
 java/face/target/
 java/face/.project
 java/face/.classpath
