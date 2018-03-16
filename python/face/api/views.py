@@ -1,6 +1,6 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
-from .metodos.metodo_busquedas import descripcion, calcular_busquedas
+from .metodos.metodo_busquedas import descripcion, incremental_search
 import json
 
 
@@ -15,7 +15,7 @@ def busquedas(request):
         return JsonResponse({"Ayuda": descripcion()})
     else:
         params = body2dict(request)
-        response = calcular_busquedas(params)
+        response = incremental_search(params)
         return JsonResponse(response)
 
 
