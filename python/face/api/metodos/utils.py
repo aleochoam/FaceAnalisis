@@ -8,12 +8,3 @@ def sympify_expr(f):
     #     f = f.replace("sen", "sin")
 
     return sympify(f)
-
-
-def init_response():
-    response = dict()
-    response["raices"] = []
-    response["intervalos"] = []
-    # response["error"] = ""
-
-    return response

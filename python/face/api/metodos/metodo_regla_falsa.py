@@ -1,8 +1,8 @@
-from .utils import sympify_expr
 from sympy import symbols
+from .utils import sympify_expr
 
 
-def biseccion(parameters):
+def regla_falsa(parameters):
     # Se crean las variables
     response = init_response()
     x = symbols("x")
@@ -34,21 +34,14 @@ def biseccion(parameters):
         response["error"] = "El intervalo es inadecuado"
         return response
 
-    xm = (xb+xa)/2
+    xm = xa - ((fxa*(xb-xa))/(fxb - fxa))  # Ecuación 15, regla falsa
     fxm = f.evalf(subs={x: xm})
     contador = 1
     error = tol + 1
 
     while error > tol and fxm != 0 and contador < n_iter:
-        iteracion = [contador, str(xa), str(xb), str(xm), str(fxm), error]
+        iteracion = [contador, str(xa), str(xb), str(xm), str(fxm), str(error)]
         response["iteraciones"].append(iteracion)
-        # print("Contador: ", contador)
-        # print("xa: {}".format(xa))
-        # print("xb: {}".format(xb))
-        # print("xm: {}".format(xm))
-        # print("fxm: {}".format(fxm))
-        # print("error: {}".format(error))
-        # print("--------------------")
 
         if fxa * fxm < 0:
             xb = xm
@@ -68,13 +61,6 @@ def biseccion(parameters):
 
     iteracion = [contador, str(xa), str(xb), str(xm), str(fxm), str(error)]
     response["iteraciones"].append(iteracion)
-    # print("Contador: ", contador)
-    # print("xa: {}".format(xa))
-    # print("xb: {}".format(xb))
-    # print("xm: {}".format(xm))
-    # print("fxm: {}".format(fxm))
-    # print("error: {}".format(error))
-    # print("--------------------")
 
     if fxm == 0:
         response["raices"].append(str(xm))
@@ -91,9 +77,9 @@ def biseccion(parameters):
     return response
 
 
-def descripcion_biseccion():
+def descripcion_regla_falsa():
     return "Este metodo se encarga de encontrar una raíz dado un rango donde \
-        hay un cambio de signo"
+        haya un cambio de signo, aplicando el metodo de regla falsa"
 
 
 def init_response():

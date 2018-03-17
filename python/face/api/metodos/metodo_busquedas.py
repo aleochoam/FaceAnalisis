@@ -1,5 +1,5 @@
 from sympy import symbols
-from .utils import sympify_expr, init_response
+from .utils import sympify_expr
 
 
 def incremental_search(parameters):
@@ -50,5 +50,14 @@ def incremental_search(parameters):
     return response
 
 
-def descripcion():
+def descripcion_busquedas():
     return "Este método se encarga de encontrar un intervalos con raíces"
+
+
+def init_response():
+    response = dict()
+    response["raices"] = []
+    response["intervalos"] = []
+    # response["error"] = ""
+
+    return response
