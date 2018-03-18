@@ -4,7 +4,5 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path("busquedas/", views.call_busquedas, name='invocar_metodo'),
-    path("biseccion/", views.call_biseccion, name='invocar_metodo'),
-    path("regla_falsa/", views.call_regla_falsa, name='invocar_metodo'),
+    path("<str:method_name>/", views.call_method, name='invocar_metodo'),
 ]

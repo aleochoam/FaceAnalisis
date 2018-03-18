@@ -1,8 +1,7 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
-from .metodos.metodo_busquedas import descripcion_busquedas, incremental_search
-from .metodos.metodo_biseccion import descripcion_biseccion, biseccion
-from .metodos.metodo_regla_falsa import descripcion_regla_falsa, regla_falsa
+
+from .metodos.numeric_method import create_method
 import json
 
 
@@ -12,41 +11,18 @@ def index(request):
 
 
 @csrf_exempt
-def call_busquedas(request):
-    if request.method == "GET":
-        return JsonResponse({"Ayuda": descripcion_busquedas()})
-    else:
-        params = body2dict(request)
-        response = incremental_search(params)
-        return JsonResponse(response)
+def call_method(request, method_name):
 
-
-@csrf_exempt
-def call_biseccion(request):
-    if request.method == "GET":
-        return JsonResponse({"Ayuda": descripcion_biseccion()})
-    else:
-        params = body2dict(request)
-        response = biseccion(params)
-        return JsonResponse(response)
-
-
-@csrf_exempt
-def call_regla_falsa(request):
-    if request.method == "GET":
-        return JsonResponse({"Ayuda": descripcion_regla_falsa()})
-    else:
-        params = body2dict(request)
-        response = regla_falsa(params)
-        return JsonResponse(response)
-
-
-def punto_fijo(request):
-    pass
-
-
-def newton(request):
-    pass
+    try:
+        method = create_method(method_name)
+        if request.method == "GET":
+            return JsonResponse({"Ayuda": method.get_description()})
+        else:
+            params = body2dict(request)
+            response = method.calculate(params)
+            return JsonResponse(response)
+    except Exception as e:
+        return JsonResponse({"Error": "Verifique los datos de entrada"})
 
 
 def body2dict(request):
