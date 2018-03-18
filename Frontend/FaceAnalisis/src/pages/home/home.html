@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2>Datos del server</h2>
+  <ion-lis>
+    <button ion-item *ngFor = "let usuario of usuarios">
+      {{usuario.id}} - {{usuario.name}}
+    </button>
+  </ion-lis>
+</ion-content>
