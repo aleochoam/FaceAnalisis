@@ -1,19 +1,19 @@
-Inicio
+INICIO
 
-    Leer tole, p_ini, iters, fun, der_fun, 
+    LEER tole, p_ini, iters, fun, der_fun, 
 
-    fun_valor = fun(p_ini)
-    der_fun_valor = der_fun(p_ini)
-    cont = 0
-    error = tole + 1
+    fun_valor <-- fun(p_ini)
+    der_fun_valor <-- der_fun(p_ini)
+    cont <-- 0
+    error <-- tole + 1
 
     MIENTRAS (error > tole) Y (fun_valor != 0) Y (der_fun_valor != 0) Y (cont < iters) HAGA:
-        p_sig = p_ini - (fun_valor / der_fun_valor)
-        fun_valor = fun(p_sig)
-        der_fun_valor = der_fun(p_sig)
-        error = |p_sig - p_ini|       // error = |(p_sig - p_ini)/p_sig|
-        p_ini = p_sig
-        cont = cont + 1
+        p_sig <-- p_ini - (fun_valor / der_fun_valor)
+        fun_valor <-- fun(p_sig)
+        der_fun_valor <-- der_fun(p_sig)
+        error <-- |p_sig - p_ini|       // error <- |(p_sig - p_ini)/p_sig|
+        p_ini <-- p_sig
+        cont <-- cont + 1
     FIN_MIENTRAS
 
     SI fun_valor = 0 ENTONCES:

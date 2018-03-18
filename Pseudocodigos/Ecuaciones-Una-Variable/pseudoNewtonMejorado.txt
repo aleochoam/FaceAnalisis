@@ -1,21 +1,21 @@
-Inicio
+INICIO
 
-    Leer tole, p_ini, iters, fun, der_1_fun, der_2_fun 
+    LEER tole, p_ini, iters, fun, der_1_fun, der_2_fun 
 
-    fun_valor = fun(p_ini)
-    der_1_fun_valor = der_1_fun(p_ini)
-    cont = 0
-    error = tole + 1
+    fun_valor <-- fun(p_ini)
+    der_1_fun_valor <-- der_1_fun(p_ini)
+    cont <-- 0
+    error <-- tole + 1
 
     MIENTRAS (error > tole) Y (fun_valor != 0) Y (der_1_fun_valor != 0) Y (cont < iters) HAGA:
-        der_2_fun_valor = der_2_fun(p_ini)
-        p_sig = p_ini - ( (fun_valor * der_1_fun_valor) / (der_1_fun_valor^2  -  (fun_valor)(der_2_fun_valor)) )
+        der_2_fun_valor <-- der_2_fun(p_ini)
+        p_sig <-- p_ini - ( (fun_valor * der_1_fun_valor) / (der_1_fun_valor^2  -  (fun_valor)(der_2_fun_valor)) )
 
-        fun_valor = fun(p_sig)
-        der_1_fun_valor = der_1_fun(p_sig)
-        error = |p_sig - p_ini|       // error = |(p_sig - p_ini)/p_sig|
-        p_ini = p_sig
-        cont = cont + 1
+        fun_valor <-- fun(p_sig)
+        der_1_fun_valor <-- der_1_fun(p_sig)
+        error <-- |p_sig - p_ini|       // error = |(p_sig - p_ini)/p_sig|
+        p_ini <-- p_sig
+        cont <-- cont + 1
     FIN_MIENTRAS
 
     SI fun_valor = 0 ENTONCES:
