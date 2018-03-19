@@ -3,14 +3,12 @@ package co.edu.eafit;
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 
-
 public class Evaluator {
 
     public Evaluator() {
     }
 
-
-
+    
     public double evaluatorExpression(String function, double x){
         try{
             Expression exp = new ExpressionBuilder(function)
@@ -26,5 +24,5 @@ public class Evaluator {
 
         return -1;
     }
-
+    
 }
