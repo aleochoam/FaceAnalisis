@@ -1,0 +1,44 @@
+INICIO
+
+    LEER a, b, niter, fun, tol
+
+    fEnA <- fun(a)
+    fEnB <- fun(b)
+
+    SI fEnA = 0 ENTONCES:
+        IMPRIMIR a es raiz
+    SINO SI fEnB = 0 ENTONCES:
+        IMPRIMIR b es raiz
+    SINO SI fEnA * fEnB < 0 ENTONCES:
+        mitad = (a+b)/2
+        fEnMitad = fun(mitad)
+        
+        contador <- 1
+        error <- tol + 1
+        MIENTRAS error < tol Y contador < niter Y fEnMitad != 0 HAGA:
+            SI fEnA * fEnMitad < ENTONCES:
+                b <- mitad
+                fEnB <- fEnMitad
+            SINO:
+                a <- mitad
+                fEnA <- fEnMitad
+            FIN_SI
+
+            valorAuxiliar <- mitad
+            mitad <- (a+b)/2
+            fEnMitad <- fun(mitad)
+            error <- abs(mitad - valorAuxiliar)
+            contador <- contador + 1
+        FIN_MIENTRAS
+        
+        SI fEnMitad = 0 ENTONCES:
+            IMPRIMIR mitad es raiz
+        SINO SI error < tol ENTONCES:
+            IMPRIMIR mitad es una aproximacion a la raiz con una toleracia de tol
+        SINO:
+            IMPRIMIR Fracaso en niter iteraciones
+        FIN_SI
+    SINO:
+        IMPRIMIR El intervalo a , b no es valido
+    FIN_SI
+FIN    
