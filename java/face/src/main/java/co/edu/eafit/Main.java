@@ -9,7 +9,7 @@ import java.io.IOException;
 public class Main {
     
     public static void main(String[] args) throws IOException {
-        BusquedasIncrementales bi = new BusquedasIncrementales();
+        Biseccion bi = new Biseccion();
         bi.controller();
     }
     

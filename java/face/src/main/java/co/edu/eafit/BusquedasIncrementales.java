@@ -16,11 +16,9 @@ public class BusquedasIncrementales {
     }
 
 
-    private void algorithm(String fx, double x0, double delta, int niter){
-        double fx0, fx1, x1, zero = 0.0;
-        int contador;
-
-
+    private void algorithm(String fx, double x0, double delta, double niter){
+        double fx0, fx1, x1, zero = 0, contador;
+        
         fx0 = eval.evaluatorExpression(fx, x0);
 
         if(fx0 == zero){
@@ -36,7 +34,7 @@ public class BusquedasIncrementales {
                 fx0 = fx1;
                 x1 = x0 + delta;
                 fx1 = eval.evaluatorExpression(fx, x1);
-                contador = contador + 1;
+                contador += 1;
             }
 
             if(fx1 == zero){
@@ -52,24 +50,21 @@ public class BusquedasIncrementales {
 
 
     public void controller() throws IOException{
-        String fx, x0Str, deltaStr;
-        double x0, delta;
-        int niter;
-
-
+        
         System.out.print("f(x) = ");
-        fx = br.readLine();
+        String fx = br.readLine();
 
         System.out.print("x0 = ");
-        x0Str = br.readLine();
-        x0 = Double.parseDouble(x0Str);
+        String x0Str = br.readLine();
+        double x0 = Double.parseDouble(x0Str);
 
         System.out.print("Delta = ");
-        deltaStr = br.readLine();
-        delta = Double.parseDouble(deltaStr);
+        String deltaStr = br.readLine();
+        double delta = Double.parseDouble(deltaStr);
 
         System.out.print("Num. Iteraciones = ");
-        niter = br.read();
+        String niterStr = br.readLine();
+        double niter = Double.parseDouble(niterStr);
 
         algorithm(fx, x0, delta, niter);
     }
