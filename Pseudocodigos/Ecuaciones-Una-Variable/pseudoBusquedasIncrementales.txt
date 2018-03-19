@@ -1,9 +1,9 @@
 INICIO
 
-    LEER p_ini, delta, iters, fun 
+    LEER p_ini, delta, iters, fun
 
     fun_p_ini <-- fun(p_ini)
-    
+
     SI fun_p_ini = 0 ENTONCES:
         IMPRIMIR p_ini es raiz
     SINO:

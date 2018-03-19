@@ -1,6 +1,6 @@
 INICIO
 
-    LEER tole, p_ini, iters, fun, der_1_fun, der_2_fun 
+    LEER tole, p_ini, iters, fun, der_1_fun, der_2_fun
 
     fun_valor <-- fun(p_ini)
     der_1_fun_valor <-- der_1_fun(p_ini)
