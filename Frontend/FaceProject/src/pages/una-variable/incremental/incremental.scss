@@ -1,0 +1,35 @@
+page-incremental {
+    .pantalla{
+        background-color: #f48c42;
+    }
+
+    .boton{
+        background-color: #0b8c7f;
+    }
+
+    .pregunta{
+        background-color:white;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+    }
+    .graficar{
+        height: 90px;
+        width: 90px;
+        border-radius: 45%;
+        margin-left: 35%;
+        background-color: #0b8c7f;
+
+
+    }
+    .iconoPregunta{
+        color: black;
+    }
+    .icono{
+        font-size: 90px;
+        color: white;
+    }
+    .titulo{
+        font-family: 'Montserrat', sans-serif;
+    }
+}

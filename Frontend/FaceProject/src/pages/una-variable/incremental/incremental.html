@@ -1,0 +1,45 @@
+<!--
+  Generated template for the IncrementalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center>Búsquedas Incrementales</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="pantalla">
+  <br>
+  <button ion-button icon-only class="pregunta" (click)="presentAlert()">
+      <ion-icon name="md-help-circle" class="iconoPregunta"></ion-icon>
+  </button>
+  <br>
+  <br>
+    <form (ngSubmit)="logForm()">
+        <ion-item>
+          <ion-label>x0</ion-label>
+          <ion-input type="number" [(ngModel)]="data.x0" name="x0"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+          <ion-label>Delta</ion-label>
+          <ion-input type="number" [(ngModel)]="data.delta" name="delta"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+            <ion-label># Iteraciones</ion-label>
+            <ion-input type="number" [(ngModel)]="data.nIter" name="nIter"></ion-input>
+        </ion-item>
+        <br>
+        <button ion-button type="submit" class="boton" block>Calcular</button>
+      </form>
+      <br>
+      <button ion-button icon-only class="graficar">
+      <ion-icon name="ios-analytics" class="icono"></ion-icon>
+      </button>
+</ion-content>
