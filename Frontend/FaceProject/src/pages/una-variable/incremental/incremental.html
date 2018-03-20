@@ -15,8 +15,8 @@
 
 <ion-content padding class="pantalla">
   <br>
-  <button ion-button class="pregunta" (click)="presentAlert()">
-      <ion-icon name="md-help-circle"></ion-icon>
+  <button ion-button icon-only class="pregunta" (click)="presentAlert()">
+      <ion-icon name="md-help-circle" class="iconoPregunta"></ion-icon>
   </button>
   <br>
   <br>
@@ -38,5 +38,8 @@
         <br>
         <button ion-button type="submit" class="boton" block>Calcular</button>
       </form>
-
+      <br>
+      <button ion-button icon-only class="graficar">
+      <ion-icon name="ios-analytics" class="icono"></ion-icon>
+      </button>
 </ion-content>
