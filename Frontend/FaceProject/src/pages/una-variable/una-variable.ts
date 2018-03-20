@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IncrementalPage } from './incremental/incremental';
 
 /**
  * Generated class for the UnaVariablePage page.
@@ -18,8 +19,8 @@ export class UnaVariablePage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad UnaVariablePage');
+  onGoToIncremental(){
+    this.navCtrl.push(IncrementalPage);
   }
 
 }

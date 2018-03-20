@@ -8,13 +8,15 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { TiposPage } from '../pages/tipos/tipos';
 import {UnaVariablePage} from '../pages/una-variable/una-variable';
+import {IncrementalPage} from '../pages/una-variable/incremental/incremental';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     TiposPage,
-    UnaVariablePage
+    UnaVariablePage,
+    IncrementalPage
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,8 @@ import {UnaVariablePage} from '../pages/una-variable/una-variable';
     MyApp,
     HomePage,
     TiposPage,
-    UnaVariablePage
+    UnaVariablePage,
+    IncrementalPage
   ],
   providers: [
     StatusBar,
