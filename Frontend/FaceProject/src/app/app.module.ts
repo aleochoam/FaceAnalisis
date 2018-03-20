@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { TiposPage } from '../pages/tipos/tipos';
 import {UnaVariablePage} from '../pages/una-variable/una-variable';
 import {IncrementalPage} from '../pages/una-variable/incremental/incremental';
+import {GraficaPage} from '../pages/grafica/grafica';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {IncrementalPage} from '../pages/una-variable/incremental/incremental';
     HomePage,
     TiposPage,
     UnaVariablePage,
-    IncrementalPage
+    IncrementalPage,
+    GraficaPage
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,8 @@ import {IncrementalPage} from '../pages/una-variable/incremental/incremental';
     HomePage,
     TiposPage,
     UnaVariablePage,
-    IncrementalPage
+    IncrementalPage,
+    GraficaPage
   ],
   providers: [
     StatusBar,

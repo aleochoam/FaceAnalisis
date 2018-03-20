@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
+import { GraficaPage } from '../../grafica/grafica';
 
 @IonicPage()
 @Component({
@@ -28,6 +29,10 @@ export class IncrementalPage {
       buttons: ['Entendido']
     });
     alert.present();
+  }
+
+  goToGrafica(){
+    this.navCtrl.push(GraficaPage);
   }
 
 }
