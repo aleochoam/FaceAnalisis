@@ -7,13 +7,22 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Grafica</ion-title>
+    <ion-title>Gráfica</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding class="pantalla">
+    <form (ngSubmit)="logForm()">
+        <ion-item>
+            <ion-label>Función</ion-label>
+            <ion-input type="text" [(ngModel)]="graphData.funcion" name="funcion"></ion-input>
+        </ion-item>
+        <br>        
+        <button ion-button type="submit" class="boton" block>Graficar</button>
+      </form>
+      <br>
 
     <canvas #lineCanvas class="lineCanvas"></canvas>
 

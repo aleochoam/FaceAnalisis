@@ -15,11 +15,16 @@ import { Chart } from 'chart.js';
 })
 export class GraficaPage {
 
+  graphData ={};
   @ViewChild('lineCanvas') lineCanvas;
 
    lineChart: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
+
+  logForm() {
+    console.log(this.graphData);
   }
 
   ionViewDidLoad() {

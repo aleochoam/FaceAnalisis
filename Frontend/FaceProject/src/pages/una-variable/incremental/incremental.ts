@@ -22,9 +22,10 @@ export class IncrementalPage {
       title: '¿Qué debo hacer?',
       subTitle: ` <p>Ingresa los siguientes Datos:</p>
                   <ul>
-                  <li> X0: Valor Inicial de X </li>
-                  <li>Delta: Tamaño de intervalo para hayar el próximo X </li>
-                  <li># Iteraciones: Número máximo de iteraciones </li>
+                  <li> <b>Función: La función que desea evaluar</b></li>
+                  <li> <b>X0: Valor Inicial de X </b></li>
+                  <li><b>Delta: Tamaño de intervalo para hayar el próximo X </b></li>
+                  <li>>b># Iteraciones: Número máximo de iteraciones</b> </li>
                 </ul>`,
       buttons: ['Entendido']
     });
