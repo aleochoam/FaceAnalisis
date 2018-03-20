@@ -2,6 +2,7 @@ from .metodo_biseccion import Bisection
 from .metodo_busquedas import IncrementalSearch
 from .metodo_regla_falsa import FalsePosition
 from .metodo_punto_fijo import FixedPoint
+from .metodo_newton import NewtonMethod
 
 
 class NumericMethod(object):
@@ -23,5 +24,7 @@ def create_method(method):
         return FalsePosition()
     elif method == "punto_fijo":
         return FixedPoint()
+    elif method == "newton":
+        return NewtonMethod()
     else:
         return NumericMethod()
