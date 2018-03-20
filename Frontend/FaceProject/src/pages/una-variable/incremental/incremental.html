@@ -22,6 +22,11 @@
   <br>
     <form (ngSubmit)="logForm()">
         <ion-item>
+            <ion-label>Función</ion-label>
+            <ion-input type="text" [(ngModel)]="data.funcion" name="funcion"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
           <ion-label>x0</ion-label>
           <ion-input type="number" [(ngModel)]="data.x0" name="x0"></ion-input>
         </ion-item>
@@ -36,10 +41,12 @@
             <ion-input type="number" [(ngModel)]="data.nIter" name="nIter"></ion-input>
         </ion-item>
         <br>
+        
         <button ion-button type="submit" class="boton" block>Calcular</button>
       </form>
       <br>
       <button ion-button icon-only class="graficar" (click) = "goToGrafica()">
       <ion-icon name="ios-analytics" class="icono"></ion-icon>
       </button>
+      <p text-center class="titulo"><b>Graficar</b></p>
 </ion-content>
