@@ -9,7 +9,7 @@ public class Evaluator {
     }
 
     
-    public double evaluatorExpression(String function, double x){
+    public double evalExpr(String function, double x){
         try{
             Expression exp = new ExpressionBuilder(function)
                .variables("x")
