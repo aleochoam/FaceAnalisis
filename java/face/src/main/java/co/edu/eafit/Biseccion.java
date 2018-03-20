@@ -5,9 +5,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
-public class Biseccion {
+public class Biseccion implements NumericMethod{
     
     private final Evaluator eval;
     private final BufferedReader br;
@@ -19,9 +20,9 @@ public class Biseccion {
     }
 
 
-    private ArrayList<Double> completeInner(double cont, double xi, double xs, double xm, double fxm, double error){
-        ArrayList<Double> inner = new ArrayList<Double>(6);
-        inner.add((double)cont);
+    private List<Object> completeInner(double cont, double xi, double xs, double xm, double fxm, double error){
+        List<Object> inner = new ArrayList<Object>(6);
+        inner.add(cont);
         inner.add(xi);
         inner.add(xs);
         inner.add(xm);
@@ -31,14 +32,20 @@ public class Biseccion {
     }
 
 
-    private void algorithm(String fx, double xi, double xs, double tole, double niter){
-        ArrayList<ArrayList<Double>> outer = new ArrayList<ArrayList<Double>>();
+    public List<List<Object>> calculate(Object... args){
+    	String fx = (String) args[0];
+    	double xi = (Double) args[1];
+    	double xs = (Double) args[2];
+    	double tol = (Double) args[3];
+    	int niter = (Integer) args[4];
+    	
+        List<List<Object>> res = new ArrayList<List<Object>>();
         
         double fxi, fxs, xm, fxm, error, xaux, contador, zero = 0;
         
         
-        fxi = this.eval.evaluatorExpression(fx, xi);
-        fxs = this.eval.evaluatorExpression(fx, xs);
+        fxi = this.eval.evalExpr(fx, xi);
+        fxs = this.eval.evalExpr(fx, xs);
 
         if (fxi == zero) {
             System.out.println(xi + " Es raiz");
@@ -48,13 +55,13 @@ public class Biseccion {
             
         } else if ((fxi * fxs) < 0) {
             xm = (xi + xs) / 2.0;
-            fxm = eval.evaluatorExpression(fx, xm);
+            fxm = eval.evalExpr(fx, xm);
             contador = 1;
-            error = tole + 1;
+            error = tol + 1;
 
-            outer.add(completeInner(contador, xi, xs, xm, fxm, 0));
+            res.add(completeInner(contador, xi, xs, xm, fxm, 0));
 
-            while ((error > tole) && (fxm != 0) && (contador <= niter)){
+            while ((error > tol) && (fxm != 0) && (contador <= niter)){
                 if ((fxi * fxm) < 0) {
                     xs = xm;
                     fxs = fxm;
@@ -64,38 +71,51 @@ public class Biseccion {
                 }
                 xaux = xm;
                 xm = (xi + xs) / 2.0;
-                fxm = eval.evaluatorExpression(fx, xm);
+                fxm = eval.evalExpr(fx, xm);
                 error = Math.abs(xm - xaux);
                 contador += 1;
-                outer.add(completeInner(contador, xi, xs, xm, fxm, error));
+                res.add(completeInner(contador, xi, xs, xm, fxm, error));
             }
 
             if (fxm == 0) {
-                System.out.println(xm + " Es raiz");
+            	List<Object> iteracion = new ArrayList<Object>();
+            	iteracion.add(contador);
+            	iteracion.add("Raiz");
+            	iteracion.add(xm);
+                //System.out.println(xm + " Es raiz");
                 
-            } else if (error < tole){
-                System.out.println(xm + " Es una aproximacion a una raiz con una tolerancia = " + tole + "\n");
+            } else if (error < tol){
+            	List<Object> iteracion = new ArrayList<Object>();
+            	iteracion.add(contador);
+            	iteracion.add("Aproximación");
+            	iteracion.add(xm);
+                // System.out.println(xm + " Es una aproximacion a una raiz con una tolerancia = " + tol + "\n");
                 
             } else {
-                System.out.println("Fracaso en " + niter + " iteraciones\n");
+            	List<Object> iteracion = new ArrayList<Object>();
+            	iteracion.add(contador);
+            	iteracion.add("Error");
+            	iteracion.add("Fracaso en " + niter + " iteraciones\n");
+//                System.out.println("Fracaso en " + niter + " iteraciones\n");
                 
             }
         } else {
             System.out.println("El intervalo es inadecuado\n");
             
         }
-
-        imprimirTabla(outer);
+         
+        //imprimirTabla(res);
+        return res;
 
     }
 
-    public void imprimirTabla(ArrayList<ArrayList<Double>> outer){
+    public void imprimirTabla(List<List<Object>> outer){
         int lenOuter = outer.size();
         Object[][] table = new Double[lenOuter][];
         
         for (int i = 0; i < lenOuter; i++) {
-            ArrayList <Double> inner = outer.get(i);
-            table[i] = new Double[] {inner.get(0), inner.get(1), (double)inner.get(2), (double)inner.get(3), (double)inner.get(4), (double)inner.get(5)};
+            List<Object> inner = outer.get(i);
+            table[i] = new Object[] {inner.get(0), inner.get(1), inner.get(2), inner.get(3), inner.get(4), inner.get(5)};
         }
         
         Object[] titulos = {"i", "xInf", "xSup", "xMed", "f(xMed)", "Error"};
@@ -127,9 +147,15 @@ public class Biseccion {
         
         System.out.print("Num. Iteraciones = ");
         String niterStr = br.readLine();
-        double niter = Double.parseDouble(niterStr);
+        int niter = Integer.parseInt(niterStr);
 
         System.out.println("\n");
-        algorithm(fx, xi, xs, tole, niter);        
+        calculate(fx, xi, xs, tole, niter);        
     }
+
+
+	@Override
+	public String getName() {
+		return "Biseccion";
+	}
 }
