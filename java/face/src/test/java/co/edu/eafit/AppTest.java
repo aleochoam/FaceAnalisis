@@ -44,6 +44,12 @@ public class AppTest extends TestCase {
     	List<List<Object>> res = biseccion.calculate("e^(3*x-12)+x*cos(3*x)-x^2+4", 2.0, 3.0, 0.5e-3, 100);
     	assertEquals(res.get(10).get(3), 2.36962890625);
     }
+    
+    public void testPuntoFijo() {
+    	NumericMethod puntoFijo = MethodFactory.createMethod("punto fijo");
+    	List<List<Object>> res = puntoFijo.calculate("(x*e^x - x^2-3)/5", -0.5, 1e-7, 100);
+        assertEquals(res.get(9).get(1), -0.7998235074870936);
+    }
 
     public void testNewton() {
     	NumericMethod newton = MethodFactory.createMethod("Newton");

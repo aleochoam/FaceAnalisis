@@ -4,9 +4,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.Math;
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class PuntoFijo {
+public class PuntoFijo implements NumericMethod{
     private final Evaluator eval;
     private final BufferedReader br;
 
@@ -17,38 +19,53 @@ public class PuntoFijo {
     }
 
 
-    private void algorithm(String fx,String gx, double x0,double tole ,double niter){
+    public List<List<Object>> calculate(Object... args){
+    	String gx = (String) args[0];
+    	double x0 = (Double) args[1];
+    	double tol = (Double) args[2];
+    	int niter = (Integer) args[3];
+    	
+        double error, xn;
+        int contador;
+        
+        List<List<Object>> res = new ArrayList<List<Object>>();
+      	contador = 0;
+      	error = tol +1;
 
-        double feval,error, contador, xn;
-        feval = this.eval.evaluatorExpression(fx,x0);
-      	contador = 0.0;
-      	error = tole +1;
-
-      	while(feval != 0 && error > tole && contador < niter){
-
-          	xn = this.eval.evaluatorExpr(gx,x0);
-          	feval = this.eval.evaluatorExpr(fx,xn);
+      	while(error > tol && contador < niter){
+      		List<Object> iteracion = new ArrayList<Object>();
+        	iteracion.add(contador);
+        	iteracion.add(x0);
+        	iteracion.add(error);
+        	res.add(iteracion);
+      		
+      		
+          	xn = this.eval.evalExpr(gx,x0);
           	error = Math.abs(xn-x0);
           	x0 = xn;
 
       	}
-      	if(feval == 0){
-      	  System.out.println(x0 + " es raiz");
-
-      	}else if (error < tole){
-      		System.out.println(x0 + " Es una aproximacion con una tolerancia " + tole);
-
-      	}else{
-      	  System.out.println("Método fracaso en " + niter + " Iteraciones");
-
-      	}
-
-
+      	
+      	List<Object> iteracion = new ArrayList<Object>();
+    	iteracion.add(contador);
+    	iteracion.add(x0);
+    	iteracion.add(error);
+    	res.add(iteracion);
+      	
+//      	if (error < tol){
+//      		System.out.println(x0 + " Es una aproximacion con una tolerancia " + tol);
+//
+//      	}else{
+//      	  System.out.println("Método fracaso en " + niter + " Iteraciones");
+//
+//      	}
+      	
+      	return res;
     }
 
 
-
-
-
-
+	@Override
+	public String getName() {
+		return "Punto Fijo";
+	}
 }

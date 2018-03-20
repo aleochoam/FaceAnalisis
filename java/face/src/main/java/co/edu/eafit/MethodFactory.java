@@ -10,7 +10,10 @@ public class MethodFactory {
         	return new IncrementalSearch();
     	}else if(methodName.toLowerCase().equals("biseccion")) {
     		return new Biseccion();
-    	}else{
+    	}else if(methodName.toLowerCase().equals("punto fijo")) {
+    		return new PuntoFijo();
+    	}
+		else{
             return new NotImplementedMethod();
         }
     }
