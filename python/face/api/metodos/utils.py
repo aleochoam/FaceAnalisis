@@ -13,12 +13,12 @@ def call_eval_f(parameters):
 
 def plot_f(parameters):
     f = parameters["funcion"]
-
+    # print(f)
     response = dict()
     response["data"] = []
 
     for xi in [x*0.1 for x in range(-10, 10)]:
-        response["data"].append({"x": xi, "y": eval_f(f, xi)})
+        response["data"].append({"x": str(xi), "y": str(eval_f(f, xi))})
 
     return response
 

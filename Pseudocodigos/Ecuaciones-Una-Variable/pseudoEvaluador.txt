@@ -1,0 +1,6 @@
+INICIO
+    LEER funcion, x
+
+    funcion.evaluar(x)
+
+FIN_INICIO

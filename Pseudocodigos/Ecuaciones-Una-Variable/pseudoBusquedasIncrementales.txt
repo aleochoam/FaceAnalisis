@@ -17,14 +17,15 @@ INICIO
             p_sig <-- p_ini + delta
             fun_p_sig <-- fun(p_sig)
             cont <-- cont + 1
-        FIN_MIENTRAS
 
-        SI fun_p_ini < 0 ENTONCES:
-            IMPRIMIR p_ini es raiz
-        SINO SI fun_p_ini * fun_p_sig < 0 ENTONCES:
-            IMPRIMIR Hay una raiz entre p_ini y p_sig
-        SINO
-            Fracaso en iters iteraciones
+            SI fun_p_ini < 0 ENTONCES:
+                IMPRIMIR p_ini es raiz
+            SINO SI fun_p_ini * fun_p_sig < 0 ENTONCES:
+                IMPRIMIR Hay una raiz entre p_ini y p_sig
+            FIN_SI
+        FIN_MIENTRAS
+        SI cont > iters
+            IMPRIMIT Fracaso en iters iteraciones
         FIN_SI
     FIN_SI
 FIN_INICIO
