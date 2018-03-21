@@ -2,7 +2,7 @@ from sympy import symbols
 from .utils import sympify_expr
 
 
-class NewtonMethod(object):
+class Newton2Method(object):
 
     def calculate(self, params):
         tol = eval(params["tol"])
@@ -10,31 +10,37 @@ class NewtonMethod(object):
         n_iter = eval(params["n_iter"])
         f = params["funcion"]
         f_prima = params["f_prima"]
+        f_dos_prima = params["f_dos_prima"]
 
         response = self.init_response()
         contador = 0
         error = tol + 1
 
+        x = symbols("x")
         f = sympify_expr(f)
         f_prima = sympify_expr(f_prima)
-        x = symbols("x")
+        f_dos_prima = sympify_expr(f_dos_prima)
 
         response["funcion_in"] = str(f)
-        response["der_in"] = str(f_prima)
+        response["f_prima"] = str(f_prima)
+        response["f_dos_prima"] = str(f_dos_prima)
 
         fx = f.evalf(subs={x: xa})
         dfx = f_prima.evalf(subs={x: xa})
+        d2fx = f_dos_prima.evalf(subs={x: xa})
 
-        while error > tol and fx != 0 and dfx != 0 and contador < n_iter:
+        while error > tol and fx != 0 and contador < n_iter:
 
             iteracion = [contador, str(xa), str(error)]
             response["iteraciones"].append(iteracion)
 
-            xn = xa - fx/dfx
+            xn = xa - (fx*dfx)/(dfx**2 - fx * d2fx)
+
             fx = f.evalf(subs={x: xn})
             dfx = f_prima.evalf(subs={x: xn})
+            d2fx = f_dos_prima.evalf(subs={x: xn})
 
-            error = abs((xn-xa)/xn)
+            error = abs(xn-xa)
             xa = xn
             contador = contador + 1
 
@@ -43,10 +49,9 @@ class NewtonMethod(object):
 
         if fx == 0:
             response["raiz"] = str(xa)
+
         elif error < tol:
             response["aproximado"] = str(xn)
-        elif dfx == 0:
-            response["error"] = "{} es una posible raíz multiple".format(xn)
         else:
             response["error"] = "El método fracasó en {} iteraciones"\
                 .format(n_iter)
@@ -54,8 +59,8 @@ class NewtonMethod(object):
         return response
 
     def get_description(self):
-        return "Este metodo encuentra la raiz de una función a través del \
-            metodo de Newton"
+        return "Este metodo encuentra la raiz de una función aún si tiene \
+            raices multiples"
 
     def init_response(self):
         response = dict()

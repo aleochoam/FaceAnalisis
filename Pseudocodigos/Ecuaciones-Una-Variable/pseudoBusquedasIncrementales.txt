@@ -1,3 +1,4 @@
+// Sacado de Métodos Numéricos; Correa Zabala, Francisco José
 INICIO
 
     LEER p_ini, delta, iters, fun

@@ -1,9 +1,12 @@
+IMPORTAR PARSER
+
 INICIO
 
     LEER funcion
+    funcion <- parser(funcion)
 
-    PARA x = -10 HASTA 10 CON PASO 0.1 HACER:
-        y = funcion.evaluar(x)
+    PARA x <- -10 HASTA 10 CON PASO 0.1 HACER:
+        y <- funcion.evaluar(x)
         graficar(x, y)
     FIN PARA
 

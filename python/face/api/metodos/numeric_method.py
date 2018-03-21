@@ -3,16 +3,18 @@ from .metodo_busquedas import IncrementalSearch
 from .metodo_regla_falsa import FalsePosition
 from .metodo_punto_fijo import FixedPoint
 from .metodo_newton import NewtonMethod
+from .metodo_newton_m import Newton2Method
+from .metodo_secante import Secante
 
 
 class NumericMethod(object):
     """Clase base de los metodos numericos"""
 
     def calculate(self, parameters):
-        return {"Error": "Metodo no implementado"}
+        return {"Error": "Metodo no encontrado"}
 
     def get_description(self):
-        return {"Error": "Metodo no implementado"}
+        return {"Error": "Metodo no encontrado"}
 
 
 def create_method(method):
@@ -26,5 +28,9 @@ def create_method(method):
         return FixedPoint()
     elif method == "newton":
         return NewtonMethod()
+    elif method == "newton2":
+        return Newton2Method()
+    elif method == "secante":
+        return Secante()
     else:
         return NumericMethod()

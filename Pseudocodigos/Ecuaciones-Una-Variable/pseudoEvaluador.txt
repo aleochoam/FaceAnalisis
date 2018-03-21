@@ -1,6 +1,9 @@
+IMPORTAR PARSER
+
 INICIO
     LEER funcion, x
 
+    funcion <- parser(funcion)
     funcion.evaluar(x)
 
 FIN_INICIO

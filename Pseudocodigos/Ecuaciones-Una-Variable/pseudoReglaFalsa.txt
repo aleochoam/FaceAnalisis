@@ -1,3 +1,4 @@
+// Sacado de Métodos Numéricos; Correa Zabala, Francisco José
 INICIO
 
     LEER a, b, niter, fun, tol
@@ -12,7 +13,7 @@ INICIO
     SINO SI fEnA * fEnB < 0 ENTONCES:
         mitad = a - (fun(a)*(b-a))/(fun(b)-fun(a))
         fEnMitad = fun(mitad)
-        
+
         contador <- 1
         error <- tol + 1
         MIENTRAS error < tol Y contador < niter Y fEnMitad != 0 HAGA:
@@ -30,7 +31,7 @@ INICIO
             error <- abs(mitad - valorAuxiliar)
             contador <- contador + 1
         FIN_MIENTRAS
-        
+
         SI fEnMitad = 0 ENTONCES:
             IMPRIMIR mitad es raiz
         SINO SI error < tol ENTONCES:
@@ -41,4 +42,4 @@ INICIO
     SINO:
         IMPRIMIR El intervalo a , b no es valido
     FIN_SI
-FIN    
+FIN

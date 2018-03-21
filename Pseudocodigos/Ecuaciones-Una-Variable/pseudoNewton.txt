@@ -1,3 +1,4 @@
+// Sacado de Métodos Numéricos; Correa Zabala, Francisco José
 INICIO
 
     LEER tole, p_ini, iters, fun, der_fun,

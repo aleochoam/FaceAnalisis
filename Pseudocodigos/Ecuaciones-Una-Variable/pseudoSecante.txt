@@ -1,0 +1,40 @@
+// Sacado de Métodos Numéricos; Correa Zabala, Francisco José
+
+IMPORTAR PARSER
+
+LEER tol, x0, x1, n_iter, f
+
+f <-- parser(f)
+
+fx0 <-- f(x0)
+SI (fx0 == 0) ENTONCES:
+    IMPRIMIR x0 es raíz
+SINO
+    fx1 <-- f(x1)
+    cont <-- 0
+    error <-- tol +1
+    den <-- fx1 - fx0
+
+    MIENTRAS (error > tol) Y (fx1 != 0) Y (den != 0) Y (cont < n_iter) HACER:
+        x2 <-- x1 - fx1 * (x1-x0)/den
+        error <-- abs(x2-x1)    //error <-- abs((x2-x1)/x2)
+        x0 <-- x1
+        fx0 <-- fx1
+        x1 <-- x2
+        fx1 <-- f(x1)
+        den <-- fx1 -fx0
+        cont <-- cont + 1
+    FIN MIENTRAS
+
+    SI (fx1 = 0) ENTONCES
+        IMPRIMIR x1 es raíz
+    SINO SI (error < tol) ENTONCES
+        IMPRIMIR x1 es una aproximación a una raíz con una toleracia = tol
+    SINO SI (den = 0) ENTONCES
+        IMPRIMIR Hay una posible raíz múltiple
+    SINO
+        IMPRIMIR Fracasó en n_iter iteraciones
+    FIN SI
+FIN SI
+
+

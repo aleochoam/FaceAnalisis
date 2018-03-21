@@ -1,0 +1,27 @@
+// Basado de Métodos Numéricos; Correa Zabala, Francisco José
+IMPORTAR PARSER
+
+INICIO
+
+    LEER tol, xa, iters, fun_g
+
+    fun_g <-- parser(fun_g)
+
+    cont <-- 0
+    error <-- tol + 1
+
+    MIENTRAS (error > tol) Y (cont < iters) HAGA:
+        xn <-- fun_g(xa)
+
+        error <-- |p_sig - p_ini|       // error
+        xa <-- xn
+        cont <-- cont + 1
+    FIN_MIENTRAS
+
+    SI error < tol ENTONCES:
+        IMPRIMIR xa es aproximacion a una raiz con una tolerancia = tol
+    SINO
+        IMPRIMIR Fracaso en iters iteraciones
+    FIN_SI
+
+FIN_INICIO
