@@ -19,7 +19,8 @@ import { AlertController } from 'ionic-angular';
 })
 export class NewtonPage {
 
-  dataSubmit:any = {}
+  dataSubmit:any = {};
+  dataReceived: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public httpNewtonProvider:HttpNewtonProvider) {
     this.dataSubmit['fx'] = '';
@@ -27,6 +28,8 @@ export class NewtonPage {
     this.dataSubmit['x0'] = '';
     this.dataSubmit['tol'] = '';
     this.dataSubmit['nIters'] = '';
+
+    this.getServer();
   }
 
   submitForm() {
@@ -51,6 +54,7 @@ export class NewtonPage {
     this.showAlert('Num. Iters');
    }else{
     console.log("Campos verificados y completos.");
+    this.postServer();
    }
   }
 
@@ -64,4 +68,30 @@ export class NewtonPage {
     alert.present();
   }
 
+      //Zona de get y post
+
+      public getServer() {
+        this.httpNewtonProvider.getNewton()
+        .then(data => {
+          this.dataReceived = data;
+          console.log("Realice el GET-REGLA FALSA ->");
+          console.log(JSON.stringify(data));
+        }, (err) => {
+          console.log("Problema al hacer GET-REGLA FALSA");
+          console.log(err);
+        });
+      }
+    
+    
+      public postServer() {
+        this.httpNewtonProvider.postNewton(this.dataSubmit)
+        .then(result => {
+          this.dataReceived = result;
+          console.log("Realice el POST-REGLA FALSA");
+          console.log("Envie al server = " + this.dataSubmit + " y me llegó como respuesta " + JSON.stringify(result));
+        }, (err) => {
+          console.log("Problema al hacer POST-REGLA FALSA");
+          console.log(err);
+        });
+      }
 }

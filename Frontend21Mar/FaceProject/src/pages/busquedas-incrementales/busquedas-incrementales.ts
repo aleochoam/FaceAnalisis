@@ -20,13 +20,17 @@ import { AlertController } from 'ionic-angular';
 })
 export class BusquedasIncrementalesPage {
 
-  dataSubmit:any = {}
+  dataSubmit:any = {};
+
+  dataReceived:any;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public httpBusquedasIncrementalesProvider : HttpBusquedasIncrementalesProvider) {
     this.dataSubmit['fx'] = '';
     this.dataSubmit['x0'] = '';
     this.dataSubmit['delta'] = '';
     this.dataSubmit['nIters'] = '';
+    this.getServer();
+  
   }
 
   submitForm() {
@@ -49,6 +53,7 @@ export class BusquedasIncrementalesPage {
     this.showAlert('Num. Iters');
    }else{
     console.log("Campos verificados y completos.");
+    this.postServer();
    }   
   }
 
@@ -60,6 +65,33 @@ export class BusquedasIncrementalesPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  //Zona de get y post
+
+  public getServer() {
+    this.httpBusquedasIncrementalesProvider.getBusquedasIncrementales()
+    .then(data => {
+      this.dataReceived = data;
+      console.log("Realice el GET-BUSQUEDAS ->");
+      console.log(JSON.stringify(data));
+    }, (err) => {
+      console.log("Problema al hacer GET-BUSQUEDAS");
+      console.log(err);
+    });
+  }
+
+
+  public postServer() {
+    this.httpBusquedasIncrementalesProvider.postBusquedasIncrementales(this.dataSubmit)
+    .then(result => {
+      this.dataReceived = result;
+      console.log("Realice el POST-BUSQUEDAS");
+      console.log("Envie al server = " + this.dataSubmit + " y me llegó como respuesta " + JSON.stringify(result));
+    }, (err) => {
+      console.log("Problema al hacer POST-BUSQUEDAS");
+      console.log(err);
+    });
   }
 
 }
