@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { HttpBusquedasIncrementalesProvider } from '../../providers/http-busquedas-incrementales/http-busquedas-incrementales';
+
 import { AlertController } from 'ionic-angular';
 
 
@@ -20,7 +22,7 @@ export class BusquedasIncrementalesPage {
 
   dataSubmit:any = {}
   
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public httpBusquedasIncrementalesProvider : HttpBusquedasIncrementalesProvider) {
     this.dataSubmit['fx'] = '';
     this.dataSubmit['x0'] = '';
     this.dataSubmit['delta'] = '';

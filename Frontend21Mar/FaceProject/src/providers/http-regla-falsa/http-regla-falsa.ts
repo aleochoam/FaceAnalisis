@@ -10,9 +10,9 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class HttpReglaFalsaProvider {
 
-  private apiUrl = '';
+  private apiUrl = 'http://165.227.197.6:8000/api/regla_falsa/';
 
-  
+
   constructor(public http: HttpClient) {
     console.log('Hello HttpReglaFalsaProvider Provider');
   }

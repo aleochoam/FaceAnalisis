@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { HttpPuntoFijoProvider } from '../../providers/http-punto-fijo/http-punto-fijo';
+
+
 import { AlertController } from 'ionic-angular';
 /**
  * Generated class for the PuntoFijoPage page.
@@ -18,7 +21,7 @@ export class PuntoFijoPage {
 
   dataSubmit:any = {}
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public httpPuntoFijoProvider:HttpPuntoFijoProvider) {
     this.dataSubmit['fx'] = '';
     this.dataSubmit['x0'] = '';
     this.dataSubmit['tol'] = '';

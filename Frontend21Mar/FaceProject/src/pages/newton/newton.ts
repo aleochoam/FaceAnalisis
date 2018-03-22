@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { HttpNewtonProvider } from '../../providers/http-newton/http-newton';
+
+
 import { AlertController } from 'ionic-angular';
 /**
  * Generated class for the NewtonPage page.
@@ -18,7 +21,7 @@ export class NewtonPage {
 
   dataSubmit:any = {}
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public httpNewtonProvider:HttpNewtonProvider) {
     this.dataSubmit['fx'] = '';
     this.dataSubmit['dfx'] = '';
     this.dataSubmit['x0'] = '';

@@ -10,9 +10,9 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class HttpRaicesMultiplesProvider {
 
-  private apiUrl = '';
+  private apiUrl = 'http://165.227.197.6:8000/api/newton2/';
 
-  
+
   constructor(public http: HttpClient) {
     console.log('Hello HttpRaicesMultiplesProvider Provider');
   }

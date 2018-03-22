@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { HttpSecanteProvider } from '../../providers/http-secante/http-secante';
+
+
 import { AlertController } from 'ionic-angular';
 /**
  * Generated class for the SecantePage page.
@@ -18,7 +21,7 @@ export class SecantePage {
 
   dataSubmit:any = {}
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public httpSecanteProvider:HttpSecanteProvider) {
     this.dataSubmit['fx'] = '';
     this.dataSubmit['xa'] = '';
     this.dataSubmit['xa'] = '';

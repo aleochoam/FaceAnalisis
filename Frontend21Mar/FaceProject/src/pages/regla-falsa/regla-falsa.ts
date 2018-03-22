@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { HttpReglaFalsaProvider } from '../../providers/http-regla-falsa/http-regla-falsa';
+
+
 import { AlertController } from 'ionic-angular';
 /**
  * Generated class for the ReglaFalsaPage page.
@@ -18,7 +21,7 @@ export class ReglaFalsaPage {
 
   dataSubmit:any = {}
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public httpReglaFalsaProvider:HttpReglaFalsaProvider) {
     this.dataSubmit['fx'] = '';
     this.dataSubmit['xa'] = '';
     this.dataSubmit['xb'] = '';
