@@ -21,6 +21,7 @@ def call_method(request, method_name):
         return JsonResponse({"Ayuda": method.get_description()})
     else:
         params = body2dict(request)
+        print(params)
         response = method.calculate(params)
         return JsonResponse(response)
     # except Exception as e:

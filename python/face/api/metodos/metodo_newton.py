@@ -7,7 +7,7 @@ class NewtonMethod(object):
     def calculate(self, params):
         tol = eval(params["tole"])
         xa = eval(params["x0"])
-        n_iter = eval(params["nIter"])
+        n_iter = eval(params["nIters"])
         f = params["fx"]
         f_prima = params["dfx"]
 

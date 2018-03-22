@@ -13,7 +13,7 @@ class Bisection:
         f = str(parameters["fx"])
         xa = float(parameters["xa"])
         xb = float(parameters["xb"])
-        n_iter = int(parameters["nIter"])
+        n_iter = int(parameters["nIters"])
         tol = eval(parameters["tole"])
 
         # Transformar f a sympy
