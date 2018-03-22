@@ -24,6 +24,18 @@ import { SecantePage } from '../pages/secante/secante';
 import { RaicesMultiplesPage } from '../pages/raices-multiples/raices-multiples';
 
 
+import { HttpClientModule } from '@angular/common/http';
+
+
+import { HttpBusquedasIncrementalesProvider } from '../providers/http-busquedas-incrementales/http-busquedas-incrementales';
+import { HttpBiseccionProvider } from '../providers/http-biseccion/http-biseccion';
+import { HttpReglaFalsaProvider } from '../providers/http-regla-falsa/http-regla-falsa';
+import { HttpPuntoFijoProvider } from '../providers/http-punto-fijo/http-punto-fijo';
+import { HttpNewtonProvider } from '../providers/http-newton/http-newton';
+import { HttpSecanteProvider } from '../providers/http-secante/http-secante';
+import { HttpRaicesMultiplesProvider } from '../providers/http-raices-multiples/http-raices-multiples';
+
+
 
 @NgModule({
   declarations: [
@@ -46,6 +58,7 @@ import { RaicesMultiplesPage } from '../pages/raices-multiples/raices-multiples'
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -70,7 +83,14 @@ import { RaicesMultiplesPage } from '../pages/raices-multiples/raices-multiples'
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    HttpBusquedasIncrementalesProvider,
+    HttpBiseccionProvider,
+    HttpReglaFalsaProvider,
+    HttpPuntoFijoProvider,
+    HttpNewtonProvider,
+    HttpSecanteProvider,
+    HttpRaicesMultiplesProvider
   ]
 })
 export class AppModule {}
