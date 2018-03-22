@@ -56,4 +56,16 @@ public class AppTest extends TestCase {
     	List<List<Object>> res = newton.calculate("x*e^x - x^2-5*x-3", "x*e^x+e^x-2*x-5", -4.5, 1e-7, 100);
         assertEquals(res.get(4).get(1), -4.286348515427084);
     }
+    
+    public void testSecante() {
+    	NumericMethod secante = MethodFactory.createMethod("secante");
+    	List<List<Object>> res = secante.calculate("x^2 - 3", 2.0, 3.0, 1e-5, 100);
+    	assertEquals(res.get(5).get(1), 1.7320525783619818);
+    }
+    
+    public void testNewton2() {
+    	NumericMethod newton2 = MethodFactory.createMethod("raices multiples");
+    	List<List<Object>> res = newton2.calculate("x^3", "3*x^2", "6*x", 1.0, 1e-5, 100);
+    	assertEquals(res.get(res.size()-1).get(1), 0.0);
+    }
 }

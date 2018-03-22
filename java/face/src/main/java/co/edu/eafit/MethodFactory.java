@@ -12,8 +12,11 @@ public class MethodFactory {
     		return new Biseccion();
     	}else if(methodName.toLowerCase().equals("punto fijo")) {
     		return new PuntoFijo();
-    	}
-		else{
+    	}else if(methodName.toLowerCase().equals("secante")) {
+    		return new Secante();
+    	}else if(methodName.toLowerCase().equals("raices multiples")) {
+    		return new RaicesMultiples();
+    	}else{
             return new NotImplementedMethod();
         }
     }
