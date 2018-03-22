@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { Chart } from 'chart.js';
 /**
- * Generated class for the GraficadorPage page.
+ * Generated class for the GraficaPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -15,11 +15,51 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class GraficadorPage {
 
+  graphData ={};
+  @ViewChild('lineCanvas') lineCanvas;
+
+   lineChart: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad GraficadorPage');
+  logForm() {
+    console.log(this.graphData);
   }
+
+  ionViewDidLoad() {
+
+        this.lineChart = new Chart(this.lineCanvas.nativeElement, {
+
+          type: 'line',
+    data: {
+        datasets: [{
+            label: 'Grafica',
+            data: [{
+                x: -10,
+                y: -8
+            }, {
+                x: 0,
+                y: 10
+            }, {
+                x: 10,
+                y: 5
+            }],
+            borderColor: [
+              '#0b8c7f',
+            ],
+        }]
+    },
+
+    options: {
+        scales: {
+            xAxes: [{
+                type: 'linear',
+                position: 'bottom'
+            }]
+        }
+    }
+    });
+ }
 
 }

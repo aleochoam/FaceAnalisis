@@ -1,5 +1,5 @@
 <!--
-  Generated template for the GraficadorPage page.
+  Generated template for the GraficaPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,12 +7,23 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>graficador</ion-title>
+    <ion-title>Gráficador</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="pantalla">
+    <form (ngSubmit)="logForm()">
+        <ion-item>
+            <ion-label>Función</ion-label>
+            <ion-input type="text" [(ngModel)]="graphData.funcion" name="funcion"></ion-input>
+        </ion-item>
+        <br>
+        <button ion-button type="submit" class="boton" block>Graficar</button>
+      </form>
+      <br>
+
+    <canvas #lineCanvas class="lineCanvas"></canvas>
 
 </ion-content>
