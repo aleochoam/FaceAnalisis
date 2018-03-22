@@ -44,6 +44,50 @@
             
             <button ion-button type="submit" block>Calcular</button>
           </form>
+
+        <ion-row class="headerTable">
+          <ion-col col-1>
+            <h6>i</h6>        
+          </ion-col>
+               <ion-col >
+            <h6>x Inf</h6>        
+          </ion-col>
+               <ion-col >
+            <h6>x Sup</h6>        
+          </ion-col>
+               <ion-col >
+            <h6>x Med</h6>        
+          </ion-col>
+               <ion-col >
+            <h6>f(xMed)</h6>        
+          </ion-col>
+               <ion-col>
+            <h6>Error</h6>        
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngFor ="let item of table">
+          <ion-col col-1> 
+            {{item.i}}
+          </ion-col>
+          <ion-col> 
+            {{item.xinf}}
+          </ion-col>
+          <ion-col>
+            {{item.xsup}}             
+          </ion-col>
+          <ion-col>      
+            {{item.xmed}}     
+          </ion-col>
+          <ion-col>
+            {{item.fmed}}           
+          </ion-col>
+          <ion-col> 
+            {{item.error}}          
+          </ion-col>
+        </ion-row>
+                                   
+              
     </ion-grid>
   
   </ion-content>

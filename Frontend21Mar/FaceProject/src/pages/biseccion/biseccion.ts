@@ -21,7 +21,10 @@ export class BiseccionPage {
 
   dataSubmit:any = {}
 
-  dataReceived: any;
+  dataReceivedGet: any;
+  dataReceivedPost: any;
+
+  table: Array<any> = []
 
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public httpBiseccionProvider : HttpBiseccionProvider) {
@@ -31,6 +34,15 @@ export class BiseccionPage {
     this.dataSubmit['nIters'] = '';
     this.dataSubmit['tole'] = '';
 
+    this.getServer();
+
+  }
+
+  fromObjectToTable(){
+    for (let entry of this.dataReceivedPost['iteraciones']) {
+      this.table.push( {i:entry[0], xinf:entry[1], xsup:entry[2], xmed:entry[3], fmed:entry[4], error:entry[5]} );
+      
+    }
   }
 
   submitForm() {
@@ -76,9 +88,11 @@ export class BiseccionPage {
   public getServer() {
     this.httpBiseccionProvider.getBiseccion()
     .then(data => {
-      this.dataReceived = data;
+      this.dataReceivedGet = data;
       console.log("Realice el GET-BISECCION ->");
       console.log(JSON.stringify(data));
+      console.log(this.dataReceivedGet);
+      console.log(typeof(this.dataReceivedGet));
     }, (err) => {
       console.log("Problema al hacer GET-BISECCION");
       console.log(err);
@@ -89,9 +103,10 @@ export class BiseccionPage {
   public postServer() {
     this.httpBiseccionProvider.postBiseccion(this.dataSubmit)
     .then(result => {
-      this.dataReceived = result;
+      this.dataReceivedPost = result;
       console.log("Realice el POST-BISECCION");
       console.log("Envie al server = " + this.dataSubmit + " y me llegó como respuesta " + JSON.stringify(result));
+      this.fromObjectToTable();
     }, (err) => {
       console.log("Problema al hacer POST-BISECCION");
       console.log(err);
