@@ -87,7 +87,7 @@ class Bisection:
 
     def get_description(self):
         return "Este metodo se encarga de encontrar una raíz dado un rango donde \
-            hay un cambio de signo"
+        hay un cambio de signo", "Se necesita: funcion, xa, xb, n_iter y tol"
 
     def init_response(self):
         response = dict()

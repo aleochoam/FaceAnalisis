@@ -81,7 +81,9 @@ class FalsePosition():
 
     def get_description(self):
         return "Este metodo se encarga de encontrar una raíz dado un rango donde\
-            haya un cambio de signo, aplicando el metodo de regla falsa"
+            haya un cambio de signo, aplicando el metodo de regla falsa", "Se  \
+            necesita funcion, xa, xb, n_iter y tol", "Se necesita funcion, xa, \
+            xb n_iter y tol"
 
     def init_response(self):
         response = dict()

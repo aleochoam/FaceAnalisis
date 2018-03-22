@@ -55,7 +55,8 @@ class Secante(object):
         return response
 
     def get_description(self):
-        return "Halla la raíz de una función por medio del método de lasecante"
+        return "Halla la raíz de una función por medio del método de \
+        la secante", "Se necesita tol, n_iter, x0, x1, funcion"
 
     def init_response(self):
         response = dict()

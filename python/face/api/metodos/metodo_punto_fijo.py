@@ -44,7 +44,8 @@ class FixedPoint():
         return response
 
     def get_description(self):
-        return "Este metodo encuentra el punto fijo de una función x = g(x)"
+        return "Este metodo encuentra el punto fijo de una función x = g(x)",
+        "Se necesita funcion, xa, n_iter, y tol"
 
     def init_response(self):
         response = dict()

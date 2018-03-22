@@ -60,7 +60,8 @@ class Newton2Method(object):
 
     def get_description(self):
         return "Este metodo encuentra la raiz de una función aún si tiene \
-            raices multiples"
+            raices multiples", "Se necesita tol, x0, n_iter, funcion, f_prima y \
+            f_dos_prima"
 
     def init_response(self):
         response = dict()

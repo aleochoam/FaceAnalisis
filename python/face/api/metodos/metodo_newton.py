@@ -55,7 +55,7 @@ class NewtonMethod(object):
 
     def get_description(self):
         return "Este metodo encuentra la raiz de una función a través del \
-            metodo de Newton"
+            metodo de Newton", "Se necesita tol, x0, n_iter, funcion y f_prima"
 
     def init_response(self):
         response = dict()

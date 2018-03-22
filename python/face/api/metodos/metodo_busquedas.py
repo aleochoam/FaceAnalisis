@@ -52,7 +52,8 @@ class IncrementalSearch():
         return response
 
     def get_description(self):
-        return "Este método se encarga de encontrar un intervalos con raíces"
+        return "Este método se encarga de encontrar un intervalos con raíces",
+        "se necesita funcion, x0, delta y n_iter"
 
     def init_response(self):
         response = dict()
