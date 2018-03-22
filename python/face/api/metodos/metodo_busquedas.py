@@ -14,7 +14,7 @@ class IncrementalSearch():
         f = str(parameters["fx"])
         x0 = float(parameters["x0"])
         delta = float(parameters["delta"])
-        n_iter = int(parameters["nIter"])
+        n_iter = int(parameters["nIters"])
 
         # Transformar f a sympy
         f = sympify_expr(f)
