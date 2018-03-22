@@ -1,0 +1,54 @@
+<!--
+  Generated template for the RaicesMultiplesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color = 'dark'>
+    <ion-title>Raices Multiples</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-grid>
+      <form (ngSubmit)="submitForm()">
+          <ion-item>
+            <ion-label>f(x)</ion-label>
+            <ion-input type="text" [(ngModel)]="dataSubmit.fx" name="fx"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>f'(x)</ion-label>
+            <ion-input type="text" [(ngModel)]="dataSubmit.dfx" name="dfx"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>f''(x)</ion-label>
+            <ion-input type="text" [(ngModel)]="dataSubmit.d2fx" name="d2fx"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>x Inicial</ion-label>
+            <ion-input type="text" [(ngModel)]="dataSubmit.x0" name="x0"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Tolerancia</ion-label>
+            <ion-input type="text" [(ngModel)]="dataSubmit.tol" name="tol"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Num. Iters</ion-label>
+            <ion-input type="text" [(ngModel)]="dataSubmit.nIters" name="nIters"></ion-input>
+          </ion-item>
+
+          <button ion-button type="submit" block>Calcular</button>
+        </form>
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,68 @@
+<!--
+  Generated template for the EcuacionesUnaVariablePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="dark">
+    <ion-title>Ecuaciones una Variable</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-grid>
+        
+        <ion-row class="espaciadoSuperior">
+        </ion-row>
+        
+        <ion-row >
+            <p class ="encabezados" padding>Método para determinar aprox. iniciales</p>            
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <button ion-button full  round color="secondary" (click)="goBusquedasIncrementales()" class="boton">Busquedas Incrementales</button>          
+          </ion-col>
+        </ion-row>
+    
+        <ion-row >
+            <p class ="encabezados" padding>Métodos por intervalos abiertos o cerrados</p>
+        </ion-row>
+        <ion-row>          
+          <ion-col col-m-6>            
+            <button ion-button  full  round color="secondary" (click)="goBiseccion()" class="boton">Biseccion</button>              
+          </ion-col>
+          <ion-col col-m-6 >
+            <button ion-button  full round color="secondary" (click)="goReglaFalsa()" class="boton">Regla Falsa</button>          
+          </ion-col>
+        </ion-row>
+    
+        <ion-row >
+            <p padding class ="encabezados">Métodos Abiertos</p>                        
+        </ion-row>
+        <ion-row>
+          <ion-col col-m-6>
+            <button ion-button full round color="secondary" (click)="goPuntoFijo()" class="boton">Punto Fijo</button>              
+          </ion-col>
+
+          <ion-col col-m-6>
+            <button ion-button full round color="secondary" (click)="goNewton()" class="boton">Newton</button>              
+          </ion-col>
+        </ion-row> 
+    
+        <ion-row>
+          <ion-col col-m-6>
+            <button ion-button full round color="secondary" (click)="goSecante()" class="boton">Secante</button>              
+          </ion-col>
+      
+          <ion-col col-m-6>
+            <button ion-button full round color="secondary" (click)="goRaicesMultiples()" class="boton">Raíces Mult.</button>              
+          </ion-col>
+        </ion-row>
+
+    </ion-grid>
+
+</ion-content>

@@ -1,0 +1,44 @@
+<!--
+  Generated template for the BusquedasIncrementalesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color = 'dark'>
+    <ion-title>Busquedas Incrementales</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-grid>
+      <form (ngSubmit)="submitForm()">
+          <ion-item>
+            <ion-label>f(x)</ion-label>
+            <ion-input type="text" [(ngModel)]="dataSubmit.fx" name="fx"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>x Inicial</ion-label>
+            <ion-input type="text" [(ngModel)]="dataSubmit.x0" name="x0"></ion-input>
+          </ion-item>
+            
+          <ion-item>
+            <ion-label>Delta</ion-label>
+            <ion-input type="text" [(ngModel)]="dataSubmit.delta" name="delta"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Num. Iters</ion-label>
+            <ion-input type="text" [(ngModel)]="dataSubmit.nIters" name="nIters"></ion-input>
+          </ion-item>
+          
+          <button ion-button type="submit" block>Calcular</button>
+        </form>
+  </ion-grid>
+
+</ion-content>
