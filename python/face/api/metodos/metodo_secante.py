@@ -5,10 +5,10 @@ from .utils import sympify_expr
 class Secante(object):
     def calculate(self, params):
         tol = eval(params["tol"])
-        n_iter = eval(params["n_iter"])
+        n_iter = eval(params["nIters"])
         x0 = eval(params["x0"])
         x1 = eval(params["x1"])
-        f = params["funcion"]
+        f = params["fx"]
 
         response = self.init_response()
         contador = 0

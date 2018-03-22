@@ -10,10 +10,10 @@ class FalsePosition():
         x = symbols("x")
 
         # Extracción de los parametros
-        f = str(parameters["funcion"])
+        f = str(parameters["fx"])
         xa = float(parameters["xa"])
         xb = float(parameters["xb"])
-        n_iter = int(parameters["n_iter"])
+        n_iter = int(parameters["nIters"])
         tol = eval(parameters["tol"])
 
         # Transformar f a sympy

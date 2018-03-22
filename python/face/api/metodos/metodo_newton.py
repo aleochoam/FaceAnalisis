@@ -7,9 +7,9 @@ class NewtonMethod(object):
     def calculate(self, params):
         tol = eval(params["tol"])
         xa = eval(params["x0"])
-        n_iter = eval(params["n_iter"])
-        f = params["funcion"]
-        f_prima = params["f_prima"]
+        n_iter = eval(params["nIters"])
+        f = params["fx"]
+        f_prima = params["dfx"]
 
         response = self.init_response()
         contador = 0
