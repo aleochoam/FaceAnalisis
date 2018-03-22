@@ -1,0 +1,49 @@
+<!--
+  Generated template for the SecantePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color = 'dark'>
+    <ion-title>Metodo de la secante</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-grid>
+      <form (ngSubmit)="submitForm()">
+          <ion-item>
+            <ion-label>f(x)</ion-label>
+            <ion-input type="text" [(ngModel)]="dataSubmit.fx" name="fx"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>xa</ion-label>
+            <ion-input type="text" [(ngModel)]="dataSubmit.xa" name="xa"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>xb</ion-label>
+            <ion-input type="text" [(ngModel)]="dataSubmit.xb" name="xb"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Tolerancia</ion-label>
+            <ion-input type="text" [(ngModel)]="dataSubmit.tol" name="tol"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Num. Iters</ion-label>
+            <ion-input type="text" [(ngModel)]="dataSubmit.nIters" name="nIters"></ion-input>
+          </ion-item>
+
+          <button ion-button type="submit" block>Calcular</button>
+        </form>
+  </ion-grid>
+
+</ion-content>
