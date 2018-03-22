@@ -5,7 +5,7 @@ from .utils import sympify_expr
 class NewtonMethod(object):
 
     def calculate(self, params):
-        tol = eval(params["tole"])
+        tol = eval(params["tol"])
         xa = eval(params["x0"])
         n_iter = eval(params["nIters"])
         f = params["fx"]

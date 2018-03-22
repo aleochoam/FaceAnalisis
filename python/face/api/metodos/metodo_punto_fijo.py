@@ -10,7 +10,7 @@ class FixedPoint():
 
         # Extracción de los parametros
         g = str(parameters["fx"])
-        xa = float(parameters["xa"])
+        xa = float(parameters["x0"])
         n_iter = int(parameters["nIters"])
         tol = eval(parameters["tol"])
 
