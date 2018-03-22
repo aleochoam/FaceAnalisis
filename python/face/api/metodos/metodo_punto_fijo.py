@@ -9,9 +9,9 @@ class FixedPoint():
         response = self.init_response()
 
         # Extracción de los parametros
-        g = str(parameters["funcion"])
+        g = str(parameters["fx"])
         xa = float(parameters["xa"])
-        n_iter = int(parameters["n_iter"])
+        n_iter = int(parameters["nIters"])
         tol = eval(parameters["tol"])
 
         # Transformar g a sympy

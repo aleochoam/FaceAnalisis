@@ -11,10 +11,10 @@ class IncrementalSearch():
         x = symbols("x")
 
         # Extracción de los parametros
-        f = str(parameters["funcion"])
+        f = str(parameters["fx"])
         x0 = float(parameters["x0"])
         delta = float(parameters["delta"])
-        n_iter = int(parameters["n_iter"])
+        n_iter = int(parameters["nIter"])
 
         # Transformar f a sympy
         f = sympify_expr(f)
