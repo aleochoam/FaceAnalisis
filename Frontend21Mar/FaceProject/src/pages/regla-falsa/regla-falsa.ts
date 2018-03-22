@@ -21,12 +21,15 @@ export class ReglaFalsaPage {
 
   dataSubmit:any = {}
 
+  dataReceived: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public httpReglaFalsaProvider:HttpReglaFalsaProvider) {
     this.dataSubmit['fx'] = '';
     this.dataSubmit['xa'] = '';
     this.dataSubmit['xb'] = '';
     this.dataSubmit['tol'] = '';
     this.dataSubmit['nIters'] = '';
+    this.getServer();
   }
 
   submitForm() {
@@ -51,6 +54,7 @@ export class ReglaFalsaPage {
     this.showAlert('Num. Iters');
    }else{
     console.log("Campos verificados y completos.");
+    this.postServer();
    }
   }
 
@@ -62,6 +66,33 @@ export class ReglaFalsaPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  //Zona de get y post
+
+  public getServer() {
+    this.httpReglaFalsaProvider.getReglaFalsa()
+    .then(data => {
+      this.dataReceived = data;
+      console.log("Realice el GET-REGLA FALSA ->");
+      console.log(JSON.stringify(data));
+    }, (err) => {
+      console.log("Problema al hacer GET-REGLA FALSA");
+      console.log(err);
+    });
+  }
+
+
+  public postServer() {
+    this.httpReglaFalsaProvider.postReglaFalsa(this.dataSubmit)
+    .then(result => {
+      this.dataReceived = result;
+      console.log("Realice el POST-REGLA FALSA");
+      console.log("Envie al server = " + this.dataSubmit + " y me llegó como respuesta " + JSON.stringify(result));
+    }, (err) => {
+      console.log("Problema al hacer POST-REGLA FALSA");
+      console.log(err);
+    });
   }
 
 }

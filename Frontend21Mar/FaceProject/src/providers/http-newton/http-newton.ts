@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 export class HttpNewtonProvider {
 
 
-  private apiUrl = '';
+  private apiUrl = 'http://165.227.197.6:8000/api/newton/';
 
 
   constructor(public http: HttpClient) {
