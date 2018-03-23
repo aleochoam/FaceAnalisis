@@ -10,6 +10,8 @@ public class MethodFactory {
         	return new IncrementalSearch();
     	}else if(methodName.toLowerCase().equals("biseccion")) {
     		return new Biseccion();
+    	}else if(methodName.toLowerCase().equals("regla falsa")) {
+    		return new ReglaFalsa();
     	}else if(methodName.toLowerCase().equals("punto fijo")) {
     		return new PuntoFijo();
     	}else if(methodName.toLowerCase().equals("secante")) {

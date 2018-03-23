@@ -45,6 +45,12 @@ public class AppTest extends TestCase {
     	assertEquals(res.get(10).get(3), 2.36962890625);
     }
     
+    public void testReglaFija() {
+    	NumericMethod reglaFalsa = MethodFactory.createMethod("regla falsa");
+    	List<List<Object>> res = reglaFalsa.calculate("e^(3*x-12)+x*cos(3*x)-x^2+4", 2.0, 3.0, 0.5e-3, 100);
+    	assertEquals(res.get(6).get(3), 2.369475259916648);
+    }
+    
     public void testPuntoFijo() {
     	NumericMethod puntoFijo = MethodFactory.createMethod("punto fijo");
     	List<List<Object>> res = puntoFijo.calculate("(x*e^x - x^2-3)/5", -0.5, 1e-7, 100);
