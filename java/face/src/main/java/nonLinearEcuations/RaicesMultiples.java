@@ -1,12 +1,16 @@
-package co.edu.eafit;
+package nonLinearEcuations;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import co.edu.eafit.Evaluator;
+import co.edu.eafit.NumericMethod;
+import co.edu.eafit.Solution;
+
 public class RaicesMultiples implements NumericMethod {
 
 	@Override
-	public List<List<Object>> calculate(Object... args) {
+	public Solution calculate(Object... args) {
 
 		String f = (String) args[0];
 		String fPrima = (String) args[1];
@@ -64,7 +68,7 @@ public class RaicesMultiples implements NumericMethod {
         	res.add(iteracion);
         }
         
-        return res;
+        return new NonLinearEcuationSolution(res);
 		
 	}
 

@@ -1,6 +1,12 @@
 package co.edu.eafit;
 
-import co.edu.eafit.Newton;
+import nonLinearEcuations.Biseccion;
+import nonLinearEcuations.IncrementalSearch;
+import nonLinearEcuations.Newton;
+import nonLinearEcuations.PuntoFijo;
+import nonLinearEcuations.RaicesMultiples;
+import nonLinearEcuations.ReglaFalsa;
+import nonLinearEcuations.Secante;
 
 public class MethodFactory {
     public static NumericMethod createMethod(String methodName){

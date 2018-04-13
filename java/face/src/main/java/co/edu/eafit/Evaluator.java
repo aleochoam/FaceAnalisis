@@ -5,10 +5,6 @@ import net.objecthunter.exp4j.ExpressionBuilder;
 
 public class Evaluator {
 
-    public Evaluator() {
-    }
-
-    
     public double evalExpr(String function, double x){
         try{
             Expression exp = new ExpressionBuilder(function)

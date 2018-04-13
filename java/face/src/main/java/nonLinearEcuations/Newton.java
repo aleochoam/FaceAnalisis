@@ -1,12 +1,14 @@
-package co.edu.eafit;
+package nonLinearEcuations;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import co.edu.eafit.Evaluator;
 import co.edu.eafit.NumericMethod;
+import co.edu.eafit.Solution;
 
 public class Newton implements NumericMethod {
-    public List<List<Object>> calculate(Object... args){
+    public Solution calculate(Object... args){
         String function = (String) args[0];
         String derivate = (String) args[1];
         double xa = (Double) args[2];
@@ -40,7 +42,7 @@ public class Newton implements NumericMethod {
     	iteracion.add(error);
     	res.add(iteracion);
     	
-    	return res;
+    	return new NonLinearEcuationSolution(res);
     }
     
     public String getName() {

@@ -1,12 +1,16 @@
-package co.edu.eafit;
+package nonLinearEcuations;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import co.edu.eafit.Evaluator;
+import co.edu.eafit.NumericMethod;
+import co.edu.eafit.Solution;
+
 public class Secante implements NumericMethod {
 
 	@Override
-	public List<List<Object>> calculate(Object... args) {
+	public Solution calculate(Object... args) {
 		String f = (String) args[0];
 		double x0 = (Double) args[1];
 		double x1 = (Double) args[2];
@@ -25,7 +29,7 @@ public class Secante implements NumericMethod {
         	iteracion.add("raiz");
         	iteracion.add(x0);
         	res.add(iteracion);
-        	return res;
+        	return new NonLinearEcuationSolution(res);
         }else {
         	double fx1 = eval.evalExpr(f, x1);
         	double den = fx1 - fx0;
@@ -73,7 +77,7 @@ public class Secante implements NumericMethod {
 	        	iteracion.add("fracasó en " + n_iter + "iteraciones");
 	        }	            
         }
-        return res;
+        return new NonLinearEcuationSolution(res);
 
 	}
 

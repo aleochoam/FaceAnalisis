@@ -1,7 +1,11 @@
-package co.edu.eafit;
+package nonLinearEcuations;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import co.edu.eafit.Evaluator;
+import co.edu.eafit.NumericMethod;
+import co.edu.eafit.Solution;
 
 
 public class IncrementalSearch implements NumericMethod {
@@ -13,7 +17,7 @@ public class IncrementalSearch implements NumericMethod {
     }
 
 
-    public List<List<Object>> calculate(Object... args){
+    public Solution calculate(Object... args){
     	String fx = (String) args[0];
     	double x0 = (Double) args[1];
     	double delta = (Double) args[2];
@@ -70,7 +74,7 @@ public class IncrementalSearch implements NumericMethod {
             	iteracion.add("No se encontraron raices");
             }
         }
-        return res;
+        return new NonLinearEcuationSolution(res);
     }
 
 

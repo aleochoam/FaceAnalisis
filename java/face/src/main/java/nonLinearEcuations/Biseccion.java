@@ -1,4 +1,4 @@
-package co.edu.eafit;
+package nonLinearEcuations;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,6 +6,10 @@ import java.io.InputStreamReader;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import co.edu.eafit.Evaluator;
+import co.edu.eafit.NumericMethod;
+import co.edu.eafit.Solution;
 
 
 public class Biseccion implements NumericMethod{
@@ -32,7 +36,7 @@ public class Biseccion implements NumericMethod{
     }
 
 
-    public List<List<Object>> calculate(Object... args){
+    public Solution calculate(Object... args){
     	String fx = (String) args[0];
     	double xi = (Double) args[1];
     	double xs = (Double) args[2];
@@ -104,8 +108,7 @@ public class Biseccion implements NumericMethod{
             
         }
          
-        //imprimirTabla(res);
-        return res;
+        return new NonLinearEcuationSolution(res);
 
     }
 

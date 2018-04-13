@@ -1,25 +1,24 @@
-package co.edu.eafit;
+package nonLinearEcuations;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.lang.Math;
 import java.util.ArrayList;
 import java.util.List;
 
+import co.edu.eafit.Evaluator;
+import co.edu.eafit.NumericMethod;
+import co.edu.eafit.Solution;
+
 
 public class PuntoFijo implements NumericMethod{
     private final Evaluator eval;
-    private final BufferedReader br;
-
+    
 
     public PuntoFijo() {
         eval = new Evaluator();
-        br = new BufferedReader(new InputStreamReader(System.in));
     }
 
 
-    public List<List<Object>> calculate(Object... args){
+    public Solution calculate(Object... args){
     	String gx = (String) args[0];
     	double x0 = (Double) args[1];
     	double tol = (Double) args[2];
@@ -36,13 +35,14 @@ public class PuntoFijo implements NumericMethod{
       		List<Object> iteracion = new ArrayList<Object>();
         	iteracion.add(contador);
         	iteracion.add(x0);
-        	iteracion.add(error);
+        	iteracion.add(contador == 0 ? "" : error);
         	res.add(iteracion);
       		
       		
           	xn = this.eval.evalExpr(gx,x0);
           	error = Math.abs(xn-x0);
           	x0 = xn;
+          	contador++;
 
       	}
       	
@@ -60,7 +60,7 @@ public class PuntoFijo implements NumericMethod{
 //
 //      	}
       	
-      	return res;
+      	return new NonLinearEcuationSolution(res);
     }
 
 

@@ -1,7 +1,11 @@
-package co.edu.eafit;
+package nonLinearEcuations;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import co.edu.eafit.Evaluator;
+import co.edu.eafit.NumericMethod;
+import co.edu.eafit.Solution;
 
 public class ReglaFalsa implements NumericMethod {
 
@@ -25,7 +29,7 @@ public class ReglaFalsa implements NumericMethod {
     }
 
 
-    public List<List<Object>> calculate(Object... args){
+    public Solution calculate(Object... args){
     	String fx = (String) args[0];
     	double xa = (Double) args[1];
     	double xb = (Double) args[2];
@@ -97,7 +101,7 @@ public class ReglaFalsa implements NumericMethod {
         } else {
             System.out.println("El intervalo es inadecuado\n"); 
         }
-        return res;
+        return new NonLinearEcuationSolution(res);
     }
 
 
