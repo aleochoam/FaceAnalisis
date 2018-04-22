@@ -1,80 +1,39 @@
 <ion-header>
 
   <ion-navbar color="dark">
-    <ion-title>Metodos Numéricos</ion-title>
+    <ion-title>Métodos Numéricos</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
-
-
-<ion-content padding>
-
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-          <h4>¡Bienvenido!</h4>
-      </ion-col>
-    </ion-row>
-    
-    <ion-row>
-      <ion-col>
-          <p> Elije entre graficar tu función o seleccionar el tipo de solución numérica</p>
-      </ion-col>
-    </ion-row>
-    
-    <ion-row class="espaciadoSuperior">
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-1 ></ion-col>
-      <ion-col>
-        <button ion-button full color="primary" (click)="goEcuacionesUnaVariable()">Ecuaciones una variable</button>          
-      </ion-col>
-      <ion-col col-1 ></ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-1 ></ion-col>
-      <ion-col col-10>
-        <button ion-button full color="primary" (click)="goSistemasDeEcuacionesLineales()" >Sistemas de Ecuaciones Lineales</button>              
-      </ion-col>
-      <ion-col col-1 ></ion-col>
-    </ion-row>
-
-    <ion-row>
-        <ion-col col-1></ion-col>
-      <ion-col >
-        <button ion-button full color="primary" (click)="goInterpolacion()" >Interpolación</button>          
-      </ion-col>
-      <ion-col col-1></ion-col>
-    </ion-row>
-
-    <ion-row>
-        <ion-col col-1></ion-col>
-      <ion-col>
-        <button ion-button full color="primary" (click)="goIntegracionNumerica()" >Integración Numérica</button>              
-      </ion-col>
-      <ion-col col-1></ion-col>
-    </ion-row>
-    
-    <ion-row>
-      <ion-col col-1></ion-col>
-      <ion-col>
-        <button ion-button full color="primary" (click)="goEcuacionesDiferenciales()" >Ecuaciones Diferenciales</button>              
-      </ion-col>
-      <ion-col col-1></ion-col>
-    </ion-row> 
-
-    <ion-row>
-        <ion-col col-1></ion-col>
-        <ion-col>
-          <button ion-button full color="secondary" (click)="goGraficador()" >Graficador</button>              
-        </ion-col>
-        <ion-col col-1></ion-col>
-    </ion-row>
-
-  </ion-grid>
+  <ion-content padding class ="pantalla">
+    <ion-list>
+      <br>
+      <button ion-item (click)="goEcuacionesUnaVariable()">
+          <ion-icon name="analytics"></ion-icon>
+          <h2 class = "titulo"><b>Ecuaciones de una variable</b></h2>
+      </button>
+      <br>
+      <button ion-item (click)="goSistemasDeEcuacionesLineales()" >
+          <ion-icon name="book"></ion-icon>
+          <h2 class = "titulo"><b>Ecuaciones Lineales</b></h2>
+      </button>
+      <br>
+      <button ion-item (click)="goInterpolacion()" >
+          <ion-icon name="analytics"></ion-icon>
+          <h2 class = "titulo"><b>Interpolación</b></h2>
+      </button>
+      <br>
+      <button ion-item (click)="goIntegracionNumerica()" >
+          <ion-icon name="book"></ion-icon>
+          <h2 class = "titulo"><b>Integración Numérica</b></h2>
+      </button>
+      <br>
+      <button ion-item (click)="goEcuacionesDiferenciales()" >
+          <ion-icon name="analytics"></ion-icon>
+          <h2 class = "titulo"><b>Ecuaciones Diferenciales</b></h2>
+      </button>
+      <br>
+    </ion-list>
   
 </ion-content>

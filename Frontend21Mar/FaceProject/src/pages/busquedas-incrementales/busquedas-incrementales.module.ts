@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
+import { IonicPageModule, AlertController } from 'ionic-angular';
 import { BusquedasIncrementalesPage } from './busquedas-incrementales';
 
 @NgModule({
