@@ -30,10 +30,9 @@ class Newton2Method(object):
         d2fx = f_dos_prima.evalf(subs={x: xa})
 
         while error > tol and fx != 0 and contador < n_iter:
+            err_fm = "{e:.2e}".format(e=error) if contador != 0 else ""
+            iteracion = [contador, str(xa), err_fm]
 
-            iteracion = [contador, str(xa), str(error)]
-            if contador == 0:
-                iteracion[2] = ""
             response["iteraciones"].append(iteracion)
 
             xn = xa - (fx*dfx)/(dfx**2 - fx * d2fx)

@@ -28,9 +28,9 @@ class Secante(object):
         den = fx1 - fx0
 
         while error > tol and fx1 != 0 and den != 0 and contador < n_iter:
-            iteracion = [contador, str(x0), str(fx0), str(error)]
-            if contador == 0:
-                iteracion[3] = ""
+            err_fm = "{e:.2e}".format(e=error) if contador != 0 else ""
+            iteracion = [contador, str(x0), str(fx0), err_fm]
+
             response["iteraciones"].append(iteracion)
 
             x2 = x1 - fx1 * (x1 - x0)/den

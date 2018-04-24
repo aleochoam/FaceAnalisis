@@ -42,8 +42,9 @@ class FalsePosition():
         error = tol + 1
 
         while error > tol and fxm != 0 and contador < n_iter:
+            err_fm = "{e:.2e}".format(e=error) if contador != 1 else ""
             iteracion = \
-                [contador, str(xa), str(xb), str(xm), str(fxm), str(error)]
+                [contador, str(xa), str(xb), str(xm), str(fxm), err_fm]
 
             if contador == 1:
                 iteracion[5] = ""

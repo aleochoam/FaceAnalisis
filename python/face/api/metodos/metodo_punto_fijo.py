@@ -22,10 +22,9 @@ class FixedPoint():
         error = tol + 1
 
         while error > tol and contador < n_iter:
+            err_fm = "{e:.2e}".format(e=error) if contador != 0 else ""
 
-            iteracion = [contador, str(xa), str(error)]
-            if contador == 0:
-                iteracion[2] = ""
+            iteracion = [contador, str(xa), err_fm]
             response["iteraciones"].append(iteracion)
 
             xn = g.evalf(subs={x: xa})

@@ -42,9 +42,9 @@ class Bisection:
         error = tol + 1
 
         while error > tol and fxm != 0 and contador < n_iter:
-            iteracion = [contador, str(xa), str(xb), str(xm), str(fxm), error]
-            if contador == 1:
-                iteracion[5] = ""
+            err_fm = "{e:.2e}".format(e=error) if contador != 1 else ""
+            iteracion = [contador, str(xa), str(xb), str(xm), str(fxm), err_fm]
+
             response["iteraciones"].append(iteracion)
             # print("Contador: ", contador)
             # print("xa: {}".format(xa))
