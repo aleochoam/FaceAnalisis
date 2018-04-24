@@ -32,6 +32,8 @@ class Newton2Method(object):
         while error > tol and fx != 0 and contador < n_iter:
 
             iteracion = [contador, str(xa), str(error)]
+            if contador == 0:
+                iteracion[2] = ""
             response["iteraciones"].append(iteracion)
 
             xn = xa - (fx*dfx)/(dfx**2 - fx * d2fx)

@@ -43,6 +43,8 @@ class Bisection:
 
         while error > tol and fxm != 0 and contador < n_iter:
             iteracion = [contador, str(xa), str(xb), str(xm), str(fxm), error]
+            if contador == 1:
+                iteracion[5] = ""
             response["iteraciones"].append(iteracion)
             # print("Contador: ", contador)
             # print("xa: {}".format(xa))

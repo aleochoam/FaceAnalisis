@@ -28,13 +28,16 @@ class NewtonMethod(object):
         while error > tol and fx != 0 and dfx != 0 and contador < n_iter:
 
             iteracion = [contador, str(xa), str(error)]
+            if contador == 0:
+                iteracion[2] = ""
+
             response["iteraciones"].append(iteracion)
 
             xn = xa - fx/dfx
             fx = f.evalf(subs={x: xn})
             dfx = f_prima.evalf(subs={x: xn})
 
-            error = abs((xn-xa)/xn)
+            error = abs((xn-xa))
             xa = xn
             contador = contador + 1
 

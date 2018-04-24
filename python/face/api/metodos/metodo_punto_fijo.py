@@ -24,11 +24,13 @@ class FixedPoint():
         while error > tol and contador < n_iter:
 
             iteracion = [contador, str(xa), str(error)]
+            if contador == 0:
+                iteracion[2] = ""
             response["iteraciones"].append(iteracion)
 
             xn = g.evalf(subs={x: xa})
 
-            error = abs((xn-xa)/xn)
+            error = abs((xn-xa))
             xa = xn
             contador = contador + 1
 

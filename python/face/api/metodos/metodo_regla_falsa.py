@@ -45,6 +45,9 @@ class FalsePosition():
             iteracion = \
                 [contador, str(xa), str(xb), str(xm), str(fxm), str(error)]
 
+            if contador == 1:
+                iteracion[5] = ""
+
             response["iteraciones"].append(iteracion)
 
             if fxa * fxm < 0:
@@ -57,7 +60,7 @@ class FalsePosition():
                 response["error"] = "Se ha encontrado un error"
 
             x_ant = xm
-            xm = (xa+xb)/2
+            xm = xa - ((fxa*(xb-xa))/(fxb - fxa))  # Ecuación 15, regla falsa
             fxm = f.evalf(subs={x: xm})
             error = abs(xm - x_ant)
             contador = contador + 1

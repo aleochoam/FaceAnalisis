@@ -23,9 +23,9 @@ def call_method(request, method_name):
         return JsonResponse({"Ayuda": method.get_description()})
     else:
         params = body2dict(request)
-        print("PARAMS ", params)
+        # print("PARAMS ", params)
         response = method.calculate(params)
-        print("RESPONSE: ", response)
+        # print("RESPONSE: ", response)
         return JsonResponse(response)
     # except SympifyError as e:
     #     return JsonResponse({"Error": "Verifique los datos de entrada"})

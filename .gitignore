@@ -1,5 +1,8 @@
 python/env/
+**/__pychache__
+python/face/.idea/
 python/face/face/server_cnf.py
+python/face/api/migrations/__pycache__/
 python/face/face/__pycache__/
 python/face/api/__pycache__/
 python/face/api/metodos/__pycache__/
