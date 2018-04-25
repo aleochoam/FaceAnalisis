@@ -4,8 +4,8 @@ from django.http import JsonResponse
 from sympy import SympifyError
 
 from .metodos.method_factory import create_method
-from .metodos.utils import call_eval_f
-from .metodos.utils import plot_f
+from .metodos.ecuaciones_no_lineales.utils import call_eval_f
+from .metodos.ecuaciones_no_lineales.utils import plot_f
 import json
 
 

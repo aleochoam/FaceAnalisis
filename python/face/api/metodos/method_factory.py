@@ -9,6 +9,13 @@ from .ecuaciones_no_lineales.metodo_newton_m import Newton2Method
 from .ecuaciones_no_lineales.metodo_secante import Secante
 
 from .sistemas_ecuaciones.eliminacion_simple import EliminacionSimple
+from .sistemas_ecuaciones.eliminacion_p_parcial import EliminacionPivoteoParcial
+from .sistemas_ecuaciones.eliminacion_p_total import EliminacionPivoteoTotal
+from .sistemas_ecuaciones.factorizacion_gaussiana import FactorizacionGaussiana
+from .sistemas_ecuaciones.factorizacion_pivoteo import FactorizacionPivoteo
+from .sistemas_ecuaciones.crout import FactorizacionCrout
+from .sistemas_ecuaciones.doolittle import FactorizacionDoolittle
+from .sistemas_ecuaciones.cholesky import FactorizacionCholesky
 
 
 def create_method(method):
@@ -31,5 +38,20 @@ def create_method(method):
     # Capitulo sistemas de ecuaciones
     elif method == "eliminacion_simple":
         return EliminacionSimple()
+    elif method == "eliminacion_piv_parcial":
+        return EliminacionPivoteoParcial()
+    elif method == "eliminacion_piv_total":
+        return EliminacionPivoteoTotal()
+
+    elif method == "factorizacion_simple":
+        return FactorizacionGaussiana()
+    elif method == "factorizacion_pivoteo":
+        return FactorizacionPivoteo()
+    elif method == "doolittle":
+        return FactorizacionDoolittle()
+    elif method == "crout":
+        return FactorizacionCrout()
+    elif method == "cholesky":
+        return FactorizacionCholesky()
     else:
         return NumericMethod()
