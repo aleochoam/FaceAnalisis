@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color= "dark">
     <ion-title>Gráficador</ion-title>
   </ion-navbar>
 
@@ -15,15 +15,15 @@
 
 <ion-content padding class="pantalla">
     <form (ngSubmit)="logForm()">
+
         <ion-item>
-            <ion-label>Función</ion-label>
-            <ion-input type="text" [(ngModel)]="graphData.funcion" name="funcion"></ion-input>
+            <ion-label color="dark">Función = </ion-label>
+            <ion-input value="{{recivedFunc}}" type="text" [(ngModel)]="graphData.funcion" name="funcion"></ion-input>
         </ion-item>
-        <br>
+
         <button ion-button type="submit" class="boton" block>Graficar</button>
       </form>
-      <br>
-
+      
     <canvas #lineCanvas class="lineCanvas"></canvas>
 
 </ion-content>

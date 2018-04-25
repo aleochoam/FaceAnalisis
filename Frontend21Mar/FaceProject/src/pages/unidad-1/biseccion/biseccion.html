@@ -1,0 +1,120 @@
+<!--
+  Generated template for the BiseccionPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>  
+    <ion-navbar color = 'dark'>
+      <ion-title>Biseccion</ion-title>
+    </ion-navbar>  
+</ion-header>
+  
+  
+<ion-content padding>
+  
+  <ion-grid>
+      <ion-row>
+        <ion-col col-2>
+            <button ion-button icon-only (click)="ayuda()"> 
+              <ion-icon name="md-help-circle"></ion-icon>
+            </button>
+        </ion-col>
+
+        <ion-col col-8>
+        </ion-col>
+
+        <ion-col col-2>
+            <button ion-button icon-only (click)="goGraficador()">
+              <ion-icon name="md-analytics"></ion-icon>
+            </button>
+        </ion-col>          
+      </ion-row>  
+      
+      
+      <form (ngSubmit)="submitForm()">
+          
+          <ion-item>
+              <ion-label color="dark">f(x) = </ion-label>
+              <ion-input type="text" [(ngModel)]="dataSubmit.fx" name="fx"></ion-input>
+          </ion-item>           
+
+          <ion-item>
+            <ion-label color="dark">xa = </ion-label>
+            <ion-input type="text" [(ngModel)]="dataSubmit.xa" name="xa"></ion-input>
+          </ion-item>            
+
+          <ion-item>
+            <ion-label color="dark">xb = </ion-label>
+            <ion-input type="text" [(ngModel)]="dataSubmit.xb" name="xb"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label color="dark">Tolerancia = </ion-label>
+            <ion-input type="text" [(ngModel)]="dataSubmit.tole" name="tole"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label color="dark">Num. Iters = </ion-label>
+            <ion-input type="text" [(ngModel)]="dataSubmit.nIters" name="nIters"></ion-input>
+          </ion-item>
+
+          <ion-list radio-group [(ngModel)]="dataSubmit.tipo_error" name="tipo_error">
+            <ion-row>
+              <ion-col col-6>
+                  <ion-item>
+                      <ion-label>Absoluto</ion-label>
+                      <ion-radio  value="1"></ion-radio>                      
+                  </ion-item>
+              </ion-col>
+
+              <ion-col col-6>
+                  <ion-item>
+                      <ion-label>Relativo</ion-label>
+                      <ion-radio value="2" ></ion-radio>
+                    </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-list>
+          
+          <br>
+          <button ion-button type="submit" block>Calcular</button>
+      </form>
+      
+      
+  </ion-grid>
+
+  <ion-grid>
+
+  
+  <ion-row *ngIf="visibleRoot" class="style-msg-root">
+      <ion-col col-12>
+          <p>La aproximación a la raíz es {{root}}</p> 
+      </ion-col>
+  </ion-row>
+
+  
+    <ion-row *ngIf="visibleTable" class = "table-t">
+          <ion-col col-1 class = "style-t-t"><p class = "text-t-t"> {{titlesTable[0]}} </p></ion-col>
+          <ion-col col-2 class = "style-t-t"><p class = "text-t-t"> {{titlesTable[1]}} </p></ion-col>
+          <ion-col col-2 class = "style-t-t"><p class = "text-t-t"> {{titlesTable[2]}} </p></ion-col>
+          <ion-col col-3 class = "style-t-t"><p class = "text-t-t"> {{titlesTable[3]}} </p></ion-col>      
+          <ion-col col-2 class = "style-t-t"><p class = "text-t-t"> {{titlesTable[4]}} </p></ion-col>      
+          <ion-col col-2 class = "style-t-t"><p class = "text-t-t"> {{titlesTable[5]}} </p></ion-col>      
+      </ion-row>
+
+  
+
+     
+    <ion-row *ngFor="let i of contentTable"  class = "table-c">
+      <ion-col col-1 class = "style-t-c"><p class = "text-t-c"> {{i[0]}} </p></ion-col>
+      <ion-col col-2 class = "style-t-c"><p class = "text-t-c"> {{i[1]}} </p></ion-col>
+      <ion-col col-2 class = "style-t-c"><p class = "text-t-c"> {{i[2]}} </p></ion-col>
+      <ion-col col-3 class = "style-t-c"><p class = "text-t-c"> {{i[3]}} </p></ion-col>      
+      <ion-col col-2 class = "style-t-c"><p class = "text-t-c"> {{i[4]}} </p></ion-col>      
+      <ion-col col-2 class = "style-t-c"><p class = "text-t-c"> {{i[5]}} </p></ion-col>      
+    </ion-row>    
+  </ion-grid>
+      
+  
+</ion-content>

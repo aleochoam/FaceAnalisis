@@ -1,0 +1,70 @@
+<!--
+  Generated template for the BusquedasIncrementalesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color = 'dark'>
+    <ion-title>Busquedas Incrementales</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="pantalla">
+
+  <br>
+  <button ion-button icon-only class="pregunta" (click)="presentAlert()">
+      <ion-icon name="md-help-circle" class="iconoPregunta"></ion-icon>
+  </button>
+  <br>
+
+  <ion-grid>
+      <form (ngSubmit)="submitForm()">
+          <ion-item>
+            <ion-label>f(x)</ion-label>
+            <ion-input type="text" [(ngModel)]="dataSubmit.fx" name="fx"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>x Inicial</ion-label>
+            <ion-input type="text" [(ngModel)]="dataSubmit.x0" name="x0"></ion-input>
+          </ion-item>
+            
+          <ion-item>
+            <ion-label>Delta</ion-label>
+            <ion-input type="text" [(ngModel)]="dataSubmit.delta" name="delta"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Num. Iters</ion-label>
+            <ion-input type="text" [(ngModel)]="dataSubmit.nIters" name="nIters"></ion-input>
+          </ion-item>
+          
+          <button ion-button type="submit" block>Calcular</button>
+        </form>
+  </ion-grid>
+
+  <ion-grid class ="tabletittle">
+    <ion-row>
+      <ion-col col-3 class = "styleTableTitle"><h6 class = "textTableTitle"> {{tableTitles[0]}} </h6></ion-col>
+      <ion-col col-3 class = "styleTableTitle"><h6 class = "textTableTitle"> {{tableTitles[1]}} </h6></ion-col>
+      <ion-col col-3 class = "styleTableTitle"><h6 class = "textTableTitle"> {{tableTitles[2]}} </h6></ion-col>
+      <ion-col col-3 class = "styleTableTitle"><h6 class = "textTableTitle"> {{tableTitles[3]}} </h6></ion-col>      
+      <ion-col col-3 class = "styleTableTitle"><h6 class = "textTableTitle"> {{tableTitles[4]}} </h6></ion-col>      
+      <ion-col col-3 class = "styleTableTitle"><h6 class = "textTableTitle"> {{tableTitles[5]}} </h6></ion-col>      
+    </ion-row>
+  </ion-grid>
+    
+  <ion-grid class ="tableContent">
+    <ion-row *ngFor="let s of tableContent">
+      <ion-col col-3 class = "styleTableContent"><p class = "textTableContent"> {{s[0]}} </p></ion-col>
+      <ion-col col-3 class = "styleTableContent"><p class = "textTableContent"> {{s[1]}} </p></ion-col>
+      <ion-col col-3 class = "styleTableContent"><p class = "textTableContent"> {{s[2]}} </p></ion-col>
+      <ion-col col-3 class = "styleTableContent"><p class = "textTableContent"> {{s[3]}} </p></ion-col>      
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

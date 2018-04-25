@@ -15,12 +15,16 @@ import { Chart } from 'chart.js';
 })
 export class GraficadorPage {
 
-  graphData ={};
-  @ViewChild('lineCanvas') lineCanvas;
+    @ViewChild('lineCanvas') lineCanvas;
+    private graphData ={};
+    private lineChart: any;
 
-   lineChart: any;
+    private recivedFunc:string; //Este atributo me recibe la funcion que se esta trabajando en el metodo
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+      this.recivedFunc = navParams.data['funcion'];
+      console.log("me llego " + this.recivedFunc);
+
   }
 
   logForm() {
@@ -29,9 +33,9 @@ export class GraficadorPage {
 
   ionViewDidLoad() {
 
-        this.lineChart = new Chart(this.lineCanvas.nativeElement, {
+    this.lineChart = new Chart(this.lineCanvas.nativeElement, {
 
-          type: 'line',
+    type: 'line',
     data: {
         datasets: [{
             label: 'Grafica',

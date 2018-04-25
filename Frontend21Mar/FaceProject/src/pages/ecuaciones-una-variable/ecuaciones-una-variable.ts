@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { BusquedasIncrementalesPage } from '../busquedas-incrementales/busquedas-incrementales';
-import { BiseccionPage } from '../biseccion/biseccion';
-import { ReglaFalsaPage } from '../regla-falsa/regla-falsa';
-import { PuntoFijoPage } from '../punto-fijo/punto-fijo';
-import { NewtonPage } from '../newton/newton';
-import { SecantePage } from '../secante/secante';
-import { RaicesMultiplesPage } from '../raices-multiples/raices-multiples';
-
-
+import { BusquedasIncrementalesPage } from '../unidad-1/busquedas-incrementales/busquedas-incrementales';
+import { BiseccionPage } from '../unidad-1/biseccion/biseccion';
+import { ReglaFalsaPage } from '../unidad-1/regla-falsa/regla-falsa';
+import { PuntoFijoPage } from '../unidad-1/punto-fijo/punto-fijo';
+import { NewtonPage } from '../unidad-1/newton/newton';
+import { SecantePage } from '../unidad-1/secante/secante';
+import { RaicesMultiplesPage } from '../unidad-1/raices-multiples/raices-multiples';
 
 /**
  * Generated class for the EcuacionesUnaVariablePage page.
@@ -58,11 +56,5 @@ export class EcuacionesUnaVariablePage {
   public goRaicesMultiples(){
     this.navCtrl.push(RaicesMultiplesPage);
   }
-
-
-
-
-
-
 
 }

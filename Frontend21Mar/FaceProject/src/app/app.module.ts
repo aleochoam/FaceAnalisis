@@ -15,27 +15,18 @@ import { InterpolacionPage } from '../pages/interpolacion/interpolacion';
 import { IntegracionNumericaPage } from '../pages/integracion-numerica/integracion-numerica';
 import { EcuacionesDiferencialesPage } from '../pages/ecuaciones-diferenciales/ecuaciones-diferenciales';
 import { GraficadorPage } from '../pages/graficador/graficador';
-import { BusquedasIncrementalesPage } from '../pages/busquedas-incrementales/busquedas-incrementales';
-import { BiseccionPage } from '../pages/biseccion/biseccion';
-import { ReglaFalsaPage } from '../pages/regla-falsa/regla-falsa';
-import { PuntoFijoPage } from '../pages/punto-fijo/punto-fijo';
-import { NewtonPage } from '../pages/newton/newton';
-import { SecantePage } from '../pages/secante/secante';
-import { RaicesMultiplesPage } from '../pages/raices-multiples/raices-multiples';
+import { BusquedasIncrementalesPage } from '../pages/unidad-1/busquedas-incrementales/busquedas-incrementales';
+import { BiseccionPage } from '../pages/unidad-1/biseccion/biseccion';
+import { ReglaFalsaPage } from '../pages/unidad-1/regla-falsa/regla-falsa';
+import { PuntoFijoPage } from '../pages/unidad-1/punto-fijo/punto-fijo';
+import { NewtonPage } from '../pages/unidad-1/newton/newton';
+import { SecantePage } from '../pages/unidad-1/secante/secante';
+import { RaicesMultiplesPage } from '../pages/unidad-1/raices-multiples/raices-multiples';
 
 
 import { HttpClientModule } from '@angular/common/http';
 
-
-import { HttpBusquedasIncrementalesProvider } from '../providers/http-busquedas-incrementales/http-busquedas-incrementales';
-import { HttpBiseccionProvider } from '../providers/http-biseccion/http-biseccion';
-import { HttpReglaFalsaProvider } from '../providers/http-regla-falsa/http-regla-falsa';
-import { HttpPuntoFijoProvider } from '../providers/http-punto-fijo/http-punto-fijo';
-import { HttpNewtonProvider } from '../providers/http-newton/http-newton';
-import { HttpSecanteProvider } from '../providers/http-secante/http-secante';
-import { HttpRaicesMultiplesProvider } from '../providers/http-raices-multiples/http-raices-multiples';
-
-
+import { HttpEcuacionesUnaVariableProvider } from '../providers/http-ecuaciones-una-variable/http-ecuaciones-una-variable';
 
 @NgModule({
   declarations: [
@@ -84,13 +75,7 @@ import { HttpRaicesMultiplesProvider } from '../providers/http-raices-multiples/
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    HttpBusquedasIncrementalesProvider,
-    HttpBiseccionProvider,
-    HttpReglaFalsaProvider,
-    HttpPuntoFijoProvider,
-    HttpNewtonProvider,
-    HttpSecanteProvider,
-    HttpRaicesMultiplesProvider
+    HttpEcuacionesUnaVariableProvider
   ]
 })
 export class AppModule {}
