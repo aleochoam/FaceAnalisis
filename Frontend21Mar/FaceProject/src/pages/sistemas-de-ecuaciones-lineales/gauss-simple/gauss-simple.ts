@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-import { HttpGaussSimpleProvider } from '../../../providers/http-gauss-simple/http-gauss-simple';
-
 import { AlertController } from 'ionic-angular';
 
 /**
@@ -21,7 +18,7 @@ export class GaussSimplePage {
 
   n: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl : AlertController, public httpGaussSimpleProvider : HttpGaussSimpleProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl : AlertController) {
     this.n = '';
   }
 

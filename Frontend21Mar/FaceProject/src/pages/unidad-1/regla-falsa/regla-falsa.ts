@@ -20,11 +20,19 @@ import { AlertController } from 'ionic-angular';
 export class ReglaFalsaPage {
 
 
-  private apiUrl = 'http://165.227.197.6:8000/api/regla_falsa/';
+  private apiUrl = 'http://165.227.197.6:8080/api/regla_falsa/';
 
-  dataSubmit:any = {}
+  private dataSubmit = {};
 
-  dataReceived: any;
+  private dataReceivedGet  = {};
+  private dataReceivedPost = {};
+
+  private root;
+  private visibleRoot;
+  
+  private titlesTable  = ['i','x Inf','x Sup','x Med', 'f(xMed)', 'Error'];
+  private contentTable = [];
+  private visibleTable;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public httpEcuacionesUnaVariableProvider:HttpEcuacionesUnaVariableProvider) {
     this.dataSubmit['fx'] = '';
@@ -32,55 +40,78 @@ export class ReglaFalsaPage {
     this.dataSubmit['xb'] = '';
     this.dataSubmit['tol'] = '';
     this.dataSubmit['nIters'] = '';
-    this.getServer();
+
+    this.visibleTable = false;
+    this.visibleRoot  = false;
   }
 
-  submitForm() {
-    console.log(this.dataSubmit)
-    this.verification();
-  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReglaFalsaPage');
   }
 
-  verification(){
-   if (this.dataSubmit['fx'] == ''){
-    this.showAlert('f(x)');
-   }else if (this.dataSubmit['xa'] == ''){
-     this.showAlert('xa');
-   }else if (this.dataSubmit['xb'] == ''){
-     this.showAlert('xb');
-   }else if (this.dataSubmit['tol'] == ''){
-     this.showAlert('Tolerancia');
-   }else if(this.dataSubmit['nIters'] == ''){
-    this.showAlert('Num. Iters');
-   }else{
-    console.log("Campos verificados y completos.");
-    this.postServer();
-   }
+
+  private submitForm(){
+    console.log(this.dataSubmit);
+    //Verificar si son campos vacios
+    if (this.dataSubmit['fx'] == ''){
+        this.showAlert("Error", "El campo f(x) no puede estar vacío");
+    }else if (this.dataSubmit['xa'] == ''){
+        this.showAlert("Error", "El campo xa no puede estar vacío.");
+    }else if (this.dataSubmit['xb'] == ''){
+        this.showAlert("Error", "El campo xb no puede estar vacío");
+    }else if(this.dataSubmit['tole'] == ''){
+          this.showAlert("Error", "El campo Tolerancia no puede estar vacío");
+    }else if(this.dataSubmit['nIters'] == ''){
+        this.showAlert("Error", "El campo Num. Iters no puede estar vacío");      
+  //} else if(this.dataSubmit['tipo_error'] == ''){
+  //    this.showAlert("Error", "El campo del Tipo de Error no puede estar vacío");
+    }else{
+        this.postServer();
+    }   
+  }
+
+  private completeTable(){
+    console.log("se supone que por aca ando");
+    
+    this.contentTable = this.dataReceivedPost['iteraciones'];
+    console.log(this.contentTable);
+    if (this.contentTable.length != 0){
+      this.root = this.dataReceivedPost['aproximados'];
+      console.log("La raiz es " + this.root);
+
+      this.visibleTable = true;
+      this.visibleRoot  = true;
+      
+    }else{
+      this.visibleTable = false;
+      this.visibleRoot  = false;
+      this.showAlert("Fallo", this.dataReceivedPost['error']);
+    }
+
+    console.log(this.visibleTable);
+    console.log(this.visibleRoot);
   }
 
 
-  showAlert(value:string) {
+
+  private showAlert(error, subtitle) {
     let alert = this.alertCtrl.create({
-      title: 'Error!',
-      subTitle: 'El campo ' + value + ' no puede estar vacío!',
+      title: error,
+      subTitle: subtitle,
       buttons: ['OK']
     });
     alert.present();
   }
+
 
   //Zona de get y post
 
   public getServer() {
     this.httpEcuacionesUnaVariableProvider.get(this.apiUrl)
     .then(data => {
-      this.dataReceived = data;
-      console.log("Realice el GET-REGLA FALSA ->");
-      console.log(JSON.stringify(data));
+      this.dataReceivedGet = data;
     }, (err) => {
-      console.log("Problema al hacer GET-REGLA FALSA");
       console.log(err);
     });
   }
@@ -89,11 +120,10 @@ export class ReglaFalsaPage {
   public postServer() {
     this.httpEcuacionesUnaVariableProvider.post(this.dataSubmit, this.apiUrl)
     .then(result => {
-      this.dataReceived = result;
-      console.log("Realice el POST-REGLA FALSA");
-      console.log("Envie al server = " + this.dataSubmit + " y me llegó como respuesta " + JSON.stringify(result));
+      this.dataReceivedPost = result;
+      console.log(this.dataReceivedPost);
+      this.completeTable();
     }, (err) => {
-      console.log("Problema al hacer POST-REGLA FALSA");
       console.log(err);
     });
   }

@@ -19,64 +19,89 @@ import { AlertController } from 'ionic-angular';
 })
 export class PuntoFijoPage {
 
-  private apiUrl = 'http://165.227.197.6:8000/api/punto_fijo/';
+  private apiUrl = 'http://165.227.197.6:8080/api/punto_fijo/';
   
 
-  private dataSubmit = {}
-  
-  private dataReceivedGet = {};
+  private dataSubmit = {};
+
+  private dataReceivedGet  = {};
   private dataReceivedPost = {};
 
-  private tableTitles  = []
-  private tableContent = []
+  private root;
+  private visibleRoot;
+  
+  private titlesTable  = ['i','x Inf','x Sup','x Med', 'f(xMed)', 'Error'];
+  private contentTable = [];
+  private visibleTable;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public httpEcuacionesUnaVariableProvider: HttpEcuacionesUnaVariableProvider) {
     this.dataSubmit['fx'] = '';
-    this.dataSubmit['x0'] = '';
+    this.dataSubmit['xa'] = '';
+    this.dataSubmit['xb'] = '';
     this.dataSubmit['tol'] = '';
     this.dataSubmit['nIters'] = '';
 
-    this.getServer();
+    this.visibleTable = false;
+    this.visibleRoot  = false;
   }
 
-  submitForm() {
-    console.log(this.dataSubmit)
-    this.verification();
+  private submitForm(){
+    console.log(this.dataSubmit);
+    //Verificar si son campos vacios
+    if (this.dataSubmit['fx'] == ''){
+        this.showAlert("Error", "El campo f(x) no puede estar vacío");
+    }else if (this.dataSubmit['x0'] == ''){
+        this.showAlert("Error", "El campo x0 no puede estar vacío.");
+    }else if(this.dataSubmit['tole'] == ''){
+          this.showAlert("Error", "El campo Tolerancia no puede estar vacío");
+    }else if(this.dataSubmit['nIters'] == ''){
+        this.showAlert("Error", "El campo Num. Iters no puede estar vacío");      
+  //} else if(this.dataSubmit['tipo_error'] == ''){
+  //    this.showAlert("Error", "El campo del Tipo de Error no puede estar vacío");
+    }else{
+        this.postServer();
+    }   
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BusquedasIncrementalesPage');
   }
 
-  verification(){
-   if (this.dataSubmit['fx'] == ''){
-    this.showAlert('f(x)');
-   }else if (this.dataSubmit['x0'] == ''){
-     this.showAlert('x Inicial');
-   }else if (this.dataSubmit['tol'] == ''){
-     this.showAlert('Tolerancia');
-   }else if(this.dataSubmit['nIters'] == ''){
-    this.showAlert('Num. Iters');
-   }else{
-    console.log("Campos verificados y completos.");
-    this.postServer();
-   }
+  private completeTable(){
+    console.log("se supone que por aca ando");
+    
+    this.contentTable = this.dataReceivedPost['iteraciones'];
+    console.log(this.contentTable);
+    if (this.contentTable.length != 0){
+      this.root = this.dataReceivedPost['aproximados'];
+      console.log("La raiz es " + this.root);
+
+      this.visibleTable = true;
+      this.visibleRoot  = true;
+      
+    }else{
+      this.visibleTable = false;
+      this.visibleRoot  = false;
+      this.showAlert("Fallo", this.dataReceivedPost['error']);
+    }
+
+    console.log(this.visibleTable);
+    console.log(this.visibleRoot);
   }
 
 
-  showAlert(value:string) {
+
+
+
+  private showAlert(error, subtitle) {
     let alert = this.alertCtrl.create({
-      title: 'Error!',
-      subTitle: 'El campo ' + value + ' no puede estar vacío!',
+      title: error,
+      subTitle: subtitle,
       buttons: ['OK']
     });
     alert.present();
   }
 
-  private completeTable(){
-    this.tableTitles.push(['i','xi','f(xi)','Error'])
-    this.tableContent = this.dataReceivedPost['iteraciones'];    
-  }
 
   //Zona de get y post
 
@@ -84,12 +109,7 @@ export class PuntoFijoPage {
     this.httpEcuacionesUnaVariableProvider.get(this.apiUrl)
     .then(data => {
       this.dataReceivedGet = data;
-      console.log("Realice el GET-NEWTON ->");
-      console.log(JSON.stringify(data));
-      console.log(this.dataReceivedGet);
-      console.log(typeof(this.dataReceivedGet));
     }, (err) => {
-      console.log("Problema al hacer GET-NEWTON");
       console.log(err);
     });
   }
@@ -99,12 +119,9 @@ export class PuntoFijoPage {
     this.httpEcuacionesUnaVariableProvider.post(this.dataSubmit, this.apiUrl)
     .then(result => {
       this.dataReceivedPost = result;
+      console.log(this.dataReceivedPost);
       this.completeTable();
-      console.log("Realice el POST-NEWTON");
-      console.log("Envie al server = " + this.dataSubmit + " y me llegó como respuesta " + JSON.stringify(result));
-      //this.fromObjectToTable();
     }, (err) => {
-      console.log("Problema al hacer POST-NEWTON");
       console.log(err);
     });
   }
