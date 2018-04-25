@@ -1,8 +1,9 @@
 from sympy import symbols
 from .utils import sympify_expr
+from ..numeric_method import NumericMethod
 
 
-class FalsePosition():
+class FalsePosition(NumericMethod):
 
     def calculate(self, parameters):
         # Se crean las variables

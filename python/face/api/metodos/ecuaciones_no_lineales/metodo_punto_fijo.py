@@ -1,8 +1,9 @@
 from sympy import symbols
 from .utils import sympify_expr
+from ..numeric_method import NumericMethod
 
 
-class FixedPoint():
+class FixedPoint(NumericMethod):
     def calculate(self, parameters):
 
         x = symbols("x")

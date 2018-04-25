@@ -1,8 +1,10 @@
 from .utils import sympify_expr
 from sympy import symbols
 
+from ..numeric_method import NumericMethod
 
-class Bisection:
+
+class Bisection(NumericMethod):
 
     def calculate(self, parameters):
         # Se crean las variables
