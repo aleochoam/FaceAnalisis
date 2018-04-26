@@ -22,6 +22,7 @@ import { PuntoFijoPage } from '../pages/unidad-1/punto-fijo/punto-fijo';
 import { NewtonPage } from '../pages/unidad-1/newton/newton';
 import { SecantePage } from '../pages/unidad-1/secante/secante';
 import { RaicesMultiplesPage } from '../pages/unidad-1/raices-multiples/raices-multiples';
+import { GaussSimplePage } from '../pages/sistemas-de-ecuaciones-lineales/gauss-simple/gauss-simple';
 
 
 import { HttpClientModule } from '@angular/common/http';
@@ -45,7 +46,8 @@ import { HttpEcuacionesUnaVariableProvider } from '../providers/http-ecuaciones-
     PuntoFijoPage,
     NewtonPage,
     SecantePage,
-    RaicesMultiplesPage
+    RaicesMultiplesPage,
+    GaussSimplePage
   ],
   imports: [
     BrowserModule,
@@ -69,13 +71,15 @@ import { HttpEcuacionesUnaVariableProvider } from '../providers/http-ecuaciones-
     PuntoFijoPage,
     NewtonPage,
     SecantePage,
-    RaicesMultiplesPage
+    RaicesMultiplesPage,
+    GaussSimplePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    HttpEcuacionesUnaVariableProvider
+    HttpEcuacionesUnaVariableProvider,
+    
   ]
 })
 export class AppModule {}

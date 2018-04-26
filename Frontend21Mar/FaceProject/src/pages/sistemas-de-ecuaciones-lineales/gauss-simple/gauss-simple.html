@@ -27,5 +27,25 @@
     </ion-item>
 
     <button ion-button type="submit" block (click)="createMatrix()">Generar Matriz</button>
+
+    <form (ngSubmit)='submitForm()'>
+      <p>Ingrese la Matriz A</p>
+      <table>
+        <tr *ngFor="let i of matrix; let k = index">
+            <td *ngFor="let j of matrix">
+                <ion-input class='cell' type="number"></ion-input>
+            </td>
+        </tr>
+      </table>
+      <br>
+      <p>Ingrese el Vector B</p>
+      <table>
+        <tr>
+          <td *ngFor="let i of matrix">
+              <ion-input class='cell' type="number"></ion-input>
+          </td>
+        </tr>
+      </table>
+    </form>
   </ion-grid>
 </ion-content>

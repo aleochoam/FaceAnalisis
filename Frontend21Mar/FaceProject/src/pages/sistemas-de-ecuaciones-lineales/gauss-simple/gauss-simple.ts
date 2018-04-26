@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { HttpGaussSimpleProvider } from '../../../providers/http-gauss-simple/http-gauss-simple';
-
 import { AlertController } from 'ionic-angular';
 
 /**
@@ -19,9 +17,11 @@ import { AlertController } from 'ionic-angular';
 })
 export class GaussSimplePage {
 
+  matrix: Array<string> = [];
   n: any;
+  input: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl : AlertController, public httpGaussSimpleProvider : HttpGaussSimpleProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl : AlertController) {
     this.n = '';
   }
 
@@ -29,14 +29,17 @@ export class GaussSimplePage {
     console.log('ionViewDidLoad GaussSimplePage');
   }
 
-  createMatrix() {
+  getN() {
     console.log(this.n);
+    return this.n;
+  }
+
+  createMatrix() {
+    this.input = "<ion-input class='cell'></ion-input>";
     for (let i = 0; i < this.n; i++) {
-      for (let j = 0; j < this.n; j++) {
-        
-        
-      }
-      
+      this.matrix.push(String(i));
     }
+    console.log(this.matrix);
+    console.log(this.matrix.length);
   }
 }
