@@ -18,7 +18,7 @@ import { HttpEcuacionesUnaVariableProvider } from '../../../providers/http-ecuac
 })
 export class BusquedasIncrementalesPage {
 
-  private apiUrl = 'http://165.227.197.6:8000/api/busquedas/';
+  private apiUrl = 'http://165.227.197.6:8080/api/busquedas/';
 
   private dataSubmit = {}
 
