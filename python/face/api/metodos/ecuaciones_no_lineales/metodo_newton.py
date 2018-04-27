@@ -13,7 +13,7 @@ class NewtonMethod(NumericMethod):
         f_prima = params["dfx"]
         tipo_error = parameters["tipo_error"]
 
-        calcular_error = error_relativo if tipo_error == "relativo" else error_absoluto
+        calcular_error = error_relativo if tipo_error == 2 else error_absoluto
 
         response = self.init_response()
         contador = 0

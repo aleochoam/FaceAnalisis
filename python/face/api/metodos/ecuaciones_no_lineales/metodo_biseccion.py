@@ -21,7 +21,7 @@ class Bisection(NumericMethod):
         tol = eval(parameters["tole"])
         tipo_error = parameters["tipo_error"]
 
-        calcular_error = error_relativo if tipo_error == "relativo" else error_absoluto
+        calcular_error = error_relativo if tipo_error == 2 else error_absoluto
 
         # Transformar f a sympy
         f = sympify_expr(f)
