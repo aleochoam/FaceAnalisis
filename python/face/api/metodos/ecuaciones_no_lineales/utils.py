@@ -1,5 +1,11 @@
 from sympy import sympify, symbols
 
+def error_absoluto(x0, x1):
+    return abs(x1-x0)
+
+
+def error_relativo(x0, x1):
+    return abs((x1-x0)/x1)
 
 def call_eval_f(parameters):
     f = parameters["funcion"]

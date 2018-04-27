@@ -12,6 +12,9 @@ class Newton2Method(NumericMethod):
         f = params["fx"]
         f_prima = params["dfx"]
         f_dos_prima = params["d2fx"]
+        tipo_error = parameters["tipo_error"]
+
+        calcular_error = error_relativo if tipo_error == "relativo" else error_absoluto
 
         response = self.init_response()
         contador = 0
@@ -42,7 +45,8 @@ class Newton2Method(NumericMethod):
             dfx = f_prima.evalf(subs={x: xn})
             d2fx = f_dos_prima.evalf(subs={x: xn})
 
-            error = abs(xn-xa)
+            error = calcular_error(xn, xa)
+            # error = abs(xn-xa)
             xa = xn
             contador = contador + 1
 

@@ -3,6 +3,7 @@ from scipy import linalg
 
 from ..numeric_method import NumericMethod
 from .matrix_utils import sustitucion_progresiva, sustitucion_regresiva
+from .matrix_utils import no_es_invertible
 
 
 class FactorizacionCholesky(NumericMethod):
@@ -14,6 +15,10 @@ class FactorizacionCholesky(NumericMethod):
         b = np.matrix(eval(b), dtype="float32")
 
         response = self.init_response()
+
+        if no_es_invertible(A):
+            response["error"] = "La matriz no es invertible"
+            return response
 
         L = linalg.cholesky(A, lower=True)
         U = linalg.cholesky(A, lower=False)

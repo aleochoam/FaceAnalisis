@@ -11,6 +11,9 @@ class NewtonMethod(NumericMethod):
         n_iter = eval(params["nIters"])
         f = params["fx"]
         f_prima = params["dfx"]
+        tipo_error = parameters["tipo_error"]
+
+        calcular_error = error_relativo if tipo_error == "relativo" else error_absoluto
 
         response = self.init_response()
         contador = 0
@@ -36,7 +39,8 @@ class NewtonMethod(NumericMethod):
             fx = f.evalf(subs={x: xn})
             dfx = f_prima.evalf(subs={x: xn})
 
-            error = abs((xn-xa))
+            error = calcular_error(xn, xa)
+            # error = abs((xn-xa))
             xa = xn
             contador = contador + 1
 

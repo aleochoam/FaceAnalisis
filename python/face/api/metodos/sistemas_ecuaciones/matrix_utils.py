@@ -47,3 +47,7 @@ def sustitucion_regresiva(U, z):
         x[i] = (z[i]-suma)/U[i, i]
 
     return x
+
+
+def no_es_invertible(A):
+    return np.linalg.det(A) == 0

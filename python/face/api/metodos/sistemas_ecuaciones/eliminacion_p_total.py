@@ -6,6 +6,7 @@ from .matrix_utils import intercambiar_filas
 from .matrix_utils import intercambiar_marcas
 from .matrix_utils import concatenar
 from .matrix_utils import sustitucion_regresiva
+from .matrix_utils import no_es_invertible
 
 
 class EliminacionPivoteoTotal(NumericMethod):
@@ -17,6 +18,10 @@ class EliminacionPivoteoTotal(NumericMethod):
         b = np.matrix(eval(b), dtype="float32")
 
         response = self.init_response()
+
+        if no_es_invertible(A):
+            response["error"] = "La matriz no es invertible"
+            return response
 
         augmented, marcas = eliminacion(A, b)
         augmented = np.round(augmented, 2)

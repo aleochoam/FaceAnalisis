@@ -2,6 +2,7 @@ import numpy as np
 
 from ..numeric_method import NumericMethod
 from .matrix_utils import sustitucion_progresiva, sustitucion_regresiva
+from .matrix_utils import no_es_invertible
 
 
 class FactorizacionCrout(NumericMethod):
@@ -13,6 +14,11 @@ class FactorizacionCrout(NumericMethod):
         b = np.matrix(eval(b), dtype="float32")
 
         response = self.init_response()
+
+        if no_es_invertible(A):
+            response["error"] = "La matriz no es invertible"
+            return response
+
 
         n = len(A)
         L = np.identity(n)

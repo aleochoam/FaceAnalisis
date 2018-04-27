@@ -10,6 +10,9 @@ class Secante(NumericMethod):
         x0 = eval(params["x0"])
         x1 = eval(params["x1"])
         f = params["fx"]
+        tipo_error = parameters["tipo_error"]
+
+        calcular_error = error_relativo if tipo_error == "relativo" else error_absoluto  
 
         response = self.init_response()
         contador = 0
@@ -36,7 +39,8 @@ class Secante(NumericMethod):
 
             x2 = x1 - fx1 * (x1 - x0)/den
 
-            error = abs(x2-x1)
+            error = calcular_error(x2, x1)
+            # error = abs(x2-x1)
             x0 = x1
             fx0 = fx1
             x1 = x2

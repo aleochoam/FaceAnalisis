@@ -1,7 +1,9 @@
 from .utils import sympify_expr
+from .utils import error_absoluto, error_relativo
 from sympy import symbols
 
 from ..numeric_method import NumericMethod
+
 
 
 class Bisection(NumericMethod):
@@ -17,6 +19,9 @@ class Bisection(NumericMethod):
         xb = float(parameters["xb"])
         n_iter = int(parameters["nIters"])
         tol = eval(parameters["tole"])
+        tipo_error = parameters["tipo_error"]
+
+        calcular_error = error_relativo if tipo_error == "relativo" else error_absoluto
 
         # Transformar f a sympy
         f = sympify_expr(f)
@@ -69,7 +74,8 @@ class Bisection(NumericMethod):
             x_ant = xm
             xm = (xa+xb)/2
             fxm = f.evalf(subs={x: xm})
-            error = abs(xm - x_ant)
+            error = calcular_error(xm, x_ant)
+            # error = abs(xm - x_ant)
             contador = contador + 1
 
         iteracion = [contador, str(xa), str(xb), str(xm), str(fxm), str(error)]

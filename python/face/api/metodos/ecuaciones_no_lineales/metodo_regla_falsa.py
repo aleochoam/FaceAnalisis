@@ -16,6 +16,9 @@ class FalsePosition(NumericMethod):
         xb = float(parameters["xb"])
         n_iter = int(parameters["nIters"])
         tol = eval(parameters["tol"])
+        tipo_error = parameters["tipo_error"]
+
+        calcular_error = error_relativo if tipo_error == "relativo" else error_absoluto
 
         # Transformar f a sympy
         f = sympify_expr(f)
@@ -64,7 +67,8 @@ class FalsePosition(NumericMethod):
             x_ant = xm
             xm = xa - ((fxa*(xb-xa))/(fxb - fxa))  # Ecuación 15, regla falsa
             fxm = f.evalf(subs={x: xm})
-            error = abs(xm - x_ant)
+            error = calcular_error(xm, x_ant)
+            # error = abs(xm - x_ant)
             contador = contador + 1
 
         iteracion = [contador, str(xa), str(xb), str(xm), str(fxm), str(error)]

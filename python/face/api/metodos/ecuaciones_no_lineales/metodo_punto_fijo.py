@@ -14,6 +14,9 @@ class FixedPoint(NumericMethod):
         xa = float(parameters["x0"])
         n_iter = int(parameters["nIters"])
         tol = eval(parameters["tol"])
+        tipo_error = parameters["tipo_error"]
+
+        calcular_error = error_relativo if tipo_error == "relativo" else error_absoluto
 
         # Transformar g a sympy
         g = sympify_expr(g)
@@ -30,7 +33,8 @@ class FixedPoint(NumericMethod):
 
             xn = g.evalf(subs={x: xa})
 
-            error = abs((xn-xa))
+            error = calcular_error(xn, xa)
+            # error = abs((xn-xa))
             xa = xn
             contador = contador + 1
 
