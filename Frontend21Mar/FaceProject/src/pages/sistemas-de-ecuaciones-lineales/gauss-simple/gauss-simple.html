@@ -33,7 +33,7 @@
       <table>
         <tr *ngFor="let i of matrix; let k = index">
             <td *ngFor="let j of matrix">
-                <ion-input class='cell' type="number"></ion-input>
+                <ion-input class='cell' type="number" [(ngModel)]="datasubmit.A[i+j]" [ngModelOptions]="{standalone: true}"></ion-input>
             </td>
         </tr>
       </table>
@@ -42,10 +42,12 @@
       <table>
         <tr>
           <td *ngFor="let i of matrix">
-              <ion-input class='cell' type="number"></ion-input>
+              <ion-input class='cell' type="number" [(ngModel)]="datasubmit.b[i]" [ngModelOptions]="{standalone: true}"></ion-input>
           </td>
         </tr>
       </table>
+      <button ion-button type="submit" block>Calcular</button>
+
     </form>
   </ion-grid>
 </ion-content>

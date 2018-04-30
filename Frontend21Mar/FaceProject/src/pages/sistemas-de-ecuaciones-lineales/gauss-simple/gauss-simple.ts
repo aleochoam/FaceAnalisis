@@ -1,10 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-<<<<<<< HEAD
-
-=======
->>>>>>> 52c34c77e66fd69a4d9865a53cbe7eea7aa0063a
-import { AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the GaussSimplePage page.
@@ -19,7 +14,10 @@ import { AlertController } from 'ionic-angular';
   templateUrl: 'gauss-simple.html',
 })
 export class GaussSimplePage {
-
+  datasubmit = {
+    A : {},
+    b : {},
+  };
   matrix: Array<string> = [];
   n: any;
   input: string;
@@ -44,5 +42,21 @@ export class GaussSimplePage {
     }
     console.log(this.matrix);
     console.log(this.matrix.length);
+  }
+  submitForm(){
+    console.log(this.datasubmit)
+  }
+  private presentAlert () {
+    let alert = this.alertCtrl.create({
+      title: '¿Qué debo hacer?',
+      subTitle: ` <p>Ingresa los siguientes datos:</p>
+                  <ul>
+                    <li> <b>Dimensión:</b> Cantidad de variables a evaluar</li>
+                    <li> <b>Matriz:</b> Coeficientes de las variables a evaluar</li>
+                    <li><b>b:</b> Vector b de la ecuación Ax = b</li>
+                  </ul>`,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 }
