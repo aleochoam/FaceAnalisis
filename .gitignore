@@ -13,3 +13,4 @@ java/face/.project
 java/face/.classpath
 java/face/.settings/
 **/node_modules
+**/.vscode/

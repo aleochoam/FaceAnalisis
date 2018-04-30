@@ -1,4 +1,5 @@
 import numpy as np
+from math import sqrt
 
 
 def concatenar(matrix, vector):
@@ -51,3 +52,17 @@ def sustitucion_regresiva(U, z):
 
 def no_es_invertible(A):
     return np.linalg.det(A) == 0
+
+
+def process_params(A, b):
+    n = int(sqrt(len(A)))
+    new_A = np.zeros((n, n))
+    new_b = np.zeros((1, n))
+
+    for i in range(n):
+        for j in range(n):
+            pos = str(i) + str(j)
+            new_A[i, j] = A[pos]
+        new_b[0, i] = b[str(i)]
+
+    return new_A, new_b

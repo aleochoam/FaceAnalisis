@@ -2,16 +2,15 @@ import numpy as np
 
 from ..numeric_method import NumericMethod
 from .matrix_utils import sustitucion_regresiva, sustitucion_progresiva
-from .matrix_utils import no_es_invertible
+from .matrix_utils import no_es_invertible, process_params
+
 
 class FactorizacionGaussiana(NumericMethod):
     def calculate(self, parameters):
         A = parameters["A"]
         b = parameters["b"]
 
-        A = np.matrix(eval(A), dtype="float32")
-        b = np.matrix(eval(b), dtype="float32")
-
+        A, b = process_params(A, b)
         response = self.init_response()
 
         if no_es_invertible(A):
