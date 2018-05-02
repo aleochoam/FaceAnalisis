@@ -44,10 +44,10 @@ class FactorizacionCrout(NumericMethod):
         z = sustitucion_progresiva(L, b)
         x = sustitucion_regresiva(U, z)
 
-        response["L"] = str(L)
-        response["U"] = str(U)
-        response["z"] = str(z)
-        response["x"] = str(x)
+        response["L"] = str(np.round(L, 3))
+        response["U"] = str(np.round(U, 3))
+        response["z"] = str(np.round(z, 3))
+        response["x"] = str(np.round(x, 3))
 
         return response
 

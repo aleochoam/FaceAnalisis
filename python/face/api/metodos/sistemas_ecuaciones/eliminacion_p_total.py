@@ -23,7 +23,7 @@ class EliminacionPivoteoTotal(NumericMethod):
             return response
 
         augmented, marcas = eliminacion(A, b)
-        augmented = np.round(augmented, 2)
+        # augmented = np.round(augmented, 2)
 
         A = np.delete(augmented.copy(), len(augmented), 1)
         b = augmented[:, len(augmented)]
@@ -31,7 +31,7 @@ class EliminacionPivoteoTotal(NumericMethod):
         x = sustitucion_regresiva(A, b)
         x = organizar_marcas(x,  marcas)
 
-        response["augmented"] = str(augmented)
+        response["augmented"] = str(np.round(augmented, 3))
         response["x"] = str(x)
 
         return response

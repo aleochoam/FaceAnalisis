@@ -19,8 +19,6 @@ class FactorizacionPivoteo(NumericMethod):
             return response
 
         U, L, P = factorizar(A)
-        response["L"] = str(L)
-        response["U"] = str(U)
         Bn = np.matmul(P, b.T)
 
         z = sustitucion_progresiva(L, Bn.T)
@@ -29,6 +27,8 @@ class FactorizacionPivoteo(NumericMethod):
         L = np.round(L, 2)
         U = np.round(U, 2)
 
+        response["L"] = str(L)
+        response["U"] = str(U)
         response["z"] = str(z)
         response["x"] = str(x)
 

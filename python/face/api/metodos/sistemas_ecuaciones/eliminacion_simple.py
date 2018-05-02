@@ -18,13 +18,13 @@ class EliminacionSimple(NumericMethod):
             return response
 
         augmented = eliminacion(A, b)
-        augmented = np.round(augmented, 2)
+        # augmented = np.round(augmented, 2)
 
         A = np.delete(augmented.copy(), len(augmented), 1)
         b = augmented[:, len(augmented)]
         x = sustitucion_regresiva(A, b)
 
-        response["augmented"] = str(augmented)
+        response["augmented"] = str(np.round(augmented, 2))
         response["x"] = str(x)
 
         return response
