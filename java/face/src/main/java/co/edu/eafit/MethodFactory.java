@@ -7,10 +7,12 @@ import nonLinearEcuations.PuntoFijo;
 import nonLinearEcuations.RaicesMultiples;
 import nonLinearEcuations.ReglaFalsa;
 import nonLinearEcuations.Secante;
+import systemOfEquations.EliminacionSimple;
 
 public class MethodFactory {
     public static NumericMethod createMethod(String methodName){
-        if (methodName.toLowerCase().equals("newton")) {
+        //Capitulo soluciion de ecuaciones no lineales
+    	if (methodName.toLowerCase().equals("newton")) {
             return new Newton();
         }else if (methodName.toLowerCase().equals("busquedas")) {
         	return new IncrementalSearch();
@@ -24,6 +26,10 @@ public class MethodFactory {
     		return new Secante();
     	}else if(methodName.toLowerCase().equals("raices multiples")) {
     		return new RaicesMultiples();
+    	
+    	//Capitulo sistemas de ecuaciones
+    	}else if(methodName.toLowerCase().equals("eliminacion simple")) {
+    		return new EliminacionSimple();
     	}else{
             return new NotImplementedMethod();
         }

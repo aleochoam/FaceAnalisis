@@ -4,18 +4,20 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import java.util.List;
+
 import co.edu.eafit.MethodFactory;
 import co.edu.eafit.NumericMethod;
 
-public class AppTest extends TestCase {
+public class EcuacionesNoLinealesTest extends TestCase {
 
-    public AppTest( String testName ) {
+    public EcuacionesNoLinealesTest( String testName ) {
         super( testName );
     }
 
 
     public static Test suite() {
-        return new TestSuite( AppTest.class );
+        return new TestSuite( EcuacionesNoLinealesTest.class );
     }
 
     public void testEvaluator() {
@@ -29,13 +31,14 @@ public class AppTest extends TestCase {
     	assertTrue (metodo.getName().equals("Newton"));
     }
     
-   /*
+   
     public void testBusquedas() {
     	NumericMethod busquedas = MethodFactory.createMethod("busquedas");
     	Solution res = busquedas.calculate("e^(3*x-12)+x*cos(3*x)-x^2+4", -10.0, 1.0, 100);
-    	assertEquals(-2.0, res.getSolution().get);
-    	assertEquals(-1.0, res.getLastIteration());
-    }*/
+    	List<List<Object>> res_iterations = (List<List<Object>>) res.getSolution();
+    	assertEquals(-2.0, res_iterations.get(0).get(0));
+    	assertEquals(-1.0, res_iterations.get(0).get(1));
+    }
     
     public void testBiseccion() {
     	NumericMethod biseccion = MethodFactory.createMethod("biseccion");
