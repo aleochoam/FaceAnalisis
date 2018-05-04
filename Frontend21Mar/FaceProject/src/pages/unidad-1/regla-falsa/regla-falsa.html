@@ -13,54 +13,71 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="pantalla">
 
   <ion-grid>
-      <form (ngSubmit)="submitForm()">
-          <ion-item>
-            <ion-label>f(x)</ion-label>
-            <ion-input type="text" [(ngModel)]="dataSubmit.fx" name="fx"></ion-input>
-          </ion-item>
+    <ion-row>
+      <ion-col col-2>
+          <button ion-button icon-only class="pregunta" (click)="ayuda()"> 
+            <ion-icon name="md-help-circle" class="iconoPregunta"></ion-icon>
+          </button>
+      </ion-col>
+  
+      <ion-col col-8>
+      </ion-col>
+  
+      <ion-col col-2>
+          <button ion-button icon-only (click)="goGraficador()">
+            <ion-icon name="md-analytics"></ion-icon>
+          </button>
+      </ion-col>          
+    </ion-row>
 
-          <ion-item>
-            <ion-label>xa</ion-label>
-            <ion-input type="text" [(ngModel)]="dataSubmit.xa" name="xa"></ion-input>
-          </ion-item>
+    <form (ngSubmit)="submitForm()">
+        <ion-item>
+          <ion-label>f(x)</ion-label>
+          <ion-input type="text" [(ngModel)]="dataSubmit.fx" name="fx"></ion-input>
+        </ion-item>
 
-          <ion-item>
-            <ion-label>xb</ion-label>
-            <ion-input type="text" [(ngModel)]="dataSubmit.xb" name="xb"></ion-input>
-          </ion-item>
+        <ion-item>
+          <ion-label>xa</ion-label>
+          <ion-input type="text" [(ngModel)]="dataSubmit.xa" name="xa"></ion-input>
+        </ion-item>
 
-          <ion-item>
-            <ion-label>Tolerancia</ion-label>
-            <ion-input type="text" [(ngModel)]="dataSubmit.tol" name="tol"></ion-input>
-          </ion-item>
+        <ion-item>
+          <ion-label>xb</ion-label>
+          <ion-input type="text" [(ngModel)]="dataSubmit.xb" name="xb"></ion-input>
+        </ion-item>
 
-          <ion-item>
-            <ion-label>Num. Iters</ion-label>
-            <ion-input type="text" [(ngModel)]="dataSubmit.nIters" name="nIters"></ion-input>
-          </ion-item>
-          <ion-list radio-group [(ngModel)]="dataSubmit.tipo_error" name="tipo_error">
-            <ion-row>
-              <ion-col col-6>
-                  <ion-item>
-                      <ion-label>Absoluto</ion-label>
-                      <ion-radio  value="1"></ion-radio>                      
+        <ion-item>
+          <ion-label>Tolerancia</ion-label>
+          <ion-input type="text" [(ngModel)]="dataSubmit.tol" name="tol"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Num. Iters</ion-label>
+          <ion-input type="text" [(ngModel)]="dataSubmit.nIters" name="nIters"></ion-input>
+        </ion-item>
+        <ion-list radio-group [(ngModel)]="dataSubmit.tipo_error" name="tipo_error">
+          <ion-row>
+            <ion-col col-6>
+                <ion-item>
+                    <ion-label>Absoluto</ion-label>
+                    <ion-radio  value="1"></ion-radio>                      
+                </ion-item>
+            </ion-col>
+
+            <ion-col col-6>
+                <ion-item>
+                    <ion-label>Relativo</ion-label>
+                    <ion-radio value="2" ></ion-radio>
                   </ion-item>
-              </ion-col>
+            </ion-col>
+          </ion-row>
+        </ion-list>
 
-              <ion-col col-6>
-                  <ion-item>
-                      <ion-label>Relativo</ion-label>
-                      <ion-radio value="2" ></ion-radio>
-                    </ion-item>
-              </ion-col>
-            </ion-row>
-          </ion-list>
-
-          <button ion-button type="submit" block>Calcular</button>
-        </form>
+      <button ion-button type="submit" block>Calcular</button>
+    </form>
   </ion-grid>
 
   <ion-grid>
