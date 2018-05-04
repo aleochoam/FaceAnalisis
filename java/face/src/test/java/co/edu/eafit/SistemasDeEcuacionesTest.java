@@ -1,8 +1,11 @@
 package co.edu.eafit;
 
+import java.util.Arrays;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+
 import systemOfEquations.MatrixUtils;
 
 public class SistemasDeEcuacionesTest extends TestCase {
@@ -24,17 +27,17 @@ public class SistemasDeEcuacionesTest extends TestCase {
 	
 	public void testEliminacionSimple() {
 		NumericMethod metodo = MethodFactory.createMethod("eliminacion simple");
-		int n = 4;
-		double[][] a = {{-1, 3, 2},
-                        {2, -5, 1},
-                        {3, 1, -6}};
-		double[] b = {12, -10, 4};
+		double[][] a = {{14, 6, -2, 3},
+                        {3, 15, 2, -5},
+                        {-7, 4, -23, 2},
+                        {1, -3, -2, 16}};
+		double[] b = {12, 32, -24, 14};
 		
-		double[] expected = {-0.304271246, 2.49, 1.70, 1.57};
+		double[] expected = {-0.3042712461470717 , 2.4915015411712904 , 1.7062967855570237, 1.5744605900484367};
 		Solution actual = metodo.calculate(a, b);
 		
 		
-		assertTrue(expected.equals(actual));
+		assertEquals(Arrays.toString(expected), Arrays.toString((double[]) actual.getSolution()));
 		
 		
 	}

@@ -52,4 +52,42 @@ public class MatrixUtils {
 		}
 		return augmented;
 	}
+	
+	public static double[] sustitucionRegresiva(double[][] matriz, double[] vector) {
+		int n = matriz.length;
+		double[] x = new double[n];
+		
+		x[n-1] = vector[n-1]/matriz[n-1][n-1];
+		for (int i = n-2; i >= 0; i--) {
+			double suma = 0;
+			for (int p = n-1; p > i; p--) {
+				suma = suma + matriz[i][p] * x[p];
+			}
+			x[i] = (vector[i] - suma)/matriz[i][i];
+		}
+		return x;
+	}
+	
+	public static double[][] intercambiarFilas(double[][] A, int fila, int k){
+		double[] tempRow = A[fila];
+		A[fila] = A[k];
+		A[k] = tempRow;
+		
+		return A;
+	}
+	
+	public static void imprimir(double[][] A) {
+		for (int i = 0; i < A.length; i++) {
+			for (int j = 0; j < A[i].length; j++) {
+				System.out.print(A[i][j] + ", ");
+			}
+			System.out.println();
+		}
+	}
+	
+	public static void imprimir(double[] b) {
+		for (int i = 0; i < b.length; i++) {
+			System.out.println(b[i]+ " ");
+		}
+	}
 }
