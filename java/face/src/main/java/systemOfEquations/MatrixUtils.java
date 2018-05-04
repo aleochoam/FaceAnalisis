@@ -40,17 +40,16 @@ public class MatrixUtils {
 		return determinante(A) != 0;
 	}
 	
-	public static List aumentarMatriz(double[][] A, double[] b){
-		List<double[]> newA = Arrays.asList(A);
-		List<double[]> newB = Arrays.asList(b);
+	public static double[][] aumentarMatriz(double[][] A, double[] b){
+		int n = A.length;
+		double[][] augmented = new double[n][n+1];
 		
-		return newA;
-	}
-	
-	public static void main(String[] args) {
-		double[][] a = {{-1, 3, 2},
-                {2, -5, 1},
-                {3, 1, -6}};
-		double[] b = {12, -10, 4};
+		for (int i = 0; i < augmented.length; i++) {
+			for (int j = 0; j < augmented.length; j++) {
+				augmented[i][j] = A[i][j];
+			}
+			augmented[i][n] = b[i];
+		}
+		return augmented;
 	}
 }
