@@ -1,5 +1,5 @@
 import numpy as np
-from scipy import linalg
+from numpy.lib.scimath import sqrt as csqrt
 
 from ..numeric_method import NumericMethod
 from .matrix_utils import sustitucion_progresiva, sustitucion_regresiva
@@ -18,16 +18,37 @@ class FactorizacionCholesky(NumericMethod):
             response["error"] = "La matriz no es invertible"
             return response
 
-        L = linalg.cholesky(A, lower=True)
-        U = linalg.cholesky(A, lower=False)
+        n = len(A)
+        # L = np.zeros((n, n))
+        # U = np.zeros((n, n))
 
-        z = sustitucion_progresiva(L, b)
-        x = sustitucion_regresiva(U, z)
+        # Utilizar estas si se quiere trabajar con complejos
+        L = np.zeros((n, n), dtype="complex")
+        U = np.zeros((n, n), dtype="complex")
 
-        response["L"] = str(L)
-        response["U"] = str(U)
-        response["z"] = str(z)
-        response["x"] = str(x)
+        for k in range(n):
+            suma1 = np.sum([L[k, p] * U[p, k] for p in range(0, k)])
+            L[k, k] = U[k, k] = csqrt(A[k, k] - suma1)
+
+            for i in range(k+1, n):
+                suma2 = np.sum(L[i, p] * U[p, k] for p in range(0, k))
+                L[i, k] = (A[i, k] - suma2)/U[k, k]
+
+            for j in range(k+1, n):
+
+                suma3 = np.sum(L[k, p] * U[p, j] for p in range(0, k))
+                U[k, j] = (A[k, j] - suma3)/L[k, k]
+
+        L = np.real(L)
+        U = np.real(U)
+
+        # z = sustitucion_progresiva(L, b)
+        # x = sustitucion_regresiva(U, z)
+
+        response["L"] = L.tolist()
+        response["U"] = U.tolist()
+        # response["z"] = z.tolist()
+        # response["x"] = x.tolist()
 
         return response
 

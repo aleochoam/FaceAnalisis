@@ -31,8 +31,8 @@ class EliminacionPivoteoTotal(NumericMethod):
         x = sustitucion_regresiva(A, b)
         x = organizar_marcas(x,  marcas)
 
-        response["augmented"] = str(np.round(augmented, 3))
-        response["x"] = str(x)
+        response["augmented"] = np.round(augmented, 3).tolist()
+        response["x"] = x.tolist()
 
         return response
 

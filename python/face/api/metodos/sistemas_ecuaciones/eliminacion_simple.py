@@ -24,13 +24,13 @@ class EliminacionSimple(NumericMethod):
         b = augmented[:, len(augmented)]
         x = sustitucion_regresiva(A, b)
 
-        response["augmented"] = str(np.round(augmented, 2))
-        response["x"] = str(x)
+        response["augmented"] = np.round(augmented, 2).tolist()
+        response["x"] = x.tolist()
 
         return response
 
     def get_description(self):
-        return "Retorna una matriz escalonada de acuerdo con una matriz A y un vector b"
+        return "Retorna la solución a un sistema Ax=b por medio de eliminacion gaussiana"
 
     def init_response(self):
         response = dict()

@@ -13,7 +13,7 @@ class FactorizacionDoolittle(NumericMethod):
         matrix, b = process_params(A, b)
         response = self.init_response()
 
-        if no_es_invertible(A):
+        if no_es_invertible(matrix):
             response["error"] = "La matriz no es invertible"
             return response
 
@@ -42,10 +42,10 @@ class FactorizacionDoolittle(NumericMethod):
         z = sustitucion_progresiva(L, b)
         x = sustitucion_regresiva(U, z)
 
-        response["L"] = str(L)
-        response["U"] = str(U)
-        response["z"] = str(z)
-        response["x"] = str(x)
+        response["L"] = L.tolist()
+        response["U"] = U.tolist()
+        response["z"] = z.tolist()
+        response["x"] = x.tolist()
 
         return response
 
