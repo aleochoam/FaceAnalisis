@@ -7,7 +7,13 @@ import nonLinearEcuations.PuntoFijo;
 import nonLinearEcuations.RaicesMultiples;
 import nonLinearEcuations.ReglaFalsa;
 import nonLinearEcuations.Secante;
+import systemOfEquations.EliminacionPivoteoTotal;
 import systemOfEquations.EliminacionSimple;
+import systemOfEquations.FactorizacionCholesky;
+import systemOfEquations.FactorizacionCrout;
+import systemOfEquations.FactorizacionDoolittle;
+import systemOfEquations.FactorizacionGaussiana;
+import systemOfEquations.FactorizacionGaussianaPivoteo;
 
 public class MethodFactory {
     public static NumericMethod createMethod(String methodName){
@@ -30,6 +36,18 @@ public class MethodFactory {
     	//Capitulo sistemas de ecuaciones
     	}else if(methodName.toLowerCase().equals("eliminacion simple")) {
     		return new EliminacionSimple();
+    	}else if(methodName.toLowerCase().equals("eliminacion pivoteo total")) {
+    		return new EliminacionPivoteoTotal();
+    	}else if(methodName.toLowerCase().equals("factorizacion gaussiana")) {
+    		return new FactorizacionGaussiana();
+    	}else if(methodName.toLowerCase().equals("factorizacion gaussiana pivoteo")) {
+    		return new FactorizacionGaussianaPivoteo();
+    	}else if(methodName.toLowerCase().equals("crout")) {
+    		return new FactorizacionCrout();
+    	}else if(methodName.toLowerCase().equals("doolittle")) {
+    		return new FactorizacionDoolittle();
+    	}else if(methodName.toLowerCase().equals("cholesky")) {
+    		return new FactorizacionCholesky();
     	}else{
             return new NotImplementedMethod();
         }

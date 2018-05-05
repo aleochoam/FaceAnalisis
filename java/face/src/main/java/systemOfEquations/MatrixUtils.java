@@ -68,12 +68,79 @@ public class MatrixUtils {
 		return x;
 	}
 	
+	public static double[] sustitucionProgresiva(double[][] matriz, double[] vector) {
+		int n = matriz.length;
+		double[] z = new double[n];
+		
+		z[0] = vector[0] / matriz[0][0];
+		for (int i = 1; i < n; i++) {
+			double suma = 0;
+			for (int p = 0; p < i; p++) {
+				suma += matriz[i][p] * z[p];
+			}
+			
+			z[i] = (vector[i] - suma) / matriz[i][i];
+		}
+		return z;
+	}
+	
 	public static double[][] intercambiarFilas(double[][] A, int fila, int k){
 		double[] tempRow = A[fila];
 		A[fila] = A[k];
 		A[k] = tempRow;
 		
 		return A;
+	}
+	
+	public static double[][] intercambiarColumnas(double[][] A, int col, int k){
+		for (int i = 0; i < A.length; i++) {
+			double temp = A[i][k];
+			A[i][k] = A[i][col];
+			A[i][col] = temp;
+		}
+		return A;
+	}
+	
+	public static double[][] getA(double[][] augmented){
+		int n = augmented.length;
+		double[][] A = new double[n][n];
+		
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				A[i][j] = augmented[i][j];
+			}
+		}
+		return A;
+		
+	}
+	
+	public static double[] getB(double[][] augmented){
+		int n = augmented.length;
+		double[] b = new double[n];
+		
+		for (int i = 0; i < n; i++) {
+			b[i] = augmented[i][n];
+		}
+		return b;
+	}
+	
+	public static double[][] identidad(int n){
+		double[][] matrix = new double[n][n];
+		
+		for (int i = 0; i < matrix.length; i++) {
+			matrix[i][i] = 1;
+		}
+		
+		return matrix;
+	}
+	
+	public static boolean tieneCerosEnLaDiagonal(double[][] matriz) {
+		for (int i = 0; i < matriz.length; i++) {
+			if(matriz[i][i] == 0) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public static void imprimir(double[][] A) {
