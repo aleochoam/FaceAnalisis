@@ -25,10 +25,12 @@ export class BusquedasIncrementalesPage {
   private dataReceivedGet = {};
   private dataReceivedPost = {};
 
-  private root;
+  private root = [];
+  private roots = [];
   private visibleRoot;
+  private visibleRoots;
 
-  private tableTitles  = []
+  private tableTitles  = ['i','x','f(x)']
   private tableContent = []
   private visibleTable;
   
@@ -37,6 +39,11 @@ export class BusquedasIncrementalesPage {
     this.dataSubmit['x0'] = '';
     this.dataSubmit['delta'] = '';
     this.dataSubmit['nIters'] = '';
+
+    this.visibleTable = false;
+    this.visibleRoot  = false;
+    this.visibleRoots = false;
+
     this.getServer();
   
   } 
@@ -94,17 +101,31 @@ export class BusquedasIncrementalesPage {
   //Zona de get y post
 
   private completeTable(){
-    this.tableTitles.push(['i','x','f(x)'])
     this.tableContent = this.dataReceivedPost['iteraciones'];
-    console.log(this.tableContent);
+    console.log(this.tableContent.length);
     if (this.tableContent.length != 0){
-      this.root = this.dataReceivedPost['aproximados'];
-      console.log("La raiz es " + this.root);
+      this.root = this.dataReceivedPost['raices'];
+      this.roots = this.dataReceivedPost['intervalos']
+      console.log("Raices " + this.root);
+      console.log("Intervalos " + this.roots);
+      console.log("Numero de raices: " + this.root.length);
+      console.log("Numero de intervalos: " + this.roots.length);
+      console.log("Numero de raices dif 0: " + (this.root.length != 0 ));
+      console.log("Numero de intervalos dif 0: " + (this.roots.length != 0));
 
       this.visibleTable = true;
-      this.visibleRoot  = true;
+
+      if (this.root.length != 0) {
+        this.visibleRoot  = true;
+      }
+
+      if (this.roots.length != 0) {
+        this.visibleRoots  = true;
+      }
       
-    }else{
+      console.log("Visibilidad de raiz: " + this.visibleRoot);
+      console.log("Visibilidad de intervalos: " + this.visibleRoots);
+    } else {
       this.visibleTable = false;
       this.visibleRoot  = false;
     }    
@@ -130,12 +151,10 @@ export class BusquedasIncrementalesPage {
   public postServer() {
     this.httpEcuacionesUnaVariableProvider.post(this.dataSubmit, this.apiUrl)
     .then(result => {
-      this.dataReceivedPost = result;
-      console.log("Envie al server = " + this.dataSubmit + " y me llegó como respuesta " + JSON.stringify(result));
+      this.dataReceivedPost = result; 
+      console.log(this.dataReceivedPost);
       this.completeTable();
       console.log("Realice el POST-BUSQ-INCREM");
-      
-      //this.fromObjectToTable();
     }, (err) => {
       console.log("Problema al hacer POST-BUSQ-INCREM");
       console.log(err);

@@ -138,7 +138,6 @@ export class BiseccionPage {
     });
   }
 
-
   public postServer() {
     this.httpEcuacionesUnaVariableProvider.post(this.dataSubmit, this.apiUrl)
     .then(result => {

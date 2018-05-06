@@ -84,28 +84,22 @@
       
   </ion-grid>
 
-  <ion-grid>
-
-  
-  <ion-row *ngIf="visibleRoot" class="style-msg-root">
+  <ion-grid> 
+    <ion-row *ngIf="visibleRoot" class="style-msg-root">
       <ion-col col-12>
           <p>La aproximación a la raíz es {{root}}</p> 
       </ion-col>
-  </ion-row>
+    </ion-row>
 
-  
     <ion-row *ngIf="visibleTable" class = "table-t">
-          <ion-col col-1 class = "style-t-t"><p class = "text-t-t"> {{titlesTable[0]}} </p></ion-col>
-          <ion-col col-2 class = "style-t-t"><p class = "text-t-t"> {{titlesTable[1]}} </p></ion-col>
-          <ion-col col-2 class = "style-t-t"><p class = "text-t-t"> {{titlesTable[2]}} </p></ion-col>
-          <ion-col col-3 class = "style-t-t"><p class = "text-t-t"> {{titlesTable[3]}} </p></ion-col>      
-          <ion-col col-2 class = "style-t-t"><p class = "text-t-t"> {{titlesTable[4]}} </p></ion-col>      
-          <ion-col col-2 class = "style-t-t"><p class = "text-t-t"> {{titlesTable[5]}} </p></ion-col>      
-      </ion-row>
+      <ion-col col-1 class = "style-t-t"><p class = "text-t-t"> {{titlesTable[0]}} </p></ion-col>
+      <ion-col col-2 class = "style-t-t"><p class = "text-t-t"> {{titlesTable[1]}} </p></ion-col>
+      <ion-col col-2 class = "style-t-t"><p class = "text-t-t"> {{titlesTable[2]}} </p></ion-col>
+      <ion-col col-3 class = "style-t-t"><p class = "text-t-t"> {{titlesTable[3]}} </p></ion-col>      
+      <ion-col col-2 class = "style-t-t"><p class = "text-t-t"> {{titlesTable[4]}} </p></ion-col>      
+      <ion-col col-2 class = "style-t-t"><p class = "text-t-t"> {{titlesTable[5]}} </p></ion-col>      
+    </ion-row>
 
-  
-
-     
     <ion-row *ngFor="let i of contentTable"  class = "table-c">
       <ion-col col-1 class = "style-t-c"><p class = "text-t-c"> {{i[0]}} </p></ion-col>
       <ion-col col-2 class = "style-t-c"><p class = "text-t-c"> {{i[1]}} </p></ion-col>
@@ -115,6 +109,4 @@
       <ion-col col-2 class = "style-t-c"><p class = "text-t-c"> {{i[5]}} </p></ion-col>      
     </ion-row>    
   </ion-grid>
-      
-  
 </ion-content>
