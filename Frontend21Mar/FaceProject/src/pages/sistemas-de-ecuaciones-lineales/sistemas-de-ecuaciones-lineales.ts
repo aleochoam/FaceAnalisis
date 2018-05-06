@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GaussSimplePage } from './gauss-simple/gauss-simple';
+import { GaussPivParcialPage } from './gauss-piv-parcial/gauss-piv-parcial';
 
 
 /**
@@ -22,6 +23,10 @@ export class SistemasDeEcuacionesLinealesPage {
 
   public goGaussSimple(){
     this.navCtrl.push(GaussSimplePage);
+  }
+
+  public goGaussPivParcial(){
+    this.navCtrl.push(GaussPivParcialPage);
   }
 
   ionViewDidLoad() {

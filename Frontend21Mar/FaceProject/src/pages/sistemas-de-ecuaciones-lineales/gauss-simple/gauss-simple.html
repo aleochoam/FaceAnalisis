@@ -52,13 +52,26 @@
   </ion-grid>
   <div *ngIf="showResult">
     <p>La solución al sistema es:</p>
-    <table>
-      <tr><th *ngFor="let i of matrix" class="table-t">
+    <table  class="table" align="center">
+      <tr class="table"><th *ngFor="let i of matrix" class="table">
           X{{i}}
         </th></tr>
-      <tr *ngFor="let j of xs">
+      <tr class="table">
+        <td *ngFor="let j of xs" class="table">
         <p>{{j}}</p>
+      </td>
       </tr>
     </table>
+    <p>La Matriz escalonada:</p>
+    
+    <table class="table" align="center">
+      <tr *ngFor="let i of escalonada" class="table">
+        <td *ngFor="let j of i" class="table">
+          {{j}}
+        </td>
+      </tr>
+    </table>
+
   </div>
+
 </ion-content>
