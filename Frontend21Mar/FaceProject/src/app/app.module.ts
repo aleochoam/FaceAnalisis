@@ -23,7 +23,7 @@ import { NewtonPage } from '../pages/unidad-1/newton/newton';
 import { SecantePage } from '../pages/unidad-1/secante/secante';
 import { RaicesMultiplesPage } from '../pages/unidad-1/raices-multiples/raices-multiples';
 import { GaussSimplePage } from '../pages/sistemas-de-ecuaciones-lineales/gauss-simple/gauss-simple';
-
+import { GaussPivParcialPage } from '../pages/sistemas-de-ecuaciones-lineales/gauss-piv-parcial/gauss-piv-parcial';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -47,7 +47,8 @@ import { HttpEcuacionesUnaVariableProvider } from '../providers/http-ecuaciones-
     NewtonPage,
     SecantePage,
     RaicesMultiplesPage,
-    GaussSimplePage
+    GaussSimplePage,
+    GaussPivParcialPage
   ],
   imports: [
     BrowserModule,
@@ -72,7 +73,8 @@ import { HttpEcuacionesUnaVariableProvider } from '../providers/http-ecuaciones-
     NewtonPage,
     SecantePage,
     RaicesMultiplesPage,
-    GaussSimplePage
+    GaussSimplePage,
+    GaussPivParcialPage
   ],
   providers: [
     StatusBar,

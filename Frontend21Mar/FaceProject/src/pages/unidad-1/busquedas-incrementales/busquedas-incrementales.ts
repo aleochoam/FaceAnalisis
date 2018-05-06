@@ -25,14 +25,25 @@ export class BusquedasIncrementalesPage {
   private dataReceivedGet = {};
   private dataReceivedPost = {};
 
-  private tableTitles  = []
+  private root = [];
+  private roots = [];
+  private visibleRoot;
+  private visibleRoots;
+
+  private tableTitles  = ['i','x','f(x)']
   private tableContent = []
+  private visibleTable;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public httpEcuacionesUnaVariableProvider : HttpEcuacionesUnaVariableProvider) {
     this.dataSubmit['fx'] = '';
     this.dataSubmit['x0'] = '';
     this.dataSubmit['delta'] = '';
     this.dataSubmit['nIters'] = '';
+
+    this.visibleTable = false;
+    this.visibleRoot  = false;
+    this.visibleRoots = false;
+
     this.getServer();
   
   } 
@@ -90,8 +101,34 @@ export class BusquedasIncrementalesPage {
   //Zona de get y post
 
   private completeTable(){
-    this.tableTitles.push(['i','x Inf','x Sup','x Med', 'f(xMed)', 'Error'])
-    this.tableContent = this.dataReceivedPost['iteraciones'];    
+    this.tableContent = this.dataReceivedPost['iteraciones'];
+    console.log(this.tableContent.length);
+    if (this.tableContent.length != 0){
+      this.root = this.dataReceivedPost['raices'];
+      this.roots = this.dataReceivedPost['intervalos']
+      console.log("Raices " + this.root);
+      console.log("Intervalos " + this.roots);
+      console.log("Numero de raices: " + this.root.length);
+      console.log("Numero de intervalos: " + this.roots.length);
+      console.log("Numero de raices dif 0: " + (this.root.length != 0 ));
+      console.log("Numero de intervalos dif 0: " + (this.roots.length != 0));
+
+      this.visibleTable = true;
+
+      if (this.root.length != 0) {
+        this.visibleRoot  = true;
+      }
+
+      if (this.roots.length != 0) {
+        this.visibleRoots  = true;
+      }
+      
+      console.log("Visibilidad de raiz: " + this.visibleRoot);
+      console.log("Visibilidad de intervalos: " + this.visibleRoots);
+    } else {
+      this.visibleTable = false;
+      this.visibleRoot  = false;
+    }    
   }
 
   //Zona de get y post
@@ -114,11 +151,10 @@ export class BusquedasIncrementalesPage {
   public postServer() {
     this.httpEcuacionesUnaVariableProvider.post(this.dataSubmit, this.apiUrl)
     .then(result => {
-      this.dataReceivedPost = result;
+      this.dataReceivedPost = result; 
+      console.log(this.dataReceivedPost);
       this.completeTable();
       console.log("Realice el POST-BUSQ-INCREM");
-      console.log("Envie al server = " + this.dataSubmit + " y me llegó como respuesta " + JSON.stringify(result));
-      //this.fromObjectToTable();
     }, (err) => {
       console.log("Problema al hacer POST-BUSQ-INCREM");
       console.log(err);

@@ -40,17 +40,17 @@ export class GraficadorPage {
         datasets: [{
             label: 'Grafica',
             data: [{
-                x: -10,
-                y: -8
+                x: -1,
+                y: -1
             }, {
-                x: 0,
-                y: 10
+                x: 2,
+                y: 2
             }, {
-                x: 10,
-                y: 5
+                x: 3,
+                y: 3
             }],
             borderColor: [
-              '#0b8c7f',
+              '#001f51',
             ],
         }]
     },

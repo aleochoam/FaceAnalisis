@@ -24,14 +24,14 @@
     text-align: center;
     font-style: oblique;
     font-weight: bold;    
-
+    color: white;
 }
 
 //Estilo Tabla Titulo
 .style-t-t{
     border-style: solid;
     border-width: 1px; 
-    background-color: rgb(197, 197, 197);   
+    background-color: #0b8c7f;   
 }
 
 //Tabla Titulo
@@ -53,15 +53,16 @@
 //Estilo Tabla Contenido
 .style-t-c{
     border-style: solid;
-    border-width: 1px;   
+    border-width: 1px;
+    background-color: white   
 }
-
 
 //Tabla de contenido
 .table-c{
     padding-top: 0%;
 }
 
+// Uso general
 .pantalla {
     background-color: #f48c42;
 }

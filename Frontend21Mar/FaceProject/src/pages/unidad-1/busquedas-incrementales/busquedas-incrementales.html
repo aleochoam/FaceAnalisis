@@ -47,23 +47,30 @@
         </form>
   </ion-grid>
 
-  <ion-grid class ="tabletittle">
-    <ion-row>
-      <ion-col col-3 class = "styleTableTitle"><h6 class = "textTableTitle"> {{tableTitles[0]}} </h6></ion-col>
-      <ion-col col-3 class = "styleTableTitle"><h6 class = "textTableTitle"> {{tableTitles[1]}} </h6></ion-col>
-      <ion-col col-3 class = "styleTableTitle"><h6 class = "textTableTitle"> {{tableTitles[2]}} </h6></ion-col>
-      <ion-col col-3 class = "styleTableTitle"><h6 class = "textTableTitle"> {{tableTitles[3]}} </h6></ion-col>      
-      <ion-col col-3 class = "styleTableTitle"><h6 class = "textTableTitle"> {{tableTitles[4]}} </h6></ion-col>      
-      <ion-col col-3 class = "styleTableTitle"><h6 class = "textTableTitle"> {{tableTitles[5]}} </h6></ion-col>      
+  <ion-grid>
+
+    <ion-item *ngIf="visibleRoot">
+      <ion-row *ngFor="let i of root">
+        <ion-col col-12><p>Hay una raiz en {{root[i]}}</p></ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item *ngIf="visibleRoots">
+      <ion-row *ngFor="let i of roots">
+        <ion-col col-12 ><p>Hay una raiz en el intervalo [{{i[0]}}, {{i[1]}}]</p></ion-col>
+      </ion-row>
+    </ion-item>
+    <br>
+    <ion-row *ngIf="visibleTable" class ="table-t">
+      <ion-col col-2 class = "style-t-t"><h6 class = "text-t-t"> {{tableTitles[0]}} </h6></ion-col>
+      <ion-col col-5 class = "style-t-t"><h6 class = "text-t-t"> {{tableTitles[1]}} </h6></ion-col>
+      <ion-col col-5 class = "style-t-t"><h6 class = "text-t-t"> {{tableTitles[2]}} </h6></ion-col>    
     </ion-row>
-  </ion-grid>
-    
-  <ion-grid class ="tableContent">
-    <ion-row *ngFor="let s of tableContent">
-      <ion-col col-3 class = "styleTableContent"><p class = "textTableContent"> {{s[0]}} </p></ion-col>
-      <ion-col col-3 class = "styleTableContent"><p class = "textTableContent"> {{s[1]}} </p></ion-col>
-      <ion-col col-3 class = "styleTableContent"><p class = "textTableContent"> {{s[2]}} </p></ion-col>
-      <ion-col col-3 class = "styleTableContent"><p class = "textTableContent"> {{s[3]}} </p></ion-col>      
+
+    <ion-row *ngFor="let s of tableContent" class="table-c">
+      <ion-col col-2 class = "style-t-c"><p class = "text-t-c"> {{s[0]}} </p></ion-col>
+      <ion-col col-5 class = "style-t-c"><p class = "text-t-c"> {{s[1]}} </p></ion-col>
+      <ion-col col-5 class = "style-t-c"><p class = "text-t-c"> {{s[2]}} </p></ion-col>    
     </ion-row>
   </ion-grid>
 

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { HttpEcuacionesUnaVariableProvider } from '../../../providers/http-ecuaciones-una-variable/http-ecuaciones-una-variable';
+
 /**
- * Generated class for the GaussSimplePage page.
+ * Generated class for the GaussPivParcialPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,12 +11,12 @@ import { HttpEcuacionesUnaVariableProvider } from '../../../providers/http-ecuac
 
 @IonicPage()
 @Component({
-  selector: 'page-gauss-simple',
-  templateUrl: 'gauss-simple.html',
+  selector: 'page-gauss-piv-parcial',
+  templateUrl: 'gauss-piv-parcial.html',
 })
-export class GaussSimplePage {
+export class GaussPivParcialPage {
 
-  private apiUrl  = 'http://165.227.197.6:8080/api/eliminacion_simple/';
+  private apiUrl  = 'http://165.227.197.6:8080/api/eliminacion_piv_parcial/';
   
   showResult = false;
 
@@ -25,7 +26,6 @@ export class GaussSimplePage {
   };
 
   xs = [];
-  escalonada : any;
 
   private dataReceivedGet  = {};
   private dataReceivedPost = {};
@@ -83,9 +83,8 @@ export class GaussSimplePage {
   }
 
   private results(){
-    this.xs = this.dataReceivedPost['x'];
-    this.escalonada = this.dataReceivedPost['augmented'];
-    console.log(this.escalonada);
+    this.xs = this.dataReceivedPost['x']
+    console.log(this.showResult);
   }
 
   public postServer() {
