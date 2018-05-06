@@ -49,21 +49,17 @@
 
   <ion-grid class ="tabletittle">
     <ion-row>
-      <ion-col col-3 class = "styleTableTitle"><h6 class = "textTableTitle"> {{tableTitles[0]}} </h6></ion-col>
-      <ion-col col-3 class = "styleTableTitle"><h6 class = "textTableTitle"> {{tableTitles[1]}} </h6></ion-col>
-      <ion-col col-3 class = "styleTableTitle"><h6 class = "textTableTitle"> {{tableTitles[2]}} </h6></ion-col>
-      <ion-col col-3 class = "styleTableTitle"><h6 class = "textTableTitle"> {{tableTitles[3]}} </h6></ion-col>      
-      <ion-col col-3 class = "styleTableTitle"><h6 class = "textTableTitle"> {{tableTitles[4]}} </h6></ion-col>      
-      <ion-col col-3 class = "styleTableTitle"><h6 class = "textTableTitle"> {{tableTitles[5]}} </h6></ion-col>      
+      <ion-col col-2 class = "styleTableTitle"><h6 class = "textTableTitle"> {{tableTitles[0]}} </h6></ion-col>
+      <ion-col col-5 class = "styleTableTitle"><h6 class = "textTableTitle"> {{tableTitles[1]}} </h6></ion-col>
+      <ion-col col-5 class = "styleTableTitle"><h6 class = "textTableTitle"> {{tableTitles[2]}} </h6></ion-col>    
     </ion-row>
   </ion-grid>
     
   <ion-grid class ="tableContent">
     <ion-row *ngFor="let s of tableContent">
-      <ion-col col-3 class = "styleTableContent"><p class = "textTableContent"> {{s[0]}} </p></ion-col>
-      <ion-col col-3 class = "styleTableContent"><p class = "textTableContent"> {{s[1]}} </p></ion-col>
-      <ion-col col-3 class = "styleTableContent"><p class = "textTableContent"> {{s[2]}} </p></ion-col>
-      <ion-col col-3 class = "styleTableContent"><p class = "textTableContent"> {{s[3]}} </p></ion-col>      
+      <ion-col col-2 class = "styleTableContent"><p class = "textTableContent"> {{s[0]}} </p></ion-col>
+      <ion-col col-5 class = "styleTableContent"><p class = "textTableContent"> {{s[1]}} </p></ion-col>
+      <ion-col col-5 class = "styleTableContent"><p class = "textTableContent"> {{s[2]}} </p></ion-col>    
     </ion-row>
   </ion-grid>
 
