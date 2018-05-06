@@ -24,8 +24,8 @@ class EliminacionSimple(NumericMethod):
         b = augmented[:, len(augmented)]
         x = sustitucion_regresiva(A, b)
 
-        response["augmented"] = np.round(augmented, 2).tolist()
-        response["x"] = x.tolist()
+        response["augmented"] = np.round(augmented, 4).tolist()
+        response["x"] = np.round(x, 4).tolist()
 
         return response
 

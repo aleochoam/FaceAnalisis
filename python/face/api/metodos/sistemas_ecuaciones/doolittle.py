@@ -42,10 +42,10 @@ class FactorizacionDoolittle(NumericMethod):
         z = sustitucion_progresiva(L, b)
         x = sustitucion_regresiva(U, z)
 
-        response["L"] = L.tolist()
-        response["U"] = U.tolist()
-        response["z"] = z.tolist()
-        response["x"] = x.tolist()
+        response["L"] = np.round(L, 4).tolist()
+        response["U"] = np.round(U, 4).tolist()
+        response["z"] = np.round(z, 4).tolist()
+        response["x"] = np.round(x, 4).tolist()
 
         return response
 

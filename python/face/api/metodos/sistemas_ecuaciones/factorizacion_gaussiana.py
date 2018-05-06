@@ -24,11 +24,11 @@ class FactorizacionGaussiana(NumericMethod):
         L = np.round(L, 2)
         U = np.round(U, 2)
 
-        response["L"] = L.tolist()
-        response["U"] = U.tolist()
+        response["L"] = np.round(L, 4).tolist()
+        response["U"] = np.round(U, 4).tolist()
 
-        response["z"] = z.tolist()
-        response["x"] = x.tolist()
+        response["z"] = np.round(z, 4).tolist()
+        response["x"] = np.round(x, 4).tolist()
 
         return response
 
