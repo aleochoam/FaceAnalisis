@@ -1,7 +1,5 @@
 package systemOfEquations;
 
-import java.util.Arrays;
-import java.util.List;
 
 public class MatrixUtils {
 	public static double determinante(double[][] A) {
@@ -154,7 +152,8 @@ public class MatrixUtils {
 	
 	public static void imprimir(double[] b) {
 		for (int i = 0; i < b.length; i++) {
-			System.out.println(b[i]+ " ");
+			System.out.print(b[i]+ " ");
 		}
+		System.out.println();
 	}
 }

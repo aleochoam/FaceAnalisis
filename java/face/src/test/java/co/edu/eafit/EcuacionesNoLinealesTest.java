@@ -36,7 +36,9 @@ public class EcuacionesNoLinealesTest extends TestCase {
     public void testBusquedas() {
     	NumericMethod busquedas = MethodFactory.createMethod("busquedas");
     	Solution res = busquedas.calculate("e^(3*x-12)+x*cos(3*x)-x^2+4", -10.0, 1.0, 100);
-    	List<List<Object>> res_iterations = (List<List<Object>>) res.getSolution();
+    	
+    	@SuppressWarnings("unchecked")
+		List<List<Object>> res_iterations = (List<List<Object>>) res.getSolution();
     	assertEquals(-2.0, res_iterations.get(0).get(0));
     	assertEquals(-1.0, res_iterations.get(0).get(1));
     }

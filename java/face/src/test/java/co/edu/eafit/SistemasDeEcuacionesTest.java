@@ -115,4 +115,52 @@ public class SistemasDeEcuacionesTest extends TestCase {
 		assertEquals(Arrays.toString(expected), Arrays.toString((double[]) actual.getSolution()));
 	}
 	
+	public void testJacobi() {
+		NumericMethod metodo = MethodFactory.createMethod("jacobi");
+		double[][] a = {{45, 13, -4, 8},
+		                {-5, -28, 4, -14},
+		                {9, 15, 63, -7},
+		                {2, 3, -8, -42}};
+		double[] b = {-25, 82, 75, -43};
+		double[] x0 = {2, 2, 2, 2};
+		
+		double[] expected = {0.38479807555812184, -2.9618719236847064, 1.8929335715345124, 0.4700130807539568};
+		Solution actual = metodo.calculate(a, b, x0, 1e-5, 100);
+
+		assertFalse(actual.hasError());
+		
+		assertEquals(Arrays.toString(expected), Arrays.toString((double[]) actual.getSolution()));
+	}
+	
+	public void testSeidel() {
+		NumericMethod metodo = MethodFactory.createMethod("Seidel");
+		double[][] a = {{45, 13, -4, 8},
+		                {-5, -28, 4, -14},
+		                {9, 15, 63, -7},
+		                {2, 3, -8, -42}};
+		double[] b = {-25, 82, 75, -43};
+		double[] x0 = {2, 2, 2, 2};
+		
+		double[] expected = {0.38480014636707643, -2.961871935180946, 1.892935840287865, 0.4700118515449618};
+		Solution actual = metodo.calculate(a, b, x0, 1e-5, 100);
+
+		
+		assertFalse(actual.hasError());
+		assertEquals(Arrays.toString(expected), Arrays.toString((double[]) actual.getSolution()));
+	}
+	
+	public void testSOR() {
+		NumericMethod metodo = MethodFactory.createMethod("SOR");
+		double[][] a = {{5, 3, 1},
+		                {3, 4, -1},
+		                {1, -1, 4}};
+		double[] b = {24, 30, -24};
+		double[] x0 = {0, 0, 0};
+		
+		double[] expected = {4.75862257343936, 2.2758631448546165, -6.620692597404742};
+		Solution actual = metodo.calculate(a, b, x0, 1.45, 1e-5, 100);
+
+		assertFalse(actual.hasError());
+		assertEquals(Arrays.toString(expected), Arrays.toString((double[]) actual.getSolution()));
+	}
 }

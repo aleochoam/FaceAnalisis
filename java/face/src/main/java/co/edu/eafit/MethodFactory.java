@@ -14,6 +14,9 @@ import systemOfEquations.FactorizacionCrout;
 import systemOfEquations.FactorizacionDoolittle;
 import systemOfEquations.FactorizacionGaussiana;
 import systemOfEquations.FactorizacionGaussianaPivoteo;
+import systemOfEquations.Jacobi;
+import systemOfEquations.SOR;
+import systemOfEquations.Seidel;
 
 public class MethodFactory {
     public static NumericMethod createMethod(String methodName){
@@ -48,6 +51,12 @@ public class MethodFactory {
     		return new FactorizacionDoolittle();
     	}else if(methodName.toLowerCase().equals("cholesky")) {
     		return new FactorizacionCholesky();
+    	}else if(methodName.toLowerCase().equals("jacobi")) {
+    		return new Jacobi();
+    	}else if(methodName.toLowerCase().equals("seidel")) {
+    		return new Seidel();
+    	}else if(methodName.toLowerCase().equals("sor")) {
+    		return new SOR();
     	}else{
             return new NotImplementedMethod();
         }
