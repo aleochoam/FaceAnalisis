@@ -25,8 +25,12 @@ export class BusquedasIncrementalesPage {
   private dataReceivedGet = {};
   private dataReceivedPost = {};
 
+  private root;
+  private visibleRoot;
+
   private tableTitles  = []
   private tableContent = []
+  private visibleTable;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public httpEcuacionesUnaVariableProvider : HttpEcuacionesUnaVariableProvider) {
     this.dataSubmit['fx'] = '';
@@ -90,8 +94,20 @@ export class BusquedasIncrementalesPage {
   //Zona de get y post
 
   private completeTable(){
-    this.tableTitles.push(['i','x Inf','x Sup','x Med', 'f(xMed)', 'Error'])
-    this.tableContent = this.dataReceivedPost['iteraciones'];    
+    this.tableTitles.push(['i','x','f(x)'])
+    this.tableContent = this.dataReceivedPost['iteraciones'];
+    console.log(this.tableContent);
+    if (this.tableContent.length != 0){
+      this.root = this.dataReceivedPost['aproximados'];
+      console.log("La raiz es " + this.root);
+
+      this.visibleTable = true;
+      this.visibleRoot  = true;
+      
+    }else{
+      this.visibleTable = false;
+      this.visibleRoot  = false;
+    }    
   }
 
   //Zona de get y post
@@ -115,9 +131,10 @@ export class BusquedasIncrementalesPage {
     this.httpEcuacionesUnaVariableProvider.post(this.dataSubmit, this.apiUrl)
     .then(result => {
       this.dataReceivedPost = result;
+      console.log("Envie al server = " + this.dataSubmit + " y me llegó como respuesta " + JSON.stringify(result));
       this.completeTable();
       console.log("Realice el POST-BUSQ-INCREM");
-      console.log("Envie al server = " + this.dataSubmit + " y me llegó como respuesta " + JSON.stringify(result));
+      
       //this.fromObjectToTable();
     }, (err) => {
       console.log("Problema al hacer POST-BUSQ-INCREM");

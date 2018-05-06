@@ -31,6 +31,9 @@ class IncrementalSearch(NumericMethod):
         fx1 = f.evalf(subs={x: x1})
 
         while contador < n_iter:
+            iteracion = [contador, str(x0), str(fx0)]
+            response["iteraciones"].append(iteracion)
+            
             if fx1 == 0:
                 response["raices"].append(x1)
                 found = True
@@ -61,6 +64,7 @@ class IncrementalSearch(NumericMethod):
         response = dict()
         response["raices"] = []
         response["intervalos"] = []
+        response["iteraciones"] = []
         # response["error"] = ""
 
         return response

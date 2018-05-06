@@ -27,10 +27,10 @@ class FactorizacionPivoteo(NumericMethod):
         L = np.round(L, 2)
         U = np.round(U, 2)
 
-        response["L"] = str(L)
-        response["U"] = str(U)
-        response["z"] = str(z)
-        response["x"] = str(x)
+        response["L"] = L.tolist()
+        response["U"] = U.tolist()
+        response["z"] = z.tolist()
+        response["x"] = x.tolist()
 
         return response
 

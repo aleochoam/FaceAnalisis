@@ -38,8 +38,8 @@ public class EliminacionSimple implements NumericMethod {
 			}
 		}
 		
-		A = getA(augmented);
-		b = getB(augmented);
+		A = MatrixUtils.getA(augmented);
+		b = MatrixUtils.getB(augmented);
 		
 		double[] x = MatrixUtils.sustitucionRegresiva(A, b);
 				
@@ -48,28 +48,7 @@ public class EliminacionSimple implements NumericMethod {
 		
 	}
 	
-	private double[][] getA(double[][] augmented){
-		int n = augmented.length;
-		double[][] A = new double[n][n];
-		
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				A[i][j] = augmented[i][j];
-			}
-		}
-		return A;
-		
-	}
 	
-	private double[] getB(double[][] augmented){
-		int n = augmented.length;
-		double[] b = new double[n];
-		
-		for (int i = 0; i < n; i++) {
-			b[i] = augmented[i][n];
-		}
-		return b;
-	}
 
 	@Override
 	public String getName() {

@@ -25,8 +25,8 @@ class EliminacionPivoteoParcial(NumericMethod):
         b = augmented[:, len(augmented)]
         x = sustitucion_regresiva(A, b)
 
-        response["augmented"] = str(np.round(augmented, 3))
-        response["x"] = str(x)
+        response["augmented"] = np.round(augmented, 3).tolist()
+        response["x"] = x.tolist()
 
         return response
 
