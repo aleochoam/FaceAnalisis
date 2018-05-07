@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { HttpEcuacionesUnaVariableProvider } from '../../../providers/http-ecuaciones-una-variable/http-ecuaciones-una-variable';
 
 /**
- * Generated class for the GaussPivParcialPage page.
+ * Generated class for the GaussPivTotalPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,36 +11,38 @@ import { HttpEcuacionesUnaVariableProvider } from '../../../providers/http-ecuac
 
 @IonicPage()
 @Component({
-  selector: 'page-gauss-piv-parcial',
-  templateUrl: 'gauss-piv-parcial.html',
+  selector: 'page-gauss-piv-total',
+  templateUrl: 'gauss-piv-total.html',
 })
-export class GaussPivParcialPage {
-
-  private apiUrl  = 'http://165.227.197.6:8080/api/eliminacion_piv_parcial/';
+export class GaussPivTotalPage {
+  private apiUrl  = 'http://165.227.197.6:8080/api/eliminacion_piv_total/';
   
   showResult = false;
 
+  //estructuración de la matriz y arreglo que se enviaran al servidor
   datasubmit = {
     A : {},
     b : {},
   };
 
+  //Estructuración de lo que se recibe en el post
   xs = [];
-  escalonada:any;
+  escalonada : any;
 
   private dataReceivedGet  = {};
   private dataReceivedPost = {};
+
+ //Variables para conocer la dimensión de la matriz que el usuario pide
   matrix: Array<string> = [];
   n: any;
   input: string;
-
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl : AlertController, public httpEcuacionesUnaVariableProvider: HttpEcuacionesUnaVariableProvider) {
     this.n = '';
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad GaussSimplePage');
+    console.log('ionViewDidLoad GaussPivTotalPage');
   }
   createMatrix() {
     this.input = "<ion-input class='cell'></ion-input>";
@@ -73,6 +75,14 @@ export class GaussPivParcialPage {
     });
     alert.present();
   }
+
+
+  private results(){
+    this.xs = this.dataReceivedPost['x'];
+    this.escalonada = this.dataReceivedPost['augmented'];
+    console.log(this.escalonada);
+  }
+  
   //Zona de Get y Post
 
   public getServer() {
@@ -82,11 +92,6 @@ export class GaussPivParcialPage {
     }, (err) => {
       console.log(err);
     });
-  }
-
-  private results(){
-    this.xs = this.dataReceivedPost['x']
-    this.escalonada = this.dataReceivedPost['augmented'];
   }
 
   public postServer() {
