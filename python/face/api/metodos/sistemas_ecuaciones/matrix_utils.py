@@ -54,7 +54,7 @@ def no_es_invertible(A):
     return np.linalg.det(A) == 0
 
 
-def process_params(A, b):
+def process_params(A, b, x0=None):
     n = int(sqrt(len(A)))
     new_A = np.zeros((n, n))
     new_b = np.zeros((1, n))
@@ -65,4 +65,19 @@ def process_params(A, b):
             new_A[i, j] = A[pos]
         new_b[0, i] = b[str(i)]
 
-    return new_A, new_b
+    if x0 is not None:
+        new_x0 = np.zeros(n)
+        for i in range(n):
+            new_x0[i] = x0[str(i)]
+
+        return new_A, new_b, new_x0
+
+    else:
+        return new_A, new_b
+
+
+def ceros_en_diagonal(matrix):
+    for i in range(len(matrix)):
+        if matrix[i, i] == 0:
+            return True
+    return False
