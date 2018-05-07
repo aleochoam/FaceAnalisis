@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GaussSimplePage } from './gauss-simple/gauss-simple';
 import { GaussPivParcialPage } from './gauss-piv-parcial/gauss-piv-parcial';
+import { GaussPivTotalPage } from './gauss-piv-total/gauss-piv-total';
+import { FactorizacionSimplePage } from './factorizacion-simple/factorizacion-simple';
+import { FactorizacionParcialPage } from './factorizacion-parcial/factorizacion-parcial';
 
 
 /**
@@ -27,6 +30,18 @@ export class SistemasDeEcuacionesLinealesPage {
 
   public goGaussPivParcial(){
     this.navCtrl.push(GaussPivParcialPage);
+  }
+
+  public goGaussPivotal(){
+    this.navCtrl.push(GaussPivTotalPage);
+  }
+
+  public goFactSimple(){
+    this.navCtrl.push(FactorizacionSimplePage);
+  }
+
+  public goFactParcial(){
+    this.navCtrl.push(FactorizacionParcialPage);
   }
 
   ionViewDidLoad() {

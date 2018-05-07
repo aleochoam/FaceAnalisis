@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { HttpEcuacionesUnaVariableProvider } from '../../../providers/http-ecuaciones-una-variable/http-ecuaciones-una-variable';
 
 /**
- * Generated class for the GaussPivParcialPage page.
+ * Generated class for the FactorizacionSimplePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,12 +11,11 @@ import { HttpEcuacionesUnaVariableProvider } from '../../../providers/http-ecuac
 
 @IonicPage()
 @Component({
-  selector: 'page-gauss-piv-parcial',
-  templateUrl: 'gauss-piv-parcial.html',
+  selector: 'page-factorizacion-simple',
+  templateUrl: 'factorizacion-simple.html',
 })
-export class GaussPivParcialPage {
-
-  private apiUrl  = 'http://165.227.197.6:8080/api/eliminacion_piv_parcial/';
+export class FactorizacionSimplePage {
+  private apiUrl  = 'http://165.227.197.6:8080/api/factorizacion_simple/';
   
   showResult = false;
 
@@ -26,14 +25,15 @@ export class GaussPivParcialPage {
   };
 
   xs = [];
-  escalonada:any;
+  L : any;
+  U: any;
+  z = [];
 
   private dataReceivedGet  = {};
   private dataReceivedPost = {};
   matrix: Array<string> = [];
   n: any;
   input: string;
-
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl : AlertController, public httpEcuacionesUnaVariableProvider: HttpEcuacionesUnaVariableProvider) {
     this.n = '';
@@ -42,6 +42,7 @@ export class GaussPivParcialPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad GaussSimplePage');
   }
+  
   createMatrix() {
     this.input = "<ion-input class='cell'></ion-input>";
     for (let i = 0; i < this.n; i++) {
@@ -85,8 +86,11 @@ export class GaussPivParcialPage {
   }
 
   private results(){
-    this.xs = this.dataReceivedPost['x']
-    this.escalonada = this.dataReceivedPost['augmented'];
+    this.xs = this.dataReceivedPost['x'];
+    this.L = this.dataReceivedPost['L'];
+    this.U = this.dataReceivedPost['U'];
+    this.z = this.dataReceivedPost['z'];
+    console.log(this.dataReceivedPost);
   }
 
   public postServer() {
