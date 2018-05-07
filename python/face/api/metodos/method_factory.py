@@ -16,9 +16,13 @@ from .sistemas_ecuaciones.factorizacion_pivoteo import FactorizacionPivoteo
 from .sistemas_ecuaciones.crout import FactorizacionCrout
 from .sistemas_ecuaciones.doolittle import FactorizacionDoolittle
 from .sistemas_ecuaciones.cholesky import FactorizacionCholesky
+from .sistemas_ecuaciones.jacobi import Jacobi
+from .sistemas_ecuaciones.seidel import Seidel
+from .sistemas_ecuaciones.sor import SOR
 
 
 def create_method(method):
+    method = method.lower()
     # Capitulo ecuaciones no lineales
     if method == "busquedas":
         return IncrementalSearch()
@@ -53,5 +57,11 @@ def create_method(method):
         return FactorizacionCrout()
     elif method == "cholesky":
         return FactorizacionCholesky()
+    elif method == "jacobi":
+        return Jacobi()
+    elif method == "seidel":
+        return Seidel()
+    elif method == "sor":
+        return SOR()
     else:
         return NumericMethod()
