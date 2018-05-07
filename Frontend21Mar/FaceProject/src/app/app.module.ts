@@ -27,10 +27,13 @@ import { GaussPivParcialPage } from '../pages/sistemas-de-ecuaciones-lineales/ga
 import { GaussPivTotalPage } from '../pages/sistemas-de-ecuaciones-lineales/gauss-piv-total/gauss-piv-total';
 import { FactorizacionSimplePage } from '../pages/sistemas-de-ecuaciones-lineales/factorizacion-simple/factorizacion-simple';
 import { FactorizacionParcialPage } from '../pages/sistemas-de-ecuaciones-lineales/factorizacion-parcial/factorizacion-parcial';
+import { CroutPage } from '../pages/sistemas-de-ecuaciones-lineales/crout/crout';
+import { DoolittlePage } from '../pages/sistemas-de-ecuaciones-lineales/doolittle/doolittle';
 
 import { HttpClientModule } from '@angular/common/http';
 
 import { HttpEcuacionesUnaVariableProvider } from '../providers/http-ecuaciones-una-variable/http-ecuaciones-una-variable';
+import { CholeskyPage } from '../pages/sistemas-de-ecuaciones-lineales/cholesky/cholesky';
 
 @NgModule({
   declarations: [
@@ -54,7 +57,10 @@ import { HttpEcuacionesUnaVariableProvider } from '../providers/http-ecuaciones-
     GaussPivParcialPage,
     GaussPivTotalPage,
     FactorizacionSimplePage,
-    FactorizacionParcialPage
+    FactorizacionParcialPage,
+    CroutPage,
+    DoolittlePage,
+    CholeskyPage
 
   ],
   imports: [
@@ -84,7 +90,10 @@ import { HttpEcuacionesUnaVariableProvider } from '../providers/http-ecuaciones-
     GaussPivParcialPage,
     GaussPivTotalPage,
     FactorizacionSimplePage,
-    FactorizacionParcialPage
+    FactorizacionParcialPage,
+    CroutPage,
+    DoolittlePage,
+    CholeskyPage
     
   ],
   providers: [

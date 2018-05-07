@@ -5,6 +5,9 @@ import { GaussPivParcialPage } from './gauss-piv-parcial/gauss-piv-parcial';
 import { GaussPivTotalPage } from './gauss-piv-total/gauss-piv-total';
 import { FactorizacionSimplePage } from './factorizacion-simple/factorizacion-simple';
 import { FactorizacionParcialPage } from './factorizacion-parcial/factorizacion-parcial';
+import { CroutPage } from './crout/crout';
+import { DoolittlePage } from './doolittle/doolittle';
+import { CholeskyPage } from './cholesky/cholesky';
 
 
 /**
@@ -43,6 +46,21 @@ export class SistemasDeEcuacionesLinealesPage {
   public goFactParcial(){
     this.navCtrl.push(FactorizacionParcialPage);
   }
+
+  public goCrout(){
+    this.navCtrl.push(CroutPage);
+  }
+
+  public goDoolittle(){
+    this.navCtrl.push(DoolittlePage);
+  }
+
+  public goCholesky(){
+    this.navCtrl.push(CholeskyPage);
+  }
+
+
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SistemasDeEcuacionesLinealesPage');

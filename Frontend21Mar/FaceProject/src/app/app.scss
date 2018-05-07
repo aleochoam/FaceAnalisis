@@ -83,3 +83,27 @@
     color: white;
 }
 
+.cell {
+    background-color: white;
+    margin: 3%;
+    width: fit-content;
+}
+.table{
+    th{
+        height: 50px;
+        background-color:#0b8c7f;
+        width: 80px;
+        color:white;
+        
+    }
+    td{
+        background-color: white;
+        width: 80px;
+    }
+        border: 1px solid black;
+        width: 60px;
+}
+
+.matriz{
+    background-color:white;
+}
