@@ -1,11 +1,15 @@
 import numpy as np
 from ..numeric_method import NumericMethod
+from .interpolacion_utils import process_params
 
 
 class MetodoSistemaEcuaciones(NumericMethod):
     def calculate(self, parameters):
-        puntos = parameters["puntos"]
-        puntos = np.array(puntos)
+        X = parameters["X"]
+        Y = parameters["Y"]
+
+        puntos = process_params(X, Y)
+
         n = len(puntos)
         matriz_vandermonde = []
 
@@ -25,6 +29,8 @@ class MetodoSistemaEcuaciones(NumericMethod):
         n = len(coeficientes)
         funcion = "p(x) = "
         for i in range(n-1):
+            if coeficientes[i] == 0.0:
+                continue
             funcion = funcion + str(coeficientes[i]) + "x^" + str(n-i-1) + " + "
 
         funcion = funcion + str(coeficientes[n-1])
