@@ -28,7 +28,7 @@ def plot_f(parameters):
 
     xa = eval(xa)
     xb = eval(xb)
-    delta = eval(xb)
+    delta = eval(delta)
 
     response = dict()
     response["data"] = []
