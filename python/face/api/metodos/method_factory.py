@@ -20,6 +20,8 @@ from .sistemas_ecuaciones.jacobi import Jacobi
 from .sistemas_ecuaciones.seidel import Seidel
 from .sistemas_ecuaciones.sor import SOR
 
+from .interpolacion.sistemas_ecuaciones import  MetodoSistemaEcuaciones
+
 
 def create_method(method):
     method = method.lower()
@@ -63,5 +65,10 @@ def create_method(method):
         return Seidel()
     elif method == "sor":
         return SOR()
+
+    # Capitulo de interpolacion
+    elif method == "interpolacion_ecuaciones":
+        return new MetodoSistemaEcuaciones()
+
     else:
         return NumericMethod()
