@@ -1,6 +1,7 @@
 from sympy import symbols
 from .utils import sympify_expr
 from ..numeric_method import NumericMethod
+from .utils import error_absoluto, error_relativo
 
 
 class FalsePosition(NumericMethod):
@@ -42,11 +43,11 @@ class FalsePosition(NumericMethod):
 
         xm = xa - ((fxa*(xb-xa))/(fxb - fxa))  # Ecuación 15, regla falsa
         fxm = f.evalf(subs={x: xm})
-        contador = 1
+        contador = 0
         error = tol + 1
 
         while error > tol and fxm != 0 and contador < n_iter:
-            err_fm = "{e:.2e}".format(e=error) if contador != 1 else ""
+            err_fm = "{e:.2e}".format(e=error) if contador != 0 else ""
             iteracion = \
                 [contador, str(xa), str(xb), str(xm), str(fxm), err_fm]
 

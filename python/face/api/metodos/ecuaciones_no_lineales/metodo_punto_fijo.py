@@ -1,6 +1,7 @@
 from sympy import symbols
 from .utils import sympify_expr
 from ..numeric_method import NumericMethod
+from .utils import error_absoluto, error_relativo
 
 
 class FixedPoint(NumericMethod):

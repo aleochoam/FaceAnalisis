@@ -31,7 +31,7 @@ def call_method(request, method_name):
         return JsonResponse({"error": "Verifique los datos de entrada"})
     except Exception as e:
         print(e)
-        return JsonResponse({"Error": str(e)})
+        return JsonResponse({"error": str(e)})
 
 
 @csrf_exempt

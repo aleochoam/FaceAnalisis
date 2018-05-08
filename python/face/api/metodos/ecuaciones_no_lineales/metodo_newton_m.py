@@ -1,6 +1,7 @@
 from sympy import symbols
 from .utils import sympify_expr
 from ..numeric_method import NumericMethod
+from .utils import error_absoluto, error_relativo
 
 
 class Newton2Method(NumericMethod):
@@ -12,7 +13,7 @@ class Newton2Method(NumericMethod):
         f = params["fx"]
         f_prima = params["dfx"]
         f_dos_prima = params["d2fx"]
-        tipo_error = parameters["tipo_error"]
+        tipo_error = params["tipo_error"]
 
         calcular_error = error_relativo if tipo_error == 2 else error_absoluto
 

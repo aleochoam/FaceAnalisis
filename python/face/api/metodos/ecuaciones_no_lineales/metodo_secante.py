@@ -1,6 +1,7 @@
 from sympy import symbols
 from .utils import sympify_expr
 from ..numeric_method import NumericMethod
+from .utils import error_absoluto, error_relativo
 
 
 class Secante(NumericMethod):
@@ -10,9 +11,9 @@ class Secante(NumericMethod):
         x0 = eval(params["x0"])
         x1 = eval(params["x1"])
         f = params["fx"]
-        tipo_error = parameters["tipo_error"]
+        tipo_error = params["tipo_error"]
 
-        calcular_error = error_relativo if tipo_error == 2 else error_absoluto  
+        calcular_error = error_relativo if tipo_error == 2 else error_absoluto
 
         response = self.init_response()
         contador = 0
