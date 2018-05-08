@@ -8,6 +8,9 @@ import { FactorizacionParcialPage } from './factorizacion-parcial/factorizacion-
 import { CroutPage } from './crout/crout';
 import { DoolittlePage } from './doolittle/doolittle';
 import { CholeskyPage } from './cholesky/cholesky';
+import { JacobiPage } from './jacobi/jacobi';
+import { SeidelPage } from './seidel/seidel';
+import { SorPage } from './sor/sor';
 
 
 /**
@@ -57,6 +60,20 @@ export class SistemasDeEcuacionesLinealesPage {
 
   public goCholesky(){
     this.navCtrl.push(CholeskyPage);
+  }
+
+  public goJacobi(){
+    this.navCtrl.push(JacobiPage);
+
+  }
+
+  public goSeidel(){
+    this.navCtrl.push(SeidelPage);
+    
+  }
+
+  public goSor(){
+    this.navCtrl.push(SorPage);
   }
 
 

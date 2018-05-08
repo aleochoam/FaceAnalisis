@@ -34,6 +34,10 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { HttpEcuacionesUnaVariableProvider } from '../providers/http-ecuaciones-una-variable/http-ecuaciones-una-variable';
 import { CholeskyPage } from '../pages/sistemas-de-ecuaciones-lineales/cholesky/cholesky';
+import { InterpolacionSistemasDeEcPage } from '../pages/interpolacion/interpolacion-sistemas-de-ec/interpolacion-sistemas-de-ec';
+import { JacobiPage } from '../pages/sistemas-de-ecuaciones-lineales/jacobi/jacobi';
+import { SeidelPage } from '../pages/sistemas-de-ecuaciones-lineales/seidel/seidel';
+import { SorPage } from '../pages/sistemas-de-ecuaciones-lineales/sor/sor';
 
 @NgModule({
   declarations: [
@@ -60,7 +64,11 @@ import { CholeskyPage } from '../pages/sistemas-de-ecuaciones-lineales/cholesky/
     FactorizacionParcialPage,
     CroutPage,
     DoolittlePage,
-    CholeskyPage
+    CholeskyPage,
+    InterpolacionSistemasDeEcPage,
+    JacobiPage,
+    SeidelPage,
+    SorPage
 
   ],
   imports: [
@@ -93,7 +101,12 @@ import { CholeskyPage } from '../pages/sistemas-de-ecuaciones-lineales/cholesky/
     FactorizacionParcialPage,
     CroutPage,
     DoolittlePage,
-    CholeskyPage
+    CholeskyPage,
+    InterpolacionSistemasDeEcPage,
+    JacobiPage,
+    SeidelPage,
+    SorPage
+
     
   ],
   providers: [

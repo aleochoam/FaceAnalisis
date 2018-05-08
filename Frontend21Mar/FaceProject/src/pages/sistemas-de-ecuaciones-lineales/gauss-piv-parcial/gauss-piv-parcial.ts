@@ -43,6 +43,7 @@ export class GaussPivParcialPage {
     console.log('ionViewDidLoad GaussSimplePage');
   }
   createMatrix() {
+    this.matrix = [];
     this.input = "<ion-input class='cell'></ion-input>";
     for (let i = 0; i < this.n; i++) {
       this.matrix.push(String(i));
