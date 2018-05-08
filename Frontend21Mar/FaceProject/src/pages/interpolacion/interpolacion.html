@@ -1,18 +1,36 @@
 <!--
-  Generated template for the InterpolacionPage page.
+  Generated template for the SistemasDeEcuacionesLinealesPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>interpolacion</ion-title>
+  <ion-navbar color="dark">
+    <ion-title>Interpolación</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <ion-grid>
+    <ion-row class="espaciadoSuperior">
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button full round color="secondary" (click)="goSisEcuaciones()" class="button">Sistemas de ecuaciones</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button full round color="secondary" (click)="goPolNewton()" class="button">Polinomio de Newton</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button full round color="secondary" (click)="goDifDiv()" class="button">Diferencias Divididas</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

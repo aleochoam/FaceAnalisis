@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { HttpEcuacionesUnaVariableProvider } from '../../../providers/http-ecuaciones-una-variable/http-ecuaciones-una-variable';
 
 /**
- * Generated class for the CholeskyPage page.
+ * Generated class for the SorPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,23 +11,21 @@ import { HttpEcuacionesUnaVariableProvider } from '../../../providers/http-ecuac
 
 @IonicPage()
 @Component({
-  selector: 'page-cholesky',
-  templateUrl: 'cholesky.html',
+  selector: 'page-sor',
+  templateUrl: 'sor.html',
 })
-export class CholeskyPage {
-  private apiUrl  = 'http://165.227.197.6:8080/api/cholesky/';
+export class SorPage {
+
+
+  private apiUrl  = 'http://165.227.197.6:8080/api/jacobi/';
   
   showResult = false;
 
   datasubmit = {
     A : {},
     b : {},
+    x0:{},
   };
-
-  xs = [];
-  L : any;
-  U: any;
-  z = [];
 
   private dataReceivedGet  = {};
   private dataReceivedPost = {};
@@ -42,10 +40,8 @@ export class CholeskyPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad GaussSimplePage');
   }
-  
   createMatrix() {
     this.matrix = [];
-    this.input = "<ion-input class='cell'></ion-input>";
     for (let i = 0; i < this.n; i++) {
       this.matrix.push(String(i));
     }
@@ -58,8 +54,7 @@ export class CholeskyPage {
   }
 
   submitForm(){
-    console.log(this.datasubmit)
-    this.postServer();
+    console.log(this.datasubmit);
   }
 
   private presentAlert () {
@@ -87,11 +82,7 @@ export class CholeskyPage {
   }
 
   private results(){
-    this.xs = this.dataReceivedPost['x'];
-    this.L = this.dataReceivedPost['L'];
-    this.U = this.dataReceivedPost['U'];
-    this.z = this.dataReceivedPost['z'];
-    console.log(this.dataReceivedPost);
+
   }
 
   public postServer() {
