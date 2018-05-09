@@ -15,7 +15,7 @@ import { HttpEcuacionesUnaVariableProvider } from '../../../providers/http-ecuac
   templateUrl: 'interpolacion-sistemas-de-ec.html',
 })
 export class InterpolacionSistemasDeEcPage {
-  private apiUrl  = 'http://165.227.197.6:8080/api/eliminacion_simple/';
+  private apiUrl  = 'http://165.227.197.6:8080/api/interpolacion_ecuaciones/';
   
   showResult = false;
   //Estructura que se enviará al servidor
@@ -32,6 +32,8 @@ export class InterpolacionSistemasDeEcPage {
   matrix: Array<string> = [];
   n: any;
   input: string;
+
+  funcion:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl : AlertController, public httpEcuacionesUnaVariableProvider: HttpEcuacionesUnaVariableProvider) {
     this.n = '';
@@ -55,6 +57,7 @@ export class InterpolacionSistemasDeEcPage {
 
   submitForm(){
     console.log(this.datasubmit)
+    this.postServer();
   }
 
   private presentAlert () {
@@ -80,7 +83,7 @@ export class InterpolacionSistemasDeEcPage {
   }
 
   private results(){
-
+    this.funcion = this.dataReceivedPost['funcion'];
   }
 
   public postServer() {
