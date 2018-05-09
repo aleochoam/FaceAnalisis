@@ -23,7 +23,7 @@ class MetodoSistemaEcuaciones(NumericMethod):
 
         vector_a = np.linalg.solve(matriz_vandermonde, b)
         funcion = self.generar_funcion(np.round(vector_a, 4))
-        return funcion
+        return {"funcion": funcion}
 
     def generar_funcion(self, coeficientes):
         n = len(coeficientes)
@@ -34,7 +34,7 @@ class MetodoSistemaEcuaciones(NumericMethod):
             funcion = funcion + str(coeficientes[i]) + "x^" + str(n-i-1) + " + "
 
         funcion = funcion + str(coeficientes[n-1])
-        return {"funcion" : funcion}
+        return funcion
 
     def generar_ecuacion(self, x, n):
         coeficientes = []
