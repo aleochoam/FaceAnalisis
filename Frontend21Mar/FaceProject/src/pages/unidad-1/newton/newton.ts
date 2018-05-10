@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { GraficadorPage } from '../../../pages/graficador/graficador';
 
 import { HttpEcuacionesUnaVariableProvider } from '../../../providers/http-ecuaciones-una-variable/http-ecuaciones-una-variable';
 
@@ -18,97 +19,118 @@ import { AlertController } from 'ionic-angular';
 })
 export class NewtonPage {
 
-  private apiUrl = 'http://165.227.197.6:8000/api/newton/';
+  private apiUrl = 'http://165.227.197.6:8080/api/newton/';
 
-  
-  private dataSubmit = {}
+  private dataSubmit = {};
 
   private dataReceivedGet = {};
   private dataReceivedPost = {};
 
-  private tableTitles  = []
-  private tableContent = []
+  private root;
+  private visibleRoot;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public httpEcuacionesUnaVariableProvider:HttpEcuacionesUnaVariableProvider) {
+  private titlesTable = ['i', 'xi', 'f(xi)', 'Error'];
+  private contentTable = [];
+  private visibleTable;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public httpEcuacionesUnaVariableProvider: HttpEcuacionesUnaVariableProvider) {
     this.dataSubmit['fx'] = '';
     this.dataSubmit['dfx'] = '';
     this.dataSubmit['x0'] = '';
     this.dataSubmit['tol'] = '';
     this.dataSubmit['nIters'] = '';
+    this.dataSubmit['tipo_error'] = '';
 
-    this.getServer();
+    this.visibleTable = false;
+    this.visibleRoot = false;
+  }
+
+  goGraficador() {
+    var a: string = this.dataSubmit['x0'] + "";
+    var b: string = "";
+
+    if (this.dataReceivedPost['aproximado'] != undefined && this.dataReceivedPost['aproximado'] != "" && this.dataSubmit['fx'] != "" && this.dataSubmit['x0'] != "") {
+      var aux: number = <number><any>this.dataReceivedPost['aproximado'];
+      a = "" + (aux - 0.2);
+      b = "" + (aux - (-0.2));
+    }
+
+    var send = {
+      'funcion': this.dataSubmit['fx'],
+      'a': a,
+      'b': b
+    }
+    this.navCtrl.push(GraficadorPage, send);
+  }
+
+
+  ionViewDidLoad() {
   }
 
   submitForm() {
-    console.log(this.dataSubmit)
-    this.verification();
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad NewtonPage');
-  }
-
-  verification(){
-   if (this.dataSubmit['fx'] == ''){
-    this.showAlert('f(x)');
-   }else if (this.dataSubmit['dfx'] == ''){
-     this.showAlert('f\'(x)');
-   }else if (this.dataSubmit['x0'] == ''){
-     this.showAlert('x Inicial');
-   }else if (this.dataSubmit['tol'] == ''){
-     this.showAlert('Tolerancia');
-   }else if(this.dataSubmit['nIters'] == ''){
-    this.showAlert('Num. Iters');
-   }else{
-    console.log("Campos verificados y completos.");
-    this.postServer();
-   }
+    if (this.dataSubmit['fx'] == '') {
+      this.showAlert('Error', "El campo f(x) no puede estar vacío");
+    } else if (this.dataSubmit['dfx'] == '') {
+      this.showAlert('Error', "El campo f'(x) no puede estar vacío");
+    } else if (this.dataSubmit['x0'] == '') {
+      this.showAlert('Error', "El campo x Ini no puede estar vacío");
+    } else if (this.dataSubmit['tol'] == '') {
+      this.showAlert('Error', "El campo Tol no puede estar vacío");
+    } else if (this.dataSubmit['nIters'] == '') {
+      this.showAlert('Error', "El campo Iters no puede estar vacío");
+    } else if (this.dataSubmit['tipo_error'] == '') {
+      this.showAlert('Error', "El campo Error no puede estar vacío");
+    } else {
+      this.contentTable = [];
+      this.postServer();
+    }
   }
 
 
-  showAlert(value:string) {
+  showAlert(error, subtitle) {
     let alert = this.alertCtrl.create({
-      title: 'Error!',
-      subTitle: 'El campo ' + value + ' no puede estar vacío!',
+      title: error,
+      subTitle: subtitle,
       buttons: ['OK']
     });
     alert.present();
   }
 
+  completeTable() {
+    console.log(this.dataReceivedPost);
+    this.contentTable = this.dataReceivedPost['iteraciones'];
 
-  private completeTable(){
-    this.tableTitles.push(['i','xi','f(xi)','Error'])
-    this.tableContent = this.dataReceivedPost['iteraciones'];    
+    if (this.contentTable.length != 0) {
+      this.root = this.dataReceivedPost['aproximado'];
+
+      this.visibleTable = true;
+      this.visibleRoot = true;
+
+    } else {
+      this.visibleTable = false;
+      this.visibleRoot = false;
+      this.showAlert("Fallo", this.dataReceivedPost['error']);
+    }
   }
 
-  //Zona de get y post
 
-  public getServer() {
+  getServer() {
     this.httpEcuacionesUnaVariableProvider.get(this.apiUrl)
-    .then(data => {
-      this.dataReceivedGet = data;
-      console.log("Realice el GET-NEWTON ->");
-      console.log(JSON.stringify(data));
-      console.log(this.dataReceivedGet);
-      console.log(typeof(this.dataReceivedGet));
-    }, (err) => {
-      console.log("Problema al hacer GET-NEWTON");
-      console.log(err);
-    });
+      .then(data => {
+        this.dataReceivedGet = data;        
+      }, (err) => {        
+        console.log(err);
+      });
   }
 
 
-  public postServer() {
+  postServer() {
     this.httpEcuacionesUnaVariableProvider.post(this.dataSubmit, this.apiUrl)
-    .then(result => {
-      this.dataReceivedPost = result;
-      this.completeTable();
-      console.log("Realice el POST-NEWTON");
-      console.log("Envie al server = " + this.dataSubmit + " y me llegó como respuesta " + JSON.stringify(result));
-      //this.fromObjectToTable();
-    }, (err) => {
-      console.log("Problema al hacer POST-NEWTON");
-      console.log(err);
-    });
+      .then(result => {
+        this.dataReceivedPost = result;
+        this.completeTable();
+      }, (err) => {
+        console.log(err);
+      });
   }
 }

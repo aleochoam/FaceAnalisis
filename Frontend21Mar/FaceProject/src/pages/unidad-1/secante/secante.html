@@ -1,64 +1,121 @@
 <!--
-  Generated template for the SecantePage page.
+  Generated template for the BiseccionPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-
-  <ion-navbar color = 'dark'>
-    <ion-title>Metodo de la secante</ion-title>
-  </ion-navbar>
-
+<ion-header>  
+    <ion-navbar color = 'dark'>
+      <ion-title>Secante</ion-title>
+    </ion-navbar>  
 </ion-header>
-
-
+  
+  
 <ion-content padding class="pantalla">
+  
   <ion-grid>
-      <ion-row>
-          <ion-col col-2>
-              <button ion-button icon-only class="pregunta" (click)="ayuda()"> 
-                <ion-icon name="md-help-circle" class="iconoPregunta"></ion-icon>
-              </button>
-          </ion-col>
-  
-          <ion-col col-8>
-          </ion-col>
-  
-          <ion-col col-2>
-              <button ion-button icon-only (click)="goGraficador()">
-                <ion-icon name="md-analytics"></ion-icon>
-              </button>
-          </ion-col>          
-        </ion-row>
+
+    <ion-row>
+      <ion-col col-2>
+          <button ion-button icon-only class="pregunta" (click)="ayuda()"> 
+            <ion-icon name="md-help-circle" class="iconoPregunta"></ion-icon>
+          </button>
+      </ion-col>
+
+      <ion-col col-8>
+      </ion-col>
+
+      <ion-col col-2>
+          <button ion-button icon-only (click)="goGraficador()">
+            <ion-icon name="md-analytics"></ion-icon>
+          </button>
+      </ion-col>    
+
+    </ion-row>  
+      
+    
       <form (ngSubmit)="submitForm()">
-          <ion-item>
-            <ion-label>f(x)</ion-label>
-            <ion-input type="text" [(ngModel)]="dataSubmit.fx" name="fx"></ion-input>
-          </ion-item>
+          <ion-row>
+            <ion-col col-12>
+                <ion-item>
+                    <ion-label color="dark">f(x) =</ion-label>
+                    <ion-input type="text" [(ngModel)]="dataSubmit.fx" name="fx"></ion-input>
+                </ion-item>           
+            </ion-col>              
+          </ion-row>
 
-          <ion-item>
-            <ion-label>x0</ion-label>
-            <ion-input type="text" [(ngModel)]="dataSubmit.x0" name="x0"></ion-input>
-          </ion-item>
+          <ion-row>
+            <ion-col col-6>
+                <ion-item>
+                    <ion-label color="dark">x0 =</ion-label>
+                    <ion-input type="text" [(ngModel)]="dataSubmit.x0" name="x0"></ion-input>
+                </ion-item>            
+            </ion-col>
 
-          <ion-item>
-            <ion-label>x1</ion-label>
-            <ion-input type="text" [(ngModel)]="dataSubmit.x1" name="x1"></ion-input>
-          </ion-item>
+            <ion-col col-6>
+                <ion-item>
+                    <ion-label color="dark">x1 =</ion-label>
+                    <ion-input type="text" [(ngModel)]="dataSubmit.x1" name="x1"></ion-input>
+                  </ion-item>
+            </ion-col>
+          </ion-row>
 
-          <ion-item>
-            <ion-label>Tolerancia</ion-label>
-            <ion-input type="text" [(ngModel)]="dataSubmit.tol" name="tol"></ion-input>
-          </ion-item>
+          <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label color="dark">Tol =</ion-label>
+                    <ion-input type="text" [(ngModel)]="dataSubmit.tol" name="tol"></ion-input>
+                  </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item>
+                    <ion-label color="dark">Iters =</ion-label>
+                    <ion-input type="text" [(ngModel)]="dataSubmit.nIters" name="nIters"></ion-input>
+                  </ion-item>
+            </ion-col>
+          </ion-row>
 
-          <ion-item>
-            <ion-label>Num. Iters</ion-label>
-            <ion-input type="text" [(ngModel)]="dataSubmit.nIters" name="nIters"></ion-input>
-          </ion-item>
+          <ion-row>
+            <ion-col col-12>
+                <ion-item>
+                    <ion-label color="dark">Error</ion-label>
+                    <ion-select [(ngModel)]="dataSubmit.tipo_error" name="tipo_error">
+                      <ion-option value="1">Absoluto</ion-option>
+                      <ion-option value="2">Relativo</ion-option>
+                    </ion-select>
+                  </ion-item>
+            </ion-col> 
+          </ion-row>
 
-          <button ion-button type="submit" block>Calcular</button>
-        </form>
+          <ion-row> 
+            <ion-col col-12>
+                <button ion-button type="submit" block>Calcular</button>
+            </ion-col>              
+          </ion-row>
+      </form>      
   </ion-grid>
 
+
+
+  <ion-grid> 
+    <ion-row *ngIf="visibleRoot" class="style-msg-root">
+      <ion-col col-12>
+          <p>La aproximación a la raíz es {{root}}</p> 
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="visibleTable" class = "table-t">
+      <ion-col col-2 class = "style-t-t"><p class = "text-t-t"> {{titlesTable[0]}} </p></ion-col>
+      <ion-col col-6 class = "style-t-t"><p class = "text-t-t"> {{titlesTable[1]}} </p></ion-col>
+      <ion-col col-4 class = "style-t-t"><p class = "text-t-t"> {{titlesTable[2]}} </p></ion-col>
+      
+    </ion-row>
+
+    <ion-row *ngFor="let i of contentTable"  class = "table-c">
+      <ion-col col-2 class = "style-t-c"><p class = "text-t-c"> {{i[0]}} </p></ion-col>
+      <ion-col col-6 class = "style-t-c"><p class = "text-t-c"> {{i[1]}} </p></ion-col>
+      <ion-col col-4 class = "style-t-c"><p class = "text-t-c"> {{i[2]}} </p></ion-col>
+      
+    </ion-row>    
+  </ion-grid>
 </ion-content>
