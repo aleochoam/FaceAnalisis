@@ -33,4 +33,4 @@ class SplinesLineales(NumericMethod):
             x1=punto1[0],
             x0=punto0[0])
 
-        return sympify(recta)
+        return str(sympify(recta))
