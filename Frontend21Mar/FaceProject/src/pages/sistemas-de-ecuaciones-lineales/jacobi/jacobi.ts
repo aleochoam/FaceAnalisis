@@ -92,6 +92,7 @@ export class JacobiPage {
       this.dataReceivedPost = result;
       this.showResult = true;
       this.results();
+      console.log("Me llega rta en JACOBI ->")
       console.log(this.dataReceivedPost);
     }, (err) => {
       console.log(err);

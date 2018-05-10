@@ -57,3 +57,4 @@ def eliminacion(A, b):
                 augmented[i, j] = augmented[i, j] - mult * augmented[k, j]
 
     return augmented
+

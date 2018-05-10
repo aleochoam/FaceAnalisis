@@ -99,7 +99,9 @@ export class CroutPage {
     .then(result => {
       this.dataReceivedPost = result;
       this.showResult = true;
+
       this.results();
+      console.log("Me llega como rta en crout->");
       console.log(this.dataReceivedPost);
     }, (err) => {
       console.log(err);

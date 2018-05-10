@@ -99,6 +99,7 @@ export class CholeskyPage {
     .then(result => {
       this.dataReceivedPost = result;
       this.showResult = true;
+      console.log("Me llego como rta en Cholesky ->");
       this.results();
       console.log(this.dataReceivedPost);
     }, (err) => {
