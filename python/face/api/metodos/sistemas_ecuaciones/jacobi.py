@@ -9,7 +9,7 @@ class Jacobi(NumericMethod):
         A = parameters["A"]
         b = parameters["b"]
         x0 = parameters["x0"]
-        tol = parameters["tol"]
+        tol = parameters["tole"]
         iteraciones = parameters["iteraciones"]
 
         A, b, x0 = process_params(A, b, x0)
