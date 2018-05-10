@@ -1,0 +1,44 @@
+INICIO Sor
+    Leer A, b, x0, tol, iteraciones
+
+    SI tiene_ceros_en_diagonal(A):
+        Error("La matriz contiene ceros en la diagonal")
+
+    contador = 0
+    dispersion = tol + 1
+
+    Mientras dispersion > tol Y contador < iteraciones:
+        x1 = calcular_nuevo(A, b, x0)
+        dispersion = dispersion(x1 - x0)
+
+        imprimir(contador, x0, dispersion)
+
+        x0 = x1
+        contador = contador + 1
+
+    imprimir(contador, x0, dispersion)
+
+    SI dispersion < tol:
+        imprimir("x1 es una aproximación inicial con una toleracia de tol")
+    SINO:
+        imprimir("El método fracasó en iteraciones iteraciones")
+
+FIN
+
+INICIO calcular_nuevo(matrix, b, x0), w:
+    n = longitud(x0)
+    x1 = copiar(x0)
+
+    PARA i = 0 hasta n:
+        suma1 = 0
+        PARA j = 0, hasta i:
+            suma1 = suma1 + matrix[i, j] * x1[j]
+
+        suma2 = 0
+        PARA j = i+1, hasta n:
+            suma2 = suma2 + matrix[i, j] * x0[j]
+
+        suma = suma1 + suma2
+        x1[i] = (1-w)*x0[i] - w/matrix[i, i] * suma + w*b[i]/matrix[i, i]
+
+    retornar x1

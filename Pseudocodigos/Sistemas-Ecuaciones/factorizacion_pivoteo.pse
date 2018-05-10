@@ -20,24 +20,30 @@ INICIO FactorizacionPivoteo
     PARA i = 0 hasta n:
         L[i, i] = 1
 
-    return A, L, P
+    U = A
+    Bn = multiplicacion_matrices(P, b.T)
+
+    z = sustitucion_progresiva(L, Bn.T)
+    x = sustitucion_regresiva(U, z)
+    retornar x
+
 FIN
 
 INICIO pivoteo(A, P, L, k):
-    n = len(A)
+    n = longitud(A)
     mayor = abs(A[k, k])
     fila_mayor = k
 
-    for s in range(k+1, n):
-        if abs(A[s, k]) > mayor:
+    PARA s = k+1, hasta n:
+        SI abs(A[s, k]) > mayor:
             mayor = abs(A[s, k])
             fila_mayor = s
-    if mayor == 0:
-        raise Exception("El sistema no tiene solución")
-    else:
-        if fila_mayor != k:
+    SI mayor == 0:
+        Error("El sistema no tiene solución")
+    SINO:
+        SI fila_mayor != k:
             A = intercambiar_filas(A, fila_mayor, k)
             P = intercambiar_filas(P, fila_mayor, k)
             L = intercambiar_filas(L, fila_mayor, k)
-        return A, P, L
+        retornar A, P, L
 FIN

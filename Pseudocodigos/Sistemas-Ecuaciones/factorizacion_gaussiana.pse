@@ -19,8 +19,8 @@ INICIO Factorizacion_Gaussiana
             PARA j = k, hasta n+1:
                 matriz_aumentada[i, j] = matriz_aumentada[i, j] - multiplier * matriz_aumentada[k, j]
 
-    U, b = separar_Ub()
-    
+    U, b = separar_Ub(matriz_aumentada)
+
     z = sustitucion_progresiva(L, b)
     x = sustitucion_regresiva(U, z)
     retornar x

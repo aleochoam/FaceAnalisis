@@ -1,0 +1,33 @@
+INICIO Crout
+    Leer A, b
+
+    SI det(A) == 0:
+        Error("La matriz no es invertible")
+
+    n = len(A)
+    L = identidad(n)
+    U = identidad(n)
+
+    PARA k = 0, hasta n:
+        suma1 = 0
+
+        PARA p = 0, hasta k:
+            suma1 = suma1 + L[k, p]*U[p, k]
+        L[k, k] = A[k, k]-suma1
+
+        PARA i = k+1, hasta n:
+            suma2 = 0
+            PARA p = 0, hasta k:
+                suma2 = suma2 + L[i, p]*U[p, k]
+            L[i, k] = (A[i, k]-suma2)/U[k, k]
+        PARA j = k+1, hasta n:
+            suma3 = 0
+            PARA p = 0, k:
+                suma3 = suma3 + L[k, p] * U[p, j]
+            U[k, j] = (A[k, j]-suma3)/L[k, k]
+
+    z = sustitucion_progresiva(L, b)
+    x = sustitucion_regresiva(U, z)
+
+    retornar x
+FIN

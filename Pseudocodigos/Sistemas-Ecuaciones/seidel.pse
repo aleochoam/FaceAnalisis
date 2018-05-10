@@ -1,0 +1,37 @@
+INICIO Seidel
+    Leer A, b, x0, tol, iteraciones
+
+    SI tiene_ceros_en_diagonal(A):
+        Error("La matriz contiene ceros en la diagonal")
+
+    contador = 0
+    dispersion = tol + 1
+
+    Mientras dispersion > tol Y contador < iteraciones:
+        x1 = calcular_nuevo(A, b, x0)
+        dispersion = dispersion(x1 - x0)
+
+        imprimir(contador, x0, dispersion)
+
+        x0 = x1
+        contador = contador + 1
+
+    imprimir(contador, x0, dispersion)
+
+    SI dispersion < tol:
+        imprimir("x1 es una aproximación inicial con una toleracia de tol")
+    SINO:
+        imprimir("El método fracasó en iteraciones iteraciones")
+
+FIN
+
+INICIO calcular_nuevo(matrix, b, x0):
+    n = longitud(x0)
+    x1 = copiar(x0)
+    PARA i = 0, hasta n:
+        suma = 0
+        PARA j = 0 , hasta n:
+            SI j != i:
+                suma = suma + matrix[i, j] * x1[j]
+        x1[i] = (b[i] - suma)/matrix[i, i]
+    retornar x1
