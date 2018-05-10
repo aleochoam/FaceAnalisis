@@ -1,5 +1,5 @@
 python/env/
-**/__pychache__/
+**/__pychache__
 python/face/.idea/
 python/face/face/server_cnf.py
 python/face/api/migrations/__pycache__/
@@ -8,6 +8,7 @@ python/face/api/__pycache__/
 python/face/api/metodos/__pycache__/
 python/face/api/metodos/ecuaciones_no_lineales/__pycache__/
 python/face/api/metodos/sistemas_ecuaciones/__pycache__/
+python/face/api/metodos/interpolacion/__pycache__/
 java/face/target/
 java/face/.project
 java/face/.classpath

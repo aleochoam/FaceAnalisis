@@ -16,9 +16,17 @@ from .sistemas_ecuaciones.factorizacion_pivoteo import FactorizacionPivoteo
 from .sistemas_ecuaciones.crout import FactorizacionCrout
 from .sistemas_ecuaciones.doolittle import FactorizacionDoolittle
 from .sistemas_ecuaciones.cholesky import FactorizacionCholesky
+from .sistemas_ecuaciones.jacobi import Jacobi
+from .sistemas_ecuaciones.seidel import Seidel
+from .sistemas_ecuaciones.sor import SOR
+
+from .interpolacion.sistema_ecuaciones import MetodoSistemaEcuaciones
+from .interpolacion.newton_diferencias import NewtonDiferenciasDivididas
+from .interpolacion.spline_lineal import SplinesLineales
 
 
 def create_method(method):
+    method = method.lower()
     # Capitulo ecuaciones no lineales
     if method == "busquedas":
         return IncrementalSearch()
@@ -53,5 +61,19 @@ def create_method(method):
         return FactorizacionCrout()
     elif method == "cholesky":
         return FactorizacionCholesky()
+    elif method == "jacobi":
+        return Jacobi()
+    elif method == "seidel":
+        return Seidel()
+    elif method == "sor":
+        return SOR()
+
+    # Capitulo de interpolacion
+    elif method == "interpolacion_ecuaciones":
+        return MetodoSistemaEcuaciones()
+    elif method == "newton_diferencias":
+        return NewtonDiferenciasDivididas()
+    elif method == "spline_lineal":
+        return SplinesLineales()
     else:
         return NumericMethod()

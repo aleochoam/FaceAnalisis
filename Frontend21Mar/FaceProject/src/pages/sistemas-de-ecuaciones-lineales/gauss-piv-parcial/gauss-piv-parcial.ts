@@ -26,12 +26,14 @@ export class GaussPivParcialPage {
   };
 
   xs = [];
+  escalonada:any;
 
   private dataReceivedGet  = {};
   private dataReceivedPost = {};
   matrix: Array<string> = [];
   n: any;
   input: string;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl : AlertController, public httpEcuacionesUnaVariableProvider: HttpEcuacionesUnaVariableProvider) {
     this.n = '';
@@ -41,6 +43,7 @@ export class GaussPivParcialPage {
     console.log('ionViewDidLoad GaussSimplePage');
   }
   createMatrix() {
+    this.matrix = [];
     this.input = "<ion-input class='cell'></ion-input>";
     for (let i = 0; i < this.n; i++) {
       this.matrix.push(String(i));
@@ -84,7 +87,7 @@ export class GaussPivParcialPage {
 
   private results(){
     this.xs = this.dataReceivedPost['x']
-    console.log(this.showResult);
+    this.escalonada = this.dataReceivedPost['augmented'];
   }
 
   public postServer() {

@@ -1,6 +1,5 @@
 package systemOfEquations;
 
-import systemOfEquations.MatrixUtils.*;
 
 import co.edu.eafit.NumericMethod;
 import co.edu.eafit.Solution;

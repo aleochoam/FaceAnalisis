@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { InterpolacionSistemasDeEcPage } from './interpolacion-sistemas-de-ec/interpolacion-sistemas-de-ec';
 
 /**
  * Generated class for the InterpolacionPage page.
@@ -20,6 +21,12 @@ export class InterpolacionPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InterpolacionPage');
+  }
+
+  public goSisEcuaciones(){
+    
+    this.navCtrl.push(InterpolacionSistemasDeEcPage);
+
   }
 
 }

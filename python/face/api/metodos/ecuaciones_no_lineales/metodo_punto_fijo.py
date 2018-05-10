@@ -1,6 +1,7 @@
 from sympy import symbols
 from .utils import sympify_expr
 from ..numeric_method import NumericMethod
+from .utils import error_absoluto, error_relativo
 
 
 class FixedPoint(NumericMethod):
@@ -34,7 +35,7 @@ class FixedPoint(NumericMethod):
             xn = g.evalf(subs={x: xa})
 
             error = calcular_error(xn, xa)
-            # error = abs((xn-xa))
+
             xa = xn
             contador = contador + 1
 
@@ -57,5 +58,6 @@ class FixedPoint(NumericMethod):
         response = dict()
         response["iteraciones"] = []
         response["aproximado"] = []
+        response["error"] = ""
 
         return response

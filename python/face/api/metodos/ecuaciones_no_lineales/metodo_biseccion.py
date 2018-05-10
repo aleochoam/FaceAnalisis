@@ -5,7 +5,6 @@ from sympy import symbols
 from ..numeric_method import NumericMethod
 
 
-
 class Bisection(NumericMethod):
 
     def calculate(self, parameters):
@@ -45,12 +44,18 @@ class Bisection(NumericMethod):
 
         xm = (xb+xa)/2
         fxm = f.evalf(subs={x: xm})
-        contador = 1
+        contador = 0
         error = tol + 1
 
         while error > tol and fxm != 0 and contador < n_iter:
-            err_fm = "{e:.2e}".format(e=error) if contador != 1 else ""
-            iteracion = [contador, str(xa), str(xb), str(xm), str(fxm), err_fm]
+            err_fm = "{e:.2e}".format(e=error) if contador != 0 else ""
+            # xa_fm = "{xa:.2e}".format(xa=xa)
+            # xb_fm = "{xb:.2e}".format(xb=xb)
+            # xm_fm = "{xm:.2e}".format(xm=xm)
+
+            fxm_fm = "{fxm:.2e}".format(fxm=fxm)
+
+            iteracion = [contador, str(xa), str(xb), str(xm), fxm_fm, err_fm]
 
             response["iteraciones"].append(iteracion)
             # print("Contador: ", contador)
@@ -78,11 +83,14 @@ class Bisection(NumericMethod):
             # error = abs(xm - x_ant)
             contador = contador + 1
 
-        iteracion = [contador, str(xa), str(xb), str(xm), str(fxm), str(error)]
+        err_fm = "{e:.2e}".format(e=error) if contador != 0 else ""
+        iteracion = [contador, str(xa), str(xb), str(xm), str(fxm), err_fm]
         response["iteraciones"].append(iteracion)
 
         if fxm == 0:
-            response["raices"].append(str(xm))
+            # response["raices"].append(str(xm))
+            response["aproximados"].append(str(xm))
+
             # print(xm, "es raiz")
 
         elif error < tol:
@@ -104,5 +112,6 @@ class Bisection(NumericMethod):
         response["raices"] = []
         response["iteraciones"] = []
         response["aproximados"] = []
+        response["error"] = ""
 
         return response

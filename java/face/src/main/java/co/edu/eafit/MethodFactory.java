@@ -7,6 +7,7 @@ import nonLinearEcuations.PuntoFijo;
 import nonLinearEcuations.RaicesMultiples;
 import nonLinearEcuations.ReglaFalsa;
 import nonLinearEcuations.Secante;
+import systemOfEquations.EliminacionPivoteoParcial;
 import systemOfEquations.EliminacionPivoteoTotal;
 import systemOfEquations.EliminacionSimple;
 import systemOfEquations.FactorizacionCholesky;
@@ -39,6 +40,8 @@ public class MethodFactory {
     	//Capitulo sistemas de ecuaciones
     	}else if(methodName.toLowerCase().equals("eliminacion simple")) {
     		return new EliminacionSimple();
+    	}else if(methodName.toLowerCase().equals("eliminacion pivoteo parcial")) {
+    		return new EliminacionPivoteoParcial();
     	}else if(methodName.toLowerCase().equals("eliminacion pivoteo total")) {
     		return new EliminacionPivoteoTotal();
     	}else if(methodName.toLowerCase().equals("factorizacion gaussiana")) {

@@ -33,7 +33,7 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <button ion-button full round color="secondary" (click)="goGaussPivotTotal()" class="button">Gauss Con Pivoteo Total</button>
+        <button ion-button full round color="secondary" (click)="goGaussPivotal()" class="button">Gauss Con Pivoteo Total</button>
       </ion-col>
     </ion-row>
 
@@ -42,12 +42,45 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <button ion-button full round color="secondary" (click)="goLUGaussSimple()" class="button">LU con Gauss Simple</button>
+        <button ion-button full round color="secondary" (click)="goFactSimple()" class="button">LU con Gauss Simple</button>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <button ion-button full round color="secondary" (click)="goLUGaussPivotParcial()" class="button">LU con Gauss y Pivoteo Parcial</button>
+        <button ion-button full round color="secondary" (click)="goFactParcial()" class="button">LU con Gauss y Pivoteo Parcial</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button full round color="secondary" (click)="goCrout()" class="button">Crout</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button full round color="secondary" (click)="goDoolittle()" class="button">Doolittle</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button full round color="secondary" (click)="goCholesky()" class="button">Cholesky</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <p padding class="encabezados">Métodos Iterativos:</p>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button full round color="secondary" (click)="goJacobi()" class="button">Jacobi</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button full round color="secondary" (click)="goSeidel()" class="button">Gauss-Seidel</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button full round color="secondary" (click)="goSor()" class="button">Relajación de Matrices (SOR)</button>
       </ion-col>
     </ion-row>
   </ion-grid>

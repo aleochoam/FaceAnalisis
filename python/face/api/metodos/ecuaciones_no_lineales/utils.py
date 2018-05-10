@@ -1,4 +1,6 @@
 from sympy import sympify, symbols
+import numpy as np
+
 
 def error_absoluto(x0, x1):
     return abs(x1-x0)
@@ -6,6 +8,7 @@ def error_absoluto(x0, x1):
 
 def error_relativo(x0, x1):
     return abs((x1-x0)/x1)
+
 
 def call_eval_f(parameters):
     f = parameters["funcion"]
@@ -19,11 +22,18 @@ def call_eval_f(parameters):
 
 def plot_f(parameters):
     f = parameters["funcion"]
-    # print(f)
+    xa = parameters["xa"]
+    xb = parameters["xb"]
+    delta = parameters["delta"]
+
+    xa = eval(xa)
+    xb = eval(xb)
+    delta = eval(delta)
+
     response = dict()
     response["data"] = []
 
-    for xi in [x*0.1 for x in range(-10, 10)]:
+    for xi in np.arange(xa, xb, delta):
         response["data"].append({"x": str(xi), "y": str(eval_f(f, xi))})
 
     return response
