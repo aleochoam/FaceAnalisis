@@ -1,0 +1,26 @@
+INICIO
+    Leer A, b
+
+    Ab = concatenar(A, b)
+    n = longitud(Ab)
+
+    PARA k 0, hasta n-1:
+        SI Ab[k][k] == 0:
+            fila = k
+            PARA i = k, hasta n:
+                SI Ab[i][k] != 0:
+                    fila = i
+                    break
+
+            Ab = intercambiar_filas(Ab, fila, k)
+
+        PARA i = k+1, hasta n:
+            mult = Ab[i, k]/Ab[k, k]
+            PARA j = k, hasta n+1):
+                Ab[i, j] = Ab[i, j] - mult * Ab[k, j]
+
+    U, b = separar_Ub(Ab)
+    x = sustitucion_regresiva(U, b)
+
+    retornar x
+FIN
