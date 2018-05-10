@@ -1,0 +1,45 @@
+INICIO EliminacionPivoteoTotal
+    Leer A, b
+
+    SI det(A) == 0:
+        Error("La matriz no es invertible")
+
+    Ab = concatenar(A,b)
+
+    n = len(augmented)
+    marcas = [1, 2, ..., n]
+
+    Para k = 0, hasta n-1:
+        Ab, marcas = pivoteo_total(Ab, marcas, n, k)
+        Para i = k+1, hasta n:
+            mult = Ab[i, k]/Ab[k, k]
+            Para j = k, hasta n+1:
+                Ab[i, j] = Ab[i, j] - mult * Ab[k, j]
+
+    U, b = separar_Ub(Ab)
+    x = sustitucion_regresiva(U, b)
+    x = organizar_marcas(x, marcas)
+    retornar x
+
+FIN
+
+INICIO pivoteo_total(Ab, marcas, n, k)
+    mayor = 0
+    fila_mayor = k
+    col_mayor = k
+    PARA r = k, hasta n:
+        PARA s = k, hasta n:
+            SI abs(Ab[r, s]) > mayor:
+                mayor = abs(Ab[r, s])
+                fila_mayor = r
+                col_mayor = s
+    SI mayor == 0:
+        raise Exception("El sistema no tiene solución única")
+    SINO:
+        SI fila_mayor != k:
+            Ab = intercambiar_filas(Ab, fila_mayor, k)
+        SI col_mayor != k:
+            Ab = intercambiar_cols(Ab, col_mayor, k)
+            marcas = intercambiar_marcas(marcas, col_mayor, k)
+        return Ab, marcas
+FIN

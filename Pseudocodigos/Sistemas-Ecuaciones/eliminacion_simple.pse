@@ -1,6 +1,9 @@
 INICIO
     Leer A, b
 
+    SI det(A) == 0:
+        Error("La matriz no es invertible")
+
     Ab = concatenar(A, b)
     n = longitud(Ab)
 

@@ -1,0 +1,35 @@
+INICIO ELIMINACION_PIVOTEO_PARCIAL
+    Leer A, b
+
+    SI det(A) == 0:
+        Error("La matriz no es invertible")
+        
+    Ab = concatenar(A, b)
+
+    PARA k = 0, hasta n-1:
+        Ab = pivoteo_parcial(Ab, n, k)
+        PARA i = k+1, hasta n:
+            mult = Ab[i, k]/Ab[k, k]
+            PARA j = k, hasta n+1:
+                Ab[i, j] = Ab[i, j] - mult * Ab[k, j]
+
+    U, b = separar_Ub(Ab)
+    x = sustitucion_regresiva(U, b)
+    retornar x
+
+FIN
+
+INICIO pivoteo_parcial(Ab, n, k)
+    mayor = abs(Ab[k, k])
+    fila_mayor = k
+    PARA s = k+1, hasta n:
+        SI abs(Ab[s, k]) > mayor:
+            mayor = abs(Ab[s, k])
+            fila_mayor = s
+    SI mayor == 0:
+        Error("El sistema no tiene solución")
+    SINO:
+        SI fila_mayor != k:
+            Ab = intercambiar_filas(Ab, fila_mayor, k)
+        retornar Ab
+FIN

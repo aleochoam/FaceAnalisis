@@ -1,0 +1,28 @@
+INICIO Factorizacion_Gaussiana
+    Leer A, b
+
+    SI det(A) == 0:
+        Error("La matriz no es invertible")
+
+    n = len(A)
+
+    L = identidad(n)
+    U = zeros(numFilas=n, numCols=n)
+
+    matriz_aumentada = concatenar((A, vector.T))
+
+    PARA k = 0, hasta n-1:
+        PARA i = k+1, n:
+            multiplier = matriz_aumentada[i, k]/matriz_aumentada[k, k]
+            SI i > k:
+                L[i][k] = multiplier
+            PARA j = k, hasta n+1:
+                matriz_aumentada[i, j] = matriz_aumentada[i, j] - multiplier * matriz_aumentada[k, j]
+
+    U, b = separar_Ub()
+    
+    z = sustitucion_progresiva(L, b)
+    x = sustitucion_regresiva(U, z)
+    retornar x
+
+FIN

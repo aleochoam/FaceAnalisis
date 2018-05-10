@@ -1,0 +1,43 @@
+INICIO FactorizacionPivoteo
+    Leer A, b
+
+    SI det(A) == 0:
+        Error("La matriz no es invertible")
+
+    n = len(A)
+    P = identity(n)
+    L = zeros(numCols=n, numFilas=n)
+
+    PARA k = 0, hasta n:
+        A, P, L = pivoteo(A, P, L, k)
+        PARA i = k+1, hasta n:
+            mult = A[i, k]/A[k, k]
+            Si i > k:
+                L[i][k] = mult
+            PARA j = k, hasta n:
+                A[i, j] = A[i, j] - mult * A[k, j]
+
+    PARA i = 0 hasta n:
+        L[i, i] = 1
+
+    return A, L, P
+FIN
+
+INICIO pivoteo(A, P, L, k):
+    n = len(A)
+    mayor = abs(A[k, k])
+    fila_mayor = k
+
+    for s in range(k+1, n):
+        if abs(A[s, k]) > mayor:
+            mayor = abs(A[s, k])
+            fila_mayor = s
+    if mayor == 0:
+        raise Exception("El sistema no tiene solución")
+    else:
+        if fila_mayor != k:
+            A = intercambiar_filas(A, fila_mayor, k)
+            P = intercambiar_filas(P, fila_mayor, k)
+            L = intercambiar_filas(L, fila_mayor, k)
+        return A, P, L
+FIN
