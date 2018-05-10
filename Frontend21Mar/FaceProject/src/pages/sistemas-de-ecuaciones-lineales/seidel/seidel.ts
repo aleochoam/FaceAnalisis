@@ -17,7 +17,7 @@ import { HttpEcuacionesUnaVariableProvider } from '../../../providers/http-ecuac
 export class SeidelPage {
 
 
-  private apiUrl  = 'http://165.227.197.6:8080/api/jacobi/';
+  private apiUrl  = 'http://165.227.197.6:8080/api/seidel/';
   
   showResult = false;
 
