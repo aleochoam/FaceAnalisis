@@ -1,12 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
+
+import { HttpEcuacionesUnaVariableProvider } from '../../providers/http-ecuaciones-una-variable/http-ecuaciones-una-variable';
+
 import { Chart } from 'chart.js';
-/**
- * Generated class for the GraficaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -19,51 +18,133 @@ export class GraficadorPage {
     private graphData ={};
     private lineChart: any;
 
-    private recivedFunc:string; //Este atributo me recibe la funcion que se esta trabajando en el metodo
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-      this.recivedFunc = navParams.data['funcion'];
-      console.log("me llego " + this.recivedFunc);
+    private apiUrl = "http://165.227.197.6:8080/api/plot/";
 
+
+    private dataSubmit = {};
+    private dataReceivedPost = {};
+
+    
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, public httpEcuacionesUnaVariableProvider:HttpEcuacionesUnaVariableProvider) {
+      this.dataSubmit['funcion'] = navParams.data['funcion'];
+      this.dataSubmit['xa']      = navParams.data['a'];
+      this.dataSubmit['xb']      = navParams.data['b'];
+      this.dataSubmit['delta']   = "0.1";    
+     
+      console.log("me llega como a" + navParams.data['a'] + "y de tipo" + typeof navParams.data['a']);
+      console.log("me llega como b" + navParams.data['b'] + "y de tipo" + typeof navParams.data['b']);
   }
 
-  logForm() {
-    console.log(this.graphData);
-  }
 
-  ionViewDidLoad() {
+    ayuda() {
+        let alert = this.alertCtrl.create({
+        title: '¿Qué debo hacer?',
+        subTitle: ` <p>Ingresa los siguientes datos:</p>
+                      <ul>
+                        <li> <b>fx:</b> Función a evaluar</li>
+                        <li> <b>xa, xb:</b> Intervalo inicial</li>
+                        <li><b>Tolerancia:</b> Calidad de respuesta</li>
+                        <li><b>Num. Iters:</b> Veces ejecutadas</b> </li>
+                        <li><b>Absoluto:</b> Error Absoluto</b> </li>
+                        <li><b>Relativo:</b> Error Relativo</b> </li>
+                      </ul>`,
+        buttons: ['OK']
+    });
+    alert.present();
+    }
 
-    this.lineChart = new Chart(this.lineCanvas.nativeElement, {
+    showAlert(error, subtitle) {
+      let alert = this.alertCtrl.create({
+        title: error,
+        subTitle: subtitle,
+        buttons: ['OK']
+      });
+      alert.present();
+    }
 
-    type: 'line',
-    data: {
-        datasets: [{
-            label: 'Grafica',
-            data: [{
-                x: -1,
-                y: -1
-            }, {
-                x: 2,
-                y: 2
-            }, {
-                x: 3,
-                y: 3
-            }],
-            borderColor: [
-              '#001f51',
-            ],
-        }]
-    },
 
-    options: {
-        scales: {
-            xAxes: [{
-                type: 'linear',
-                position: 'bottom'
+    submitForm(){
+      //Verificar si son campos vacios
+      if (this.dataSubmit['funcion'] == ''){
+          this.showAlert("Error", "El campo f(x) no puede estar vacío");
+
+      }else if (this.dataSubmit['xa'] == ''){
+          this.showAlert("Error", "El campo a no puede estar vacío.");
+
+      }else if (this.dataSubmit['xb'] == ''){
+          this.showAlert("Error", "El campo b no puede estar vacío");
+
+      }else if (this.dataSubmit['delta'] == ''){
+          this.showAlert("Error", "El campo delta no puede estar vacío");
+
+      }else{
+          this.postServer();
+      }   
+    }
+
+    drawFunction(points){
+      this.lineChart = new Chart(this.lineCanvas.nativeElement, {
+
+        type: 'line',
+        data: {
+            datasets: [{
+                data: points,
+                borderColor: [
+                  '#001f51',
+                ],
+                borderWidth: 0.5
             }]
+        },  
+    
+        options: {
+            scales: {
+                xAxes: [{
+                    type: 'linear',
+                    position: 'bottom'
+                }]
+            },
+            elements: {
+                point: {
+                    radius: 0
+                }
+            }
+        }
+        });
+    }
+
+    ionViewDidLoad() {
+      if ((this.dataSubmit['funcion'] != "") && (this.dataSubmit['xa'] != "") && (this.dataSubmit['xb'] != '') && (this.dataSubmit['delta'] != "")){
+          this.postServer();
+          this.verificarPost();
+      }else{
+          this.drawFunction({});
+      }
+
+    }
+
+    verificarPost(){
+        if (this.dataReceivedPost['error'] != null){
+            this.showAlert("Error", this.dataReceivedPost['error']);
+        }else{
+            this.drawFunction(this.dataReceivedPost['data']);
         }
     }
+
+
+   //Zona de get y post
+
+
+  public postServer() {
+      console.log(this.dataSubmit);
+    this.httpEcuacionesUnaVariableProvider.post(this.dataSubmit, this.apiUrl)
+    .then(result => {
+      this.dataReceivedPost = result;
+      this.verificarPost();
+    }, (err) => {
+      console.log(err);
     });
- }
+  }
+
 
 }

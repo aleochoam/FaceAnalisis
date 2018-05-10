@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { GraficadorPage } from '../../../pages/graficador/graficador';
 
 import { HttpEcuacionesUnaVariableProvider } from '../../../providers/http-ecuaciones-una-variable/http-ecuaciones-una-variable';
 
@@ -24,78 +25,93 @@ export class ReglaFalsaPage {
 
   private dataSubmit = {};
 
-  private dataReceivedGet  = {};
+  private dataReceivedGet = {};
   private dataReceivedPost = {};
 
   private root;
   private visibleRoot;
-  
-  private titlesTable  = ['i','x Inf','x Sup','x Med', 'f(xMed)', 'Error'];
+
+  private titlesTable = ['i', 'x Inf', 'x Sup', 'x Med', 'f(xMed)', 'Error'];
   private contentTable = [];
   private visibleTable;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public httpEcuacionesUnaVariableProvider:HttpEcuacionesUnaVariableProvider) {
+
+
+  public constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public httpEcuacionesUnaVariableProvider: HttpEcuacionesUnaVariableProvider) {
     this.dataSubmit['fx'] = '';
     this.dataSubmit['xa'] = '';
     this.dataSubmit['xb'] = '';
-    this.dataSubmit['tol'] = '';
     this.dataSubmit['nIters'] = '';
+    this.dataSubmit['tol'] = '';
+    this.dataSubmit['tipo_error'] = '';
 
     this.visibleTable = false;
-    this.visibleRoot  = false;
+    this.visibleRoot = false;
   }
 
+  goGraficador() {
+    var a: string = this.dataSubmit['xa'] + "";
+    var b: string = this.dataSubmit['xb'] + "";
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ReglaFalsaPage');
-  }
-
-
-  private submitForm(){
-    console.log(this.dataSubmit);
-    //Verificar si son campos vacios
-    if (this.dataSubmit['fx'] == ''){
-        this.showAlert("Error", "El campo f(x) no puede estar vacío");
-    }else if (this.dataSubmit['xa'] == ''){
-        this.showAlert("Error", "El campo xa no puede estar vacío.");
-    }else if (this.dataSubmit['xb'] == ''){
-        this.showAlert("Error", "El campo xb no puede estar vacío");
-    }else if(this.dataSubmit['tole'] == ''){
-          this.showAlert("Error", "El campo Tolerancia no puede estar vacío");
-    }else if(this.dataSubmit['nIters'] == ''){
-        this.showAlert("Error", "El campo Num. Iters no puede estar vacío");      
-  //} else if(this.dataSubmit['tipo_error'] == ''){
-  //    this.showAlert("Error", "El campo del Tipo de Error no puede estar vacío");
-    }else{
-        this.postServer();
-    }   
-  }
-
-  private completeTable(){
-    console.log("se supone que por aca ando");
-    
-    this.contentTable = this.dataReceivedPost['iteraciones'];
-    console.log(this.contentTable);
-    if (this.contentTable.length != 0){
-      this.root = this.dataReceivedPost['aproximados'];
-      console.log("La raiz es " + this.root);
-
-      this.visibleTable = true;
-      this.visibleRoot  = true;
-      
-    }else{
-      this.visibleTable = false;
-      this.visibleRoot  = false;
-      this.showAlert("Fallo", this.dataReceivedPost['error']);
+    if (this.dataReceivedPost['aproximados'] != undefined && this.dataReceivedPost['aproximados'] != "" && this.dataSubmit['fx'] != "" && this.dataSubmit['xa'] != "" && this.dataSubmit['xb'] != "") {
+      var aux: number = <number><any>this.dataReceivedPost['aproximados'];
+      a = "" + (aux - 0.2);
+      b = "" + (aux - (-0.2));
     }
 
-    console.log(this.visibleTable);
-    console.log(this.visibleRoot);
+    var send = {
+      'funcion': this.dataSubmit['fx'],
+      'a': a,
+      'b': b
+    }
+    this.navCtrl.push(GraficadorPage, send);
+  }
+
+  ionViewDidLoad() {
   }
 
 
+  submitForm() {
+    console.log(this.dataSubmit);
+    //Verificar si son campos vacios
+    if (this.dataSubmit['fx'] == '') {
+      this.showAlert("Error", "El campo f(x) no puede estar vacío");
+    } else if (this.dataSubmit['xa'] == '') {
+      this.showAlert("Error", "El campo xa no puede estar vacío.");
+    } else if (this.dataSubmit['xb'] == '') {
+      this.showAlert("Error", "El campo xb no puede estar vacío");
+    } else if (this.dataSubmit['tol'] == '') {
+      this.showAlert("Error", "El campo Tolerancia no puede estar vacío");
+    } else if (this.dataSubmit['nIters'] == '') {
+      this.showAlert("Error", "El campo Num. Iters no puede estar vacío");
+    } else if (this.dataSubmit['tipo_error'] == '') {
+      this.showAlert("Error", "El campo del Tipo de Error no puede estar vacío");
+    } else {
+      this.contentTable = [];
+      this.postServer();
+    }
+  }
 
-  private showAlert(error, subtitle) {
+
+  ayuda() {
+    let alert = this.alertCtrl.create({
+      title: '¿Qué debo hacer?',
+      subTitle: ` <p>Ingresa los siguientes datos:</p>
+                    <ul>
+                      <li><b>fx:</b> Función a evaluar</li>
+                      <li><b>xa, xb:</b> Intervalo inicial</li>
+                      <li><b>Tolerancia:</b> Calidad de respuesta</li>
+                      <li><b>Num. Iters:</b> Veces ejecutadas</b> </li>
+                      <li><b>Absoluto:</b> Error Absoluto</b> </li>
+                      <li><b>Relativo:</b> Error Relativo</b> </li>
+                    </ul>`,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+
+  showAlert(error, subtitle) {
     let alert = this.alertCtrl.create({
       title: error,
       subTitle: subtitle,
@@ -105,27 +121,42 @@ export class ReglaFalsaPage {
   }
 
 
+  completeTable() {
+    this.contentTable = this.dataReceivedPost['iteraciones'];
+
+    if (this.contentTable.length != 0) {
+      this.root = this.dataReceivedPost['aproximados'];
+
+      this.visibleTable = true;
+      this.visibleRoot = true;
+
+    } else {
+      this.visibleTable = false;
+      this.visibleRoot = false;
+      this.showAlert("Fallo", this.dataReceivedPost['error']);
+    }
+
+  }
+
   //Zona de get y post
-
-  public getServer() {
+  getServer() {
     this.httpEcuacionesUnaVariableProvider.get(this.apiUrl)
-    .then(data => {
-      this.dataReceivedGet = data;
-    }, (err) => {
-      console.log(err);
-    });
+      .then(data => {
+        this.dataReceivedGet = data;
+      }, (err) => {
+        console.log(err);
+      });
   }
 
-
-  public postServer() {
+  postServer() {
     this.httpEcuacionesUnaVariableProvider.post(this.dataSubmit, this.apiUrl)
-    .then(result => {
-      this.dataReceivedPost = result;
-      console.log(this.dataReceivedPost);
-      this.completeTable();
-    }, (err) => {
-      console.log(err);
-    });
+      .then(result => {
+        this.dataReceivedPost = result;
+        this.completeTable();
+      }, (err) => {
+        console.log(err);
+      });
   }
+
 
 }

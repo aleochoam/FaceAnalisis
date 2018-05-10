@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar color = 'dark'>
+  <ion-navbar color='dark'>
     <ion-title>Busquedas Incrementales</ion-title>
   </ion-navbar>
 
@@ -15,63 +15,90 @@
 
 <ion-content padding class="pantalla">
 
-  <br>
-  <button ion-button icon-only class="pregunta" (click)="presentAlert()">
-      <ion-icon name="md-help-circle" class="iconoPregunta"></ion-icon>
-  </button>
-  <br>
-
   <ion-grid>
-      <form (ngSubmit)="submitForm()">
+
+    <ion-row>
+      <ion-col col-2>
+        <button ion-button icon-only class="pregunta" (click)="ayuda()">
+          <ion-icon name="md-help-circle" class="iconoPregunta"></ion-icon>
+        </button>
+      </ion-col>
+
+      <ion-col col-8>
+      </ion-col>
+
+      <ion-col col-2>
+        <button ion-button icon-only (click)="goGraficador()">
+          <ion-icon name="md-analytics"></ion-icon>
+        </button>
+      </ion-col>
+
+    </ion-row>
+
+
+    <form (ngSubmit)="submitForm()">
+      <ion-row>
+        <ion-col col-12>
           <ion-item>
-            <ion-label>f(x)</ion-label>
+            <ion-label color="dark">f(x) =</ion-label>
             <ion-input type="text" [(ngModel)]="dataSubmit.fx" name="fx"></ion-input>
           </ion-item>
+        </ion-col>
+      </ion-row>
 
+      <ion-row>
+        <ion-col col-6>
           <ion-item>
-            <ion-label>x Inicial</ion-label>
-            <ion-input type="text" [(ngModel)]="dataSubmit.x0" name="x0"></ion-input>
+            <ion-label color="dark">x0 =</ion-label>
+            <ion-input type="number" [(ngModel)]="dataSubmit.x0" name="x0"></ion-input>
           </ion-item>
-            
+        </ion-col>
+
+        <ion-col col-6>
           <ion-item>
-            <ion-label>Delta</ion-label>
+            <ion-label color="dark">delta =</ion-label>
             <ion-input type="text" [(ngModel)]="dataSubmit.delta" name="delta"></ion-input>
           </ion-item>
+        </ion-col>
+      </ion-row>
 
+      <ion-row>
+        <ion-col col-12>
           <ion-item>
-            <ion-label>Num. Iters</ion-label>
-            <ion-input type="text" [(ngModel)]="dataSubmit.nIters" name="nIters"></ion-input>
+            <ion-label color="dark">Iters =</ion-label>
+            <ion-input type="number" [(ngModel)]="dataSubmit.nIters" name="nIters"></ion-input>
           </ion-item>
-          
+        </ion-col>
+      </ion-row>
+        
+      <ion-row>
+        <ion-col col-12>
           <button ion-button type="submit" block>Calcular</button>
-        </form>
+        </ion-col>
+      </ion-row>
+    </form>
   </ion-grid>
 
-  <ion-grid>
-
-    <ion-item *ngIf="visibleRoot">
-      <ion-row *ngFor="let i of root">
-        <ion-col col-12><p>Hay una raiz en {{root[i]}}</p></ion-col>
+  <ion-grid> 
+      <ion-row *ngIf="visibleRoot" class="style-msg-root">
+        <ion-col col-12>
+            <p>{{root}}</p> 
+        </ion-col>
       </ion-row>
-    </ion-item>
-
-    <ion-item *ngIf="visibleRoots">
-      <ion-row *ngFor="let i of roots">
-        <ion-col col-12 ><p>Hay una raiz en el intervalo [{{i[0]}}, {{i[1]}}]</p></ion-col>
+  
+      <ion-row *ngIf="visibleTable" class = "table-t">
+        
+        <ion-col col-6 class = "style-t-t"><p class = "text-t-t"> {{titlesTable[0]}} </p></ion-col>
+        <ion-col col-6 class = "style-t-t"><p class = "text-t-t"> {{titlesTable[1]}} </p></ion-col>        
+        
       </ion-row>
-    </ion-item>
-    <br>
-    <ion-row *ngIf="visibleTable" class ="table-t">
-      <ion-col col-2 class = "style-t-t"><h6 class = "text-t-t"> {{tableTitles[0]}} </h6></ion-col>
-      <ion-col col-5 class = "style-t-t"><h6 class = "text-t-t"> {{tableTitles[1]}} </h6></ion-col>
-      <ion-col col-5 class = "style-t-t"><h6 class = "text-t-t"> {{tableTitles[2]}} </h6></ion-col>    
-    </ion-row>
-
-    <ion-row *ngFor="let s of tableContent" class="table-c">
-      <ion-col col-2 class = "style-t-c"><p class = "text-t-c"> {{s[0]}} </p></ion-col>
-      <ion-col col-5 class = "style-t-c"><p class = "text-t-c"> {{s[1]}} </p></ion-col>
-      <ion-col col-5 class = "style-t-c"><p class = "text-t-c"> {{s[2]}} </p></ion-col>    
-    </ion-row>
-  </ion-grid>
+  
+      <ion-row *ngFor="let i of contentTable"  class = "table-c" >
+        
+        <ion-col col-6 class = "style-t-c"><p class = "text-t-c"> {{i[0]}} </p></ion-col>
+        <ion-col col-6 class = "style-t-c"><p class = "text-t-c"> {{i[1]}} </p></ion-col>
+        
+      </ion-row>    
+    </ion-grid>
 
 </ion-content>
