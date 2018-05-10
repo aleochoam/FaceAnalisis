@@ -25,6 +25,7 @@ from .interpolacion.lagrange import Lagrange
 from .interpolacion.newton_diferencias import NewtonDiferenciasDivididas
 from .interpolacion.spline_lineal import SplinesLineales
 from .interpolacion.spline_cuadratico import SplinesCuadraticos
+from .interpolacion.spline_cubico import SplinesCubicos
 
 
 def create_method(method):
@@ -81,5 +82,7 @@ def create_method(method):
         return SplinesLineales()
     elif method == "spline_cuadratico":
         return SplinesCuadraticos()
+    elif method == "spline_cubico":
+        return SplinesCubicos()
     else:
         return NumericMethod()
