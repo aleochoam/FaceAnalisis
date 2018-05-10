@@ -29,15 +29,19 @@ import { FactorizacionSimplePage } from '../pages/sistemas-de-ecuaciones-lineale
 import { FactorizacionParcialPage } from '../pages/sistemas-de-ecuaciones-lineales/factorizacion-parcial/factorizacion-parcial';
 import { CroutPage } from '../pages/sistemas-de-ecuaciones-lineales/crout/crout';
 import { DoolittlePage } from '../pages/sistemas-de-ecuaciones-lineales/doolittle/doolittle';
-
-import { HttpClientModule } from '@angular/common/http';
-
 import { HttpEcuacionesUnaVariableProvider } from '../providers/http-ecuaciones-una-variable/http-ecuaciones-una-variable';
 import { CholeskyPage } from '../pages/sistemas-de-ecuaciones-lineales/cholesky/cholesky';
 import { InterpolacionSistemasDeEcPage } from '../pages/interpolacion/interpolacion-sistemas-de-ec/interpolacion-sistemas-de-ec';
 import { JacobiPage } from '../pages/sistemas-de-ecuaciones-lineales/jacobi/jacobi';
 import { SeidelPage } from '../pages/sistemas-de-ecuaciones-lineales/seidel/seidel';
 import { SorPage } from '../pages/sistemas-de-ecuaciones-lineales/sor/sor';
+import { NewtonDifDivPage } from '../pages/interpolacion/newton-dif-div/newton-dif-div';
+import { LagrangePage } from '../pages/interpolacion/lagrange/lagrange';
+import { SplinesPage } from '../pages/interpolacion/splines/splines';
+import { Splines2Page } from '../pages/interpolacion/splines2/splines2';
+import { Splines3Page } from '../pages/interpolacion/splines3/splines3';
+
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -68,8 +72,14 @@ import { SorPage } from '../pages/sistemas-de-ecuaciones-lineales/sor/sor';
     InterpolacionSistemasDeEcPage,
     JacobiPage,
     SeidelPage,
-    SorPage
-
+    SorPage,
+    NewtonDifDivPage,
+    InterpolacionSistemasDeEcPage,
+    LagrangePage,
+    SplinesPage,
+    Splines2Page,
+    Splines3Page
+  
   ],
   imports: [
     BrowserModule,
@@ -105,7 +115,13 @@ import { SorPage } from '../pages/sistemas-de-ecuaciones-lineales/sor/sor';
     InterpolacionSistemasDeEcPage,
     JacobiPage,
     SeidelPage,
-    SorPage
+    SorPage,
+    NewtonDifDivPage,
+    InterpolacionSistemasDeEcPage,
+    LagrangePage,
+    SplinesPage,
+    Splines2Page,
+    Splines3Page
 
     
   ],

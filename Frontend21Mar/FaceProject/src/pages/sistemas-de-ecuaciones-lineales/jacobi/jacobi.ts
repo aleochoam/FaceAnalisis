@@ -56,6 +56,7 @@ export class JacobiPage {
 
   submitForm(){
     console.log(this.datasubmit);
+    this.postServer();
   }
 
   private presentAlert () {

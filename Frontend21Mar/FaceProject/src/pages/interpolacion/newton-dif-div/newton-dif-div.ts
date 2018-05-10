@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { HttpEcuacionesUnaVariableProvider } from '../../../providers/http-ecuaciones-una-variable/http-ecuaciones-una-variable';
 
 /**
- * Generated class for the SorPage page.
+ * Generated class for the NewtonDifDivPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,27 +11,30 @@ import { HttpEcuacionesUnaVariableProvider } from '../../../providers/http-ecuac
 
 @IonicPage()
 @Component({
-  selector: 'page-sor',
-  templateUrl: 'sor.html',
+  selector: 'page-newton-dif-div',
+  templateUrl: 'newton-dif-div.html',
 })
-export class SorPage {
+export class NewtonDifDivPage {
 
-
-  private apiUrl  = 'http://165.227.197.6:8080/api/sor/';
+  private apiUrl  = 'http://165.227.197.6:8080/api/newton_diferencias/';
   
   showResult = false;
-
+  //Estructura que se enviará al servidor
   datasubmit = {
-    A : {},
-    b : {},
-    x0:{},
+    X : {},
+    Y : {},
   };
 
+  //Datos recibidos por el servidor
   private dataReceivedGet  = {};
   private dataReceivedPost = {};
+
+  //Variables que nos ayudan a crear las entradas de usuario
   matrix: Array<string> = [];
   n: any;
   input: string;
+
+  funcion:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl : AlertController, public httpEcuacionesUnaVariableProvider: HttpEcuacionesUnaVariableProvider) {
     this.n = '';
@@ -41,7 +44,7 @@ export class SorPage {
     console.log('ionViewDidLoad GaussSimplePage');
   }
   createMatrix() {
-    this.matrix = [];
+    this.input = "<ion-input class='cell'></ion-input>";
     for (let i = 0; i < this.n; i++) {
       this.matrix.push(String(i));
     }
@@ -54,7 +57,8 @@ export class SorPage {
   }
 
   submitForm(){
-    console.log(this.datasubmit);
+    console.log(this.datasubmit)
+    this.postServer();
   }
 
   private presentAlert () {
@@ -62,9 +66,7 @@ export class SorPage {
       title: '¿Qué debo hacer?',
       subTitle: ` <p>Ingresa los siguientes datos:</p>
                   <ul>
-                    <li> <b>Dimensión:</b> Cantidad de variables a evaluar</li>
-                    <li> <b>Matriz:</b> Coeficientes de las variables a evaluar</li>
-                    <li><b>b:</b> Vector b de la ecuación Ax = b</li>
+                    <li> <b>Cantidad de Puntos:</b>Cantidad de puntos que se tienen para interpolar</li>
                   </ul>`,
       buttons: ['OK']
     });
@@ -82,7 +84,7 @@ export class SorPage {
   }
 
   private results(){
-
+    this.funcion = this.dataReceivedPost['funcion'];
   }
 
   public postServer() {
@@ -96,5 +98,6 @@ export class SorPage {
       console.log(err);
     });
   }
+
 
 }
