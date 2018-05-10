@@ -17,7 +17,7 @@ class SOR(NumericMethod):
         b = b[0]
         tol = eval(tol)
         iteraciones = int(iteraciones)
-        w = int(w)
+        w = float(w)
 
         response = self.init_response()
 
