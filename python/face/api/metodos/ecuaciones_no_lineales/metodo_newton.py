@@ -49,7 +49,8 @@ class NewtonMethod(NumericMethod):
         response["iteraciones"].append(iteracion)
 
         if fx == 0:
-            response["raiz"] = str(xa)
+            # response["raiz"] = str(xa)
+            response["aproximado"] = str(xn)
         elif error < tol:
             response["aproximado"] = str(xn)
         elif dfx == 0:
@@ -67,5 +68,6 @@ class NewtonMethod(NumericMethod):
     def init_response(self):
         response = dict()
         response["iteraciones"] = []
+        response["error"] = ""
 
         return response

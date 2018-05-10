@@ -100,5 +100,6 @@ class FalsePosition(NumericMethod):
         response["raices"] = []
         response["iteraciones"] = []
         response["aproximados"] = []
+        response["error"] = ""
 
         return response

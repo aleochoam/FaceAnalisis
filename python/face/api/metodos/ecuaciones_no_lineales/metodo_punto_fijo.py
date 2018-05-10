@@ -35,7 +35,7 @@ class FixedPoint(NumericMethod):
             xn = g.evalf(subs={x: xa})
 
             error = calcular_error(xn, xa)
-            # error = abs((xn-xa))
+
             xa = xn
             contador = contador + 1
 
@@ -58,5 +58,6 @@ class FixedPoint(NumericMethod):
         response = dict()
         response["iteraciones"] = []
         response["aproximado"] = []
+        response["error"] = ""
 
         return response

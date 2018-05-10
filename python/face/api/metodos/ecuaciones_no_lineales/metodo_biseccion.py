@@ -49,9 +49,9 @@ class Bisection(NumericMethod):
 
         while error > tol and fxm != 0 and contador < n_iter:
             err_fm = "{e:.2e}".format(e=error) if contador != 0 else ""
-            xa_fm = "{xa:.2e}".format(xa=xa)
-            xb_fm = "{xb:.2e}".format(xb=xb)
-            xm_fm = "{xm:.2e}".format(xm=xm)
+            # xa_fm = "{xa:.2e}".format(xa=xa)
+            # xb_fm = "{xb:.2e}".format(xb=xb)
+            # xm_fm = "{xm:.2e}".format(xm=xm)
 
             fxm_fm = "{fxm:.2e}".format(fxm=xa)
 
@@ -88,7 +88,9 @@ class Bisection(NumericMethod):
         response["iteraciones"].append(iteracion)
 
         if fxm == 0:
-            response["raices"].append(str(xm))
+            # response["raices"].append(str(xm))
+            response["aproximados"].append(str(xm))
+
             # print(xm, "es raiz")
 
         elif error < tol:
@@ -110,5 +112,6 @@ class Bisection(NumericMethod):
         response["raices"] = []
         response["iteraciones"] = []
         response["aproximados"] = []
+        response["error"] = ""
 
         return response

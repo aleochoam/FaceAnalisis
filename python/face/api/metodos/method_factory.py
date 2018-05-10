@@ -22,6 +22,7 @@ from .sistemas_ecuaciones.sor import SOR
 
 from .interpolacion.sistema_ecuaciones import MetodoSistemaEcuaciones
 from .interpolacion.newton_diferencias import NewtonDiferenciasDivididas
+from .interpolacion.spline_lineal import SplinesLineales
 
 
 def create_method(method):
@@ -72,5 +73,7 @@ def create_method(method):
         return MetodoSistemaEcuaciones()
     elif method == "newton_diferencias":
         return NewtonDiferenciasDivididas()
+    elif method == "spline_lineal":
+        return SplinesLineales()
     else:
         return NumericMethod()

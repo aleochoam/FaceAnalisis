@@ -65,6 +65,6 @@ class IncrementalSearch(NumericMethod):
         response["raices"] = []
         response["intervalos"] = []
         response["iteraciones"] = []
-        # response["error"] = ""
+        response["error"] = ""
 
         return response

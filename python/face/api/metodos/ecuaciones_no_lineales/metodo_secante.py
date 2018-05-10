@@ -53,7 +53,8 @@ class Secante(NumericMethod):
         response["iteraciones"].append(iteracion)
 
         if fx1 == 0:
-            response["raiz"] = str(x1)
+            # response["raiz"] = str(x1)
+            response["aproximacion"] = str(x1)
         elif error < tol:
             response["aproximacion"] = str(x1)
         elif den == 0:
@@ -70,5 +71,6 @@ class Secante(NumericMethod):
     def init_response(self):
         response = dict()
         response["iteraciones"] = []
+        response["error"] = ""
 
         return response
