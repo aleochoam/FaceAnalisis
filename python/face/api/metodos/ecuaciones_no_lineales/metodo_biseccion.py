@@ -53,9 +53,9 @@ class Bisection(NumericMethod):
             # xb_fm = "{xb:.2e}".format(xb=xb)
             # xm_fm = "{xm:.2e}".format(xm=xm)
 
-            fxm_fm = "{fxm:.2e}".format(fxm=xa)
+            fxm_fm = "{fxm:.2e}".format(fxm=fxm)
 
-            iteracion = [contador, xa_fm, xb_fm, xm_fm, fxm_fm, err_fm]
+            iteracion = [contador, str(xa), str(xb), str(xm), fxm_fm, err_fm]
 
             response["iteraciones"].append(iteracion)
             # print("Contador: ", contador)
