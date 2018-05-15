@@ -20,36 +20,37 @@
     </button>
     <br>
   
-    <ion-grid>
-      <ion-item id="matrixDimension">
-        <ion-label>Dimension de la matriz</ion-label>
-        <ion-input type="number" [(ngModel)]="n" name='n'></ion-input>
-      </ion-item>
-  
-      <button ion-button type="submit" block (click)="createMatrix()">Generar Matriz</button>
-  
-      <form (ngSubmit)='submitForm()'>
-        <p>Ingrese la Matriz A</p>
-        <table>
-          <tr *ngFor="let i of matrix; let k = index">
-              <td *ngFor="let j of matrix">
-                  <ion-input class='cell' type="number" [(ngModel)]="datasubmit.A[i+j]" [ngModelOptions]="{standalone: true}"></ion-input>
-              </td>
-          </tr>
-        </table>
-        <br>
-        <p>Ingrese el Vector B</p>
-        <table>
-          <tr>
-            <td *ngFor="let i of matrix">
-                <ion-input class='cell' type="number" [(ngModel)]="datasubmit.b[i]" [ngModelOptions]="{standalone: true}"></ion-input>
+    <ion-item id="matrixDimension">
+      <ion-label>Dimension de la matriz</ion-label>
+      <ion-input type="number" [(ngModel)]="n" name='n'></ion-input>
+    </ion-item>
+
+    <button ion-button type="submit" block (click)="createMatrix()">Generar Matriz</button>
+    
+  <ion-scroll scrollX="true" scrollY="true" zoom="true" style="height:100vh">
+
+    <form (ngSubmit)='submitForm()'>
+      <p>Ingrese la Matriz A</p>
+      <table>
+        <tr *ngFor="let i of matrix; let k = index">
+            <td *ngFor="let j of matrix">
+                <ion-input class='inputMatrix' type="number" [(ngModel)]="datasubmit.A[i+j]" [ngModelOptions]="{standalone: true}"></ion-input>
             </td>
-          </tr>
-        </table>
-        <button ion-button type="submit" block>Calcular</button>
-  
-      </form>
-    </ion-grid>
+        </tr>
+      </table>
+      <br>
+      <p>Ingrese el Vector B</p>
+      <table>
+        <tr>
+          <td *ngFor="let i of matrix">
+              <ion-input class='inputMatrix' type="number" [(ngModel)]="datasubmit.b[i]" [ngModelOptions]="{standalone: true}"></ion-input>
+          </td>
+        </tr>
+      </table>
+      <button ion-button type="submit" block>Calcular</button>
+
+    </form>
+
     <div *ngIf="showResult">
       <p>La solución al sistema es:</p>
       <table  class="table" align="center">
@@ -72,4 +73,5 @@
       </tr>
     </table>
     </div>
-  </ion-content>
+  </ion-scroll>
+</ion-content>
