@@ -30,16 +30,24 @@
 
     <form (ngSubmit)='submitForm()'>
       <p>Ingrese Los puntos:</p>
-      <table>
+      <table align="center">
+        <tr><td>X:</td><td>Y:</td></tr>
         <tr *ngFor="let i of matrix; let k = index">
             <td>
-                <ion-input class='cell' type="number" [(ngModel)]="datasubmit.X[i]" [ngModelOptions]="{standalone: true}"></ion-input>
+                <ion-input class="inputMatrix" type="number" [(ngModel)]="datasubmit.X[i]" [ngModelOptions]="{standalone: true}"></ion-input>
             </td>
 
             <td>
-              <ion-input class='cell' type="number" [(ngModel)]="datasubmit.Y[i]" [ngModelOptions]="{standalone: true}"></ion-input>
+              <ion-input class="inputMatrix" type="number" [(ngModel)]="datasubmit.Y[i]" [ngModelOptions]="{standalone: true}"></ion-input>
             </td>
         </tr>
+        <br>
+        <tr>
+            <p>Ingrese el valor de x a evaluar en la función:</p>
+            <td>
+              <ion-input class="inputMatrix" type="number" [(ngModel)]="datasubmit.eval" [ngModelOptions]="{standalone: true}"></ion-input>
+            </td>
+          </tr>
       </table>
       
       <button ion-button type="submit" block>Calcular</button>
