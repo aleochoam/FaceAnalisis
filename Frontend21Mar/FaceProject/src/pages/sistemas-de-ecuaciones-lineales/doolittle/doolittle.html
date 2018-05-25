@@ -20,20 +20,19 @@
   </button>
   <br>
 
-  <ion-grid>
     <ion-item id="matrixDimension">
       <ion-label>Dimension de la matriz</ion-label>
       <ion-input type="number" [(ngModel)]="n" name='n'></ion-input>
     </ion-item>
 
     <button ion-button type="submit" block (click)="createMatrix()">Generar Matriz</button>
-
+  <ion-scroll scrollX="true" scrollY="true" zoom="true" style="height:100vh">
     <form (ngSubmit)='submitForm()'>
       <p>Ingrese la Matriz A</p>
       <table>
         <tr *ngFor="let i of matrix; let k = index">
             <td *ngFor="let j of matrix">
-                <ion-input class='cell' type="number" [(ngModel)]="datasubmit.A[i+j]" [ngModelOptions]="{standalone: true}"></ion-input>
+                <ion-input class='inputMatrix' type="number" [(ngModel)]="datasubmit.A[i+j]" [ngModelOptions]="{standalone: true}"></ion-input>
             </td>
         </tr>
       </table>
@@ -42,60 +41,59 @@
       <table>
         <tr>
           <td *ngFor="let i of matrix">
-              <ion-input class='cell' type="number" [(ngModel)]="datasubmit.b[i]" [ngModelOptions]="{standalone: true}"></ion-input>
+              <ion-input class='inputMatrix' type="number" [(ngModel)]="datasubmit.b[i]" [ngModelOptions]="{standalone: true}"></ion-input>
           </td>
         </tr>
       </table>
       <button ion-button type="submit" block>Calcular</button>
 
     </form>
-  </ion-grid>
-  <div *ngIf="showResult">
-    <p>La solución al sistema es:</p>
-    <table  class="table-striped" align="center">
-      <tr class="table"><th *ngFor="let i of matrix" class="table">
-          X{{i}}
-        </th></tr>
-      <tr class="table">
-        <td *ngFor="let j of xs" class="table">
-        <p>{{j}}</p>
-      </td>
-      </tr>
-    </table>
-
-    <p>z:</p>
-    <table  class="table-striped" align="center">
+    <div *ngIf="showResult">
+      <p>La solución al sistema es:</p>
+      <table  class="table-striped" align="center">
         <tr class="table"><th *ngFor="let i of matrix" class="table">
-            Z{{i}}
+            X{{i}}
           </th></tr>
         <tr class="table">
-          <td *ngFor="let j of z" class="table">
+          <td *ngFor="let j of xs" class="table">
           <p>{{j}}</p>
         </td>
         </tr>
       </table>
 
-    <p>L:</p>
+      <p>z:</p>
+      <table  class="table-striped" align="center">
+          <tr class="table"><th *ngFor="let i of matrix" class="table">
+              Z{{i}}
+            </th></tr>
+          <tr class="table">
+            <td *ngFor="let j of z" class="table">
+            <p>{{j}}</p>
+          </td>
+          </tr>
+        </table>
+
+      <p>L:</p>
+      
+      <table class="table table-bordered table" align="center" class = "matriz">
+        <tr *ngFor="let i of L" class="table">
+          <td *ngFor="let j of i" class="table">
+            {{j}}
+          </td>
+        </tr>
+      </table>
+
+      <p>U:</p>
+      
+      <table class="table" align="center" class = "matriz">
+        <tr *ngFor="let i of U" class="table">
+          <td *ngFor="let j of i" class="table">
+            {{j}}
+          </td>
+        </tr>
+      </table>
+    </div>
     
-    <table class="table table-bordered table" align="center" class = "matriz">
-      <tr *ngFor="let i of L" class="table">
-        <td *ngFor="let j of i" class="table">
-          {{j}}
-        </td>
-      </tr>
-    </table>
-
-    <p>U:</p>
-    
-    <table class="table" align="center" class = "matriz">
-      <tr *ngFor="let i of U" class="table">
-        <td *ngFor="let j of i" class="table">
-          {{j}}
-        </td>
-      </tr>
-    </table>
-
-  </div>
-
+  </ion-scroll>
 </ion-content>
 

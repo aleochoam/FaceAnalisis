@@ -94,6 +94,8 @@ export class GaussSimplePage {
     .then(result => {
       this.dataReceivedPost = result;
       this.showResult = true;
+      console.log("ME LLEGA DEL SERVIDOR COMO RTA");
+      console.log(result);
       this.results();
       console.log(this.dataReceivedPost);
     }, (err) => {
