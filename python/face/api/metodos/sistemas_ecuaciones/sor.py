@@ -1,7 +1,7 @@
 import numpy as np
 
 from ..numeric_method import NumericMethod
-from .matrix_utils import ceros_en_diagonal, process_params
+from .matrix_utils import ceros_en_diagonal, process_params, radio_espectral
 
 
 class SOR(NumericMethod):
@@ -28,9 +28,15 @@ class SOR(NumericMethod):
         contador = 0
         dispersion = tol + 1
 
+        T, C = self.hallar_T_C(A, b, w)
+
+        if radio_espectral(T) >= 1:
+            response["error"] = "El radio espectral de la matriz T es mayor  1, reorganice la matriz"
+            return response
+
         while dispersion > tol and contador < iteraciones:
-            x1 = self.calcular_nuevo(A, b, x0, w)
-            dispersion = self.error(x1 - x0)
+            x1 = np.matmul(T, x0) + C
+            dispersion = np.linalg.norm(x1 - x0, 2)
 
             disp_fmt = "{e:.2e}".format(e=dispersion) if contador != 0 else ""
             iteracion = [contador, x0.tolist(), disp_fmt]
@@ -38,7 +44,6 @@ class SOR(NumericMethod):
 
             x0 = x1.copy()
             contador = contador + 1
-
         iteracion = [contador, x0.tolist(), dispersion]
         response["iteraciones"].append(iteracion)
 
@@ -52,24 +57,16 @@ class SOR(NumericMethod):
 
         return response
 
-    def calcular_nuevo(self, matrix, b, x0, w):
-        n = len(x0)
-        x1 = np.zeros(n)
-        for i in range(n):
-            x1[i] = x0[i]
+    def hallar_T_C(self, A, b, w):
+        D = np.diag(np.diag(A))
+        U = -1 * (np.triu(A) - D)
+        L = -1 * (np.tril(A) - D)
 
-        for i in range(n):
-            suma1 = 0
-            for j in range(i):
-                suma1 = suma1 + matrix[i, j] * x1[j]
+        D_wL_inv = np.linalg.inv(D - w*L)
+        T = np.matmul(D_wL_inv, (1-w)*D + w*U)
+        C = np.matmul(w * D_wL_inv, b)
 
-            suma2 = 0
-            for j in range(i+1, n):
-                suma2 = suma2 + matrix[i, j] * x0[j]
-
-            suma = suma1 + suma2
-            x1[i] = (1-w)*x0[i] - w/matrix[i, i] * suma + w*b[i]/matrix[i, i]
-        return x1
+        return T, C
 
     def error(self, x):
         return np.amax(np.absolute(x))

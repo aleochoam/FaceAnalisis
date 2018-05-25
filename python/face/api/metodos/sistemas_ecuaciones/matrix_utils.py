@@ -81,3 +81,24 @@ def ceros_en_diagonal(matrix):
         if matrix[i, i] == 0:
             return True
     return False
+
+
+def valores_propios(A):
+    w, v = np.linalg.eig(A)
+    return w
+
+
+def radio_espectral(A):
+    v_prop = valores_propios(A)
+    return max(v_prop.min(), v_prop.max(), key=abs)
+
+
+def norma(A):
+    return np.linalg.norm(A, 2)
+
+
+def get_inverse_D(D):
+        D = np.diag(D)
+        D = 1/D
+        D = np.diag(D)
+        return D

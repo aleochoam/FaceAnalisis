@@ -4,7 +4,7 @@ INICIO Cholesky
     SI det(A) == 0:
         Error("La matriz no es invertible")
 
-    n = len(A)
+    n = longitud(A)
     L = zeros(numFIlas= n, numCols=n)
     U = zeros(numFIlas= n, numCols=n)
 

@@ -1,7 +1,7 @@
 import numpy as np
 
 from ..numeric_method import NumericMethod
-from .matrix_utils import ceros_en_diagonal, process_params
+from .matrix_utils import *
 
 
 class Jacobi(NumericMethod):
@@ -26,9 +26,15 @@ class Jacobi(NumericMethod):
         contador = 0
         dispersion = tol + 1
 
+        T, C = self.hallar_T_C(A, b)
+
+        if radio_espectral(T) >= 1:
+            response["error"] = "El radio espectral de la matriz T es mayor  1, reorganice la matriz"
+            return response
+
         while dispersion > tol and contador < iteraciones:
-            x1 = self.calcular_nuevo(A, b, x0)
-            dispersion = self.error(x1 - x0)
+            x1 = np.matmul(T, x0) + C
+            dispersion = np.linalg.norm(x1 - x0, 2)
 
             disp_fmt = "{e:.2e}".format(e=dispersion) if contador != 0 else ""
             iteracion = [contador, x0.tolist(), disp_fmt]
@@ -42,24 +48,23 @@ class Jacobi(NumericMethod):
 
         if dispersion < tol:
             response["aproximados"].append(x1.tolist())
-            # print(x1, "es una aproximación inicial con una toleracia de {}".format(tol))
+
         else:
             response["error"] = "El algoritmo fracasó despues de {} \
                 iteraciones".format(iteraciones)
-            # print("El método fracasó en {} iteraciones".format(iteraciones))
 
         return response
 
-    def calcular_nuevo(self, matrix, b, x0):
-        n = len(x0)
-        x1 = np.zeros(n)
-        for i in range(n):
-            suma = 0
-            for j in range(n):
-                if j != i:
-                    suma = suma + matrix[i, j] * x0[j]
-            x1[i] = (b[i] - suma)/matrix[i, i]
-        return x1
+    def hallar_T_C(self, A, b):
+        D = np.diag(np.diag(A))
+        U = -1 * (np.triu(A) - D)
+        L = -1 * (np.tril(A) - D)
+
+        D_inv = get_inverse_D(D)
+        T = np.matmul(D_inv, (L + U))
+        C = np.matmul(D_inv, b)
+
+        return T, C
 
     def error(self, x):
         return np.amax(np.absolute(x))
