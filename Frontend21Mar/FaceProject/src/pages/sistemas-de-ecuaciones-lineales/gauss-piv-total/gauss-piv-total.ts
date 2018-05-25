@@ -46,6 +46,10 @@ export class GaussPivTotalPage {
   }
   createMatrix() {
     this.matrix = [];
+    this.datasubmit = {
+      A : {},
+      b : {},
+    };
     this.input = "<ion-input class='cell'></ion-input>";
     for (let i = 0; i < this.n; i++) {
       this.matrix.push(String(i));

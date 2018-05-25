@@ -48,8 +48,14 @@
     </form>
   </ion-grid>
   <div *ngIf="showResult">
-      <p>La ecuación que interpola sobre los puntos es:</p>
-      <p>{{funcion}}</p>
+      <ion-card>
+          <ion-card-header>
+              La ecuación que interpola sobre los puntos es:
+          </ion-card-header>
+          <ion-card-content>
+              {{funcion}}
+          </ion-card-content>
+        </ion-card>
   </div>
 </ion-content>
 
