@@ -1,4 +1,4 @@
-package systemOfEquations;
+package co.edu.eafit.systemOfEquations;
 
 import co.edu.eafit.NumericMethod;
 import co.edu.eafit.Solution;

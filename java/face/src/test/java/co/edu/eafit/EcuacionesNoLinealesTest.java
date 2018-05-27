@@ -3,12 +3,12 @@ package co.edu.eafit;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import nonLinearEcuations.NonLinearEcuationSolution;
 
 import java.util.List;
 
 import co.edu.eafit.MethodFactory;
 import co.edu.eafit.NumericMethod;
+import co.edu.eafit.nonLinearEcuations.NonLinearEcuationSolution;
 
 public class EcuacionesNoLinealesTest extends TestCase {
 
