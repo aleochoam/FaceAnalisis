@@ -32,9 +32,8 @@ class NewtonDiferenciasDivididas(NumericMethod):
             k += 1
 
         funcion = self.generar_polinomio(matrix, puntos)
-        print(funcion[7:])
         y_eval = utils.eval_f(funcion[7:], x_eval)
-        return {"funcion": funcion, "y_eval": y_eval}
+        return {"funcion": funcion, "y_eval": round(y_eval, 2)}
 
     def generar_polinomio(self, matrix, puntos):
         funcion = "p(x) = "

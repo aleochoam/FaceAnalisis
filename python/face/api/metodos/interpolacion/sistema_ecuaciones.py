@@ -1,12 +1,14 @@
 import numpy as np
 from ..numeric_method import NumericMethod
 from .interpolacion_utils import process_params
+from ..ecuaciones_no_lineales import utils
 
 
 class MetodoSistemaEcuaciones(NumericMethod):
     def calculate(self, parameters):
         X = parameters["X"]
         Y = parameters["Y"]
+        x_eval = parameters["eval"]
 
         puntos = process_params(X, Y)
 
@@ -23,7 +25,13 @@ class MetodoSistemaEcuaciones(NumericMethod):
 
         vector_a = np.linalg.solve(matriz_vandermonde, b)
         funcion = self.generar_funcion(np.round(vector_a, 4))
-        return {"funcion": funcion}
+        y_eval = utils.eval_f(funcion[7:], x_eval)
+
+        return {
+            "funcion": funcion,
+            "matriz": np.round(matriz_vandermonde, 4).tolist(),
+            "y_eval": round(y_eval, 2)
+            }
 
     def generar_funcion(self, coeficientes):
         n = len(coeficientes)
@@ -31,7 +39,7 @@ class MetodoSistemaEcuaciones(NumericMethod):
         for i in range(n-1):
             if coeficientes[i] == 0.0:
                 continue
-            funcion = funcion + str(coeficientes[i]) + "x^" + str(n-i-1) + " + "
+            funcion = funcion + str(coeficientes[i]) + "*x^" + str(n-i-1) + " + "
 
         funcion = funcion + str(coeficientes[n-1])
         return funcion
