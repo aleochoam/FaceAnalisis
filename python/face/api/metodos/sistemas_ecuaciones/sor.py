@@ -10,7 +10,7 @@ class SOR(NumericMethod):
         b = parameters["b"]
         x0 = parameters["x0"]
         w = parameters["w"]
-        tol = parameters["tol"]
+        tol = parameters["tole"]
         iteraciones = parameters["niter"]
 
         A, b, x0 = process_params(A, b, x0)
