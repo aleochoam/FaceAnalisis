@@ -1,4 +1,4 @@
-package nonLinearEcuations;
+package co.edu.eafit.nonLinearEcuations;
 
 import java.util.ArrayList;
 import java.util.List;

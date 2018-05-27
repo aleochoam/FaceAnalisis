@@ -2,11 +2,10 @@ package co.edu.eafit;
 
 import java.util.Arrays;
 
+import co.edu.eafit.systemOfEquations.MatrixUtils;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-
-import systemOfEquations.MatrixUtils;
 
 public class SistemasDeEcuacionesTest extends TestCase {
 	

@@ -22,8 +22,9 @@
             <artifactId>exp4j</artifactId>
             <version>0.4.8</version>
         </dependency>
-    </dependencies> 
-
+        
+    </dependencies>
+    
     <properties>
         <maven.compiler.source>1.6</maven.compiler.source>
         <maven.compiler.target>1.6</maven.compiler.target>

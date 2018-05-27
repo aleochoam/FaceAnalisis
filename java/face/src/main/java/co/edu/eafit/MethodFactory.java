@@ -1,23 +1,24 @@
 package co.edu.eafit;
 
-import nonLinearEcuations.Biseccion;
-import nonLinearEcuations.IncrementalSearch;
-import nonLinearEcuations.Newton;
-import nonLinearEcuations.PuntoFijo;
-import nonLinearEcuations.RaicesMultiples;
-import nonLinearEcuations.ReglaFalsa;
-import nonLinearEcuations.Secante;
-import systemOfEquations.EliminacionPivoteoParcial;
-import systemOfEquations.EliminacionPivoteoTotal;
-import systemOfEquations.EliminacionSimple;
-import systemOfEquations.FactorizacionCholesky;
-import systemOfEquations.FactorizacionCrout;
-import systemOfEquations.FactorizacionDoolittle;
-import systemOfEquations.FactorizacionGaussiana;
-import systemOfEquations.FactorizacionGaussianaPivoteo;
-import systemOfEquations.Jacobi;
-import systemOfEquations.SOR;
-import systemOfEquations.Seidel;
+import co.edu.eafit.interpolation.Vandermonde;
+import co.edu.eafit.nonLinearEcuations.Biseccion;
+import co.edu.eafit.nonLinearEcuations.IncrementalSearch;
+import co.edu.eafit.nonLinearEcuations.Newton;
+import co.edu.eafit.nonLinearEcuations.PuntoFijo;
+import co.edu.eafit.nonLinearEcuations.RaicesMultiples;
+import co.edu.eafit.nonLinearEcuations.ReglaFalsa;
+import co.edu.eafit.nonLinearEcuations.Secante;
+import co.edu.eafit.systemOfEquations.EliminacionPivoteoParcial;
+import co.edu.eafit.systemOfEquations.EliminacionPivoteoTotal;
+import co.edu.eafit.systemOfEquations.EliminacionSimple;
+import co.edu.eafit.systemOfEquations.FactorizacionCholesky;
+import co.edu.eafit.systemOfEquations.FactorizacionCrout;
+import co.edu.eafit.systemOfEquations.FactorizacionDoolittle;
+import co.edu.eafit.systemOfEquations.FactorizacionGaussiana;
+import co.edu.eafit.systemOfEquations.FactorizacionGaussianaPivoteo;
+import co.edu.eafit.systemOfEquations.Jacobi;
+import co.edu.eafit.systemOfEquations.SOR;
+import co.edu.eafit.systemOfEquations.Seidel;
 
 public class MethodFactory {
     public static NumericMethod createMethod(String methodName){
@@ -60,7 +61,12 @@ public class MethodFactory {
     		return new Seidel();
     	}else if(methodName.toLowerCase().equals("sor")) {
     		return new SOR();
-    	}else{
+    	
+    	// Capitulo interpolacion
+    	}else if(methodName.toLowerCase().equals("vandermonde")) {
+    		return new Vandermonde();
+    	}
+    	else{
             return new NotImplementedMethod();
         }
     }
