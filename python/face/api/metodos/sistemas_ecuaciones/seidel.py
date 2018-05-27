@@ -10,7 +10,7 @@ class Seidel(NumericMethod):
         b = parameters["b"]
         x0 = parameters["x0"]
         tol = parameters["tol"]
-        iteraciones = parameters["iteraciones"]
+        iteraciones = parameters["nIter"]
 
         A, b, x0 = process_params(A, b, x0)
         b = b[0]
