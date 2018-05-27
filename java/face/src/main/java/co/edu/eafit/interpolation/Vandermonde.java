@@ -28,6 +28,10 @@ public class Vandermonde implements NumericMethod {
 		
 		NumericMethod gaussianElimination = MethodFactory.createMethod("eliminacion pivoteo total");
 		Solution sol = gaussianElimination.calculate(matrizVandermonde, b);
+		
+		if(sol.hasError()) {
+			return new InterpolationSolution(sol.getError(), true);
+		}
 
 		double[] x = (double[]) sol.getSolution();
 		

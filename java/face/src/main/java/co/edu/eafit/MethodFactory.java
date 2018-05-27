@@ -1,5 +1,8 @@
 package co.edu.eafit;
 
+import co.edu.eafit.interpolation.DiferenciasDivididas;
+import co.edu.eafit.interpolation.LaGrange;
+import co.edu.eafit.interpolation.SplineLineal;
 import co.edu.eafit.interpolation.Vandermonde;
 import co.edu.eafit.nonLinearEcuations.Biseccion;
 import co.edu.eafit.nonLinearEcuations.IncrementalSearch;
@@ -65,8 +68,13 @@ public class MethodFactory {
     	// Capitulo interpolacion
     	}else if(methodName.toLowerCase().equals("vandermonde")) {
     		return new Vandermonde();
-    	}
-    	else{
+    	}else if(methodName.toLowerCase().equals("diferencias divididas")){
+    		return new DiferenciasDivididas();
+    	}else if(methodName.toLowerCase().equals("lagrange")){
+    		return new LaGrange();
+    	}else if(methodName.toLowerCase().equals("spline lineal")) {
+    		return new SplineLineal();
+    	}else{
             return new NotImplementedMethod();
         }
     }
