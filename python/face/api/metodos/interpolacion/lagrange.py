@@ -39,7 +39,8 @@ class Lagrange(NumericMethod):
             aux2 += "(" + i + ")" + "+"
         aux2 = aux2[:-1]
 
-        respuesta = "p(x) = " + str(sympify(aux2))
+        # respuesta = "p(x) = " + str(sympify(aux2))
+        respuesta = "p(x) = " + str(aux2)
         y_eval = utils.eval_f(aux2, x_eval)
 
         return {"funcion": respuesta, "y_eval": y_eval}
