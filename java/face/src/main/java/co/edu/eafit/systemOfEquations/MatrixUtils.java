@@ -2,7 +2,7 @@ package co.edu.eafit.systemOfEquations;
 
 
 public class MatrixUtils {
-	public static double determinante(double[][] A) {
+	public static double determinante(double[][] A){
 		if(A.length == 1) {
 			return A[0][0];
 		}else{

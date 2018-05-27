@@ -4,14 +4,9 @@ import co.edu.eafit.Solution;
 
 public class InterpolationSolution implements Solution {
 	private String polinomio = "";
-	private String error = "";
 	
-	public InterpolationSolution(String solution, boolean isError) {
-		if (isError) {
-			this.error = solution;
-		}else {
-			this.polinomio = solution;
-		}
+	public InterpolationSolution(String solution) {
+		this.polinomio = solution;
 	}
 
 	@Override
@@ -21,12 +16,12 @@ public class InterpolationSolution implements Solution {
 
 	@Override
 	public boolean hasError() {
-		return !this.error.equals("");
+		return false;
 	}
 
 	@Override
 	public String getError() {
-		return this.error;
+		return "";
 	}
 
 }

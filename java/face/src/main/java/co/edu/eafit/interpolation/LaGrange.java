@@ -42,7 +42,7 @@ public class LaGrange implements NumericMethod {
 		
 		aux = aux.substring(0, aux.length()-1);
 		
-		return new InterpolationSolution(aux, false);
+		return new InterpolationSolution(aux);
 	}
 
 	@Override

@@ -33,7 +33,7 @@ public class DiferenciasDivididas implements NumericMethod {
 		}
 		
 		String polinomio = generarPolinomio(matrix, puntos);
-		return new InterpolationSolution(polinomio, false);
+		return new InterpolationSolution(polinomio);
 	}
 
 	private String generarPolinomio(double[][] matrix, double[][] puntos) {

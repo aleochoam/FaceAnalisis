@@ -1,7 +1,5 @@
 package co.edu.eafit.interpolation;
 
-import java.util.Arrays;
-
 import co.edu.eafit.NumericMethod;
 import co.edu.eafit.Solution;
 
@@ -29,8 +27,8 @@ public class SplineLineal implements NumericMethod {
 			funcion[i] = tramo;
 		}
 		
-		String strFuncion = matrizAString(funcion); 
-		return new InterpolationSolution(strFuncion, false);
+		String strFuncion = InterpolacionUtils.matrizAString(funcion); 
+		return new InterpolationSolution(strFuncion);
 	}
 
 	private String calcularRecta(double[] punto0, double[] punto1) {
@@ -44,19 +42,10 @@ public class SplineLineal implements NumericMethod {
 		return recta;
 	}
 	
-	private String matrizAString(String[][] matriz) {
-		String result = "";
-		for (int i = 0; i < matriz.length; i++) {
-			result += matriz[i][0] + " ; " + matriz[i][1];
-			result += "\n";
-		}
-		return result.substring(0, result.length()-1);
-	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Spline lineal";
 	}
 
 }

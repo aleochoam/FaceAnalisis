@@ -69,4 +69,34 @@ public class InterpolationTest extends TestCase {
 		assertFalse(actual.hasError());
 		assertEquals(expected, (String) actual.getSolution());
 	}
+	
+	public void testCuadraticSplines() {
+		NumericMethod method = MethodFactory.createMethod("spline cuadratico");
+		double[][] points = {{0.0, 0.0},
+			     			  {1.0, 1.0},
+ 						      {2.0, 1.0},
+						      {3.0, 0.0}};
+
+		Solution actual = method.calculate(points);
+		String expected = "0.0 x^2 + 1.0 x + 0.0 ; 0,0 <= x <= 1,0\n" + 
+						  "-1.0 x^2 + 3.0 x + -1.0 ; 1,0 <= x <= 2,0\n" + 
+						  "0.0 x^2 + -1.0 x + 3.0 ; 2,0 <= x <= 3,0";
+		
+		assertFalse(actual.hasError());
+		assertEquals(expected, (String) actual.getSolution());
+	}
+	
+	public void testCubicSplines() {
+		NumericMethod method = MethodFactory.createMethod("spline cubico");
+		double[] x = {0, 1, 2, 3};
+		double[] y = {0, 1, 1, 0};
+
+		Solution actual = method.calculate(x, y);
+		String expected = "0.0 x^2 + 1.0 x + 0.0 ; 0,0 <= x <= 1,0\n" + 
+						  "-1.0 x^2 + 3.0 x + -1.0 ; 1,0 <= x <= 2,0\n" + 
+						  "0.0 x^2 + -1.0 x + 3.0 ; 2,0 <= x <= 3,0";
+		
+		assertFalse(actual.hasError());
+		assertEquals(expected, (String) actual.getSolution());
+	}
 }

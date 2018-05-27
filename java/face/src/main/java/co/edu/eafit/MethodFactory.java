@@ -2,6 +2,8 @@ package co.edu.eafit;
 
 import co.edu.eafit.interpolation.DiferenciasDivididas;
 import co.edu.eafit.interpolation.LaGrange;
+import co.edu.eafit.interpolation.SplineCuadratico;
+import co.edu.eafit.interpolation.SplineCubico;
 import co.edu.eafit.interpolation.SplineLineal;
 import co.edu.eafit.interpolation.Vandermonde;
 import co.edu.eafit.nonLinearEcuations.Biseccion;
@@ -74,6 +76,10 @@ public class MethodFactory {
     		return new LaGrange();
     	}else if(methodName.toLowerCase().equals("spline lineal")) {
     		return new SplineLineal();
+    	}else if(methodName.toLowerCase().equals("spline cuadratico")) {
+    		return new SplineCuadratico();
+    	}else if(methodName.toLowerCase().equals("spline cubico")) {
+    		return new SplineCubico();
     	}else{
             return new NotImplementedMethod();
         }

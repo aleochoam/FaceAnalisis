@@ -3,7 +3,6 @@ package co.edu.eafit.interpolation;
 import co.edu.eafit.MethodFactory;
 import co.edu.eafit.NumericMethod;
 import co.edu.eafit.Solution;
-import co.edu.eafit.systemOfEquations.MatrixUtils;
 
 public class Vandermonde implements NumericMethod {
 
@@ -29,15 +28,11 @@ public class Vandermonde implements NumericMethod {
 		NumericMethod gaussianElimination = MethodFactory.createMethod("eliminacion pivoteo total");
 		Solution sol = gaussianElimination.calculate(matrizVandermonde, b);
 		
-		if(sol.hasError()) {
-			return new InterpolationSolution(sol.getError(), true);
-		}
-
 		double[] x = (double[]) sol.getSolution();
 		
 		String polinomio = generarPolinomio(x);
 		
-		return new InterpolationSolution(polinomio, false);
+		return new InterpolationSolution(polinomio);
 	}
 
 	private String generarPolinomio(double[] coeficientes) {
