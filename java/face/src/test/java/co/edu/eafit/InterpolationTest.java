@@ -92,9 +92,9 @@ public class InterpolationTest extends TestCase {
 		double[] y = {0, 1, 1, 0};
 
 		Solution actual = method.calculate(x, y);
-		String expected = "0.0 x^2 + 1.0 x + 0.0 ; 0,0 <= x <= 1,0\n" + 
-						  "-1.0 x^2 + 3.0 x + -1.0 ; 1,0 <= x <= 2,0\n" + 
-						  "0.0 x^2 + -1.0 x + 3.0 ; 2,0 <= x <= 3,0";
+		String expected = "-0,2*(x-0,0)^3+0,0*(x-0,0)^2+1,2*(x-0,0)+0,0 ; 0,0 <= x <= 1,0\n" + 
+						  "0,0*(x-1,0)^3+-0,6*(x-1,0)^2+0,6*(x-1,0)+1,0 ; 1,0 <= x <= 2,0\n" + 
+					  	  "0,2*(x-2,0)^3+-0,6*(x-2,0)^2+-0,6*(x-2,0)+1,0 ; 2,0 <= x <= 3,0";
 		
 		assertFalse(actual.hasError());
 		assertEquals(expected, (String) actual.getSolution());
