@@ -1,6 +1,5 @@
 package co.edu.eafit.systemOfEquations;
 
-
 public class MatrixUtils {
 	public static double determinante(double[][] A){
 		if(A.length == 1) {
@@ -155,5 +154,25 @@ public class MatrixUtils {
 			System.out.print(b[i]+ " ");
 		}
 		System.out.println();
+	}
+
+	public static double[] matmul(double[][] matrix, double[] vector) {
+		int numRowsMatrix = matrix.length;
+		int numColsMatrix = matrix[0].length;
+		
+		int sizeVector = vector.length;
+		
+		if (numColsMatrix != sizeVector)
+			throw new RuntimeException("No se pueden multiplicar las matrices");
+		
+		double[] result = new double[numRowsMatrix];
+		
+		for (int i = 0; i < numRowsMatrix; i++) {
+			for (int j = 0; j < sizeVector; j++) {
+				result[i] = result[i] + matrix[i][j] * vector[j];
+			}
+		}
+		
+		return result;
 	}
 }

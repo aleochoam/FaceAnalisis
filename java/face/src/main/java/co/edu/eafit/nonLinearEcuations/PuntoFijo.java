@@ -11,7 +11,7 @@ import co.edu.eafit.Solution;
 
 public class PuntoFijo implements NumericMethod{
     private final Evaluator eval;
-    
+
 
     public PuntoFijo() {
         eval = new Evaluator();
@@ -23,10 +23,10 @@ public class PuntoFijo implements NumericMethod{
     	double x0 = (Double) args[1];
     	double tol = (Double) args[2];
     	int niter = (Integer) args[3];
-    	
+
         double error, xn;
         int contador;
-        
+
         List<List<Object>> res = new ArrayList<List<Object>>();
       	contador = 0;
       	error = tol +1;
@@ -37,21 +37,21 @@ public class PuntoFijo implements NumericMethod{
         	iteracion.add(x0);
         	iteracion.add(contador == 0 ? "" : error);
         	res.add(iteracion);
-      		
-      		
+
+
           	xn = this.eval.evalExpr(gx,x0);
           	error = Math.abs(xn-x0);
           	x0 = xn;
           	contador++;
 
       	}
-      	
+
       	List<Object> iteracion = new ArrayList<Object>();
     	iteracion.add(contador);
     	iteracion.add(x0);
     	iteracion.add(error);
     	res.add(iteracion);
-      	
+
 //      	if (error < tol){
 //      		System.out.println(x0 + " Es una aproximacion con una tolerancia " + tol);
 //
@@ -59,7 +59,7 @@ public class PuntoFijo implements NumericMethod{
 //      	  System.out.println("Método fracaso en " + niter + " Iteraciones");
 //
 //      	}
-      	
+
       	return new NonLinearEcuationSolution(res);
     }
 

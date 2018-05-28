@@ -84,6 +84,21 @@ public class SistemasDeEcuacionesTest extends TestCase {
 		assertEquals(Arrays.toString(expected), Arrays.toString((double[]) actual.getSolution()));
 	}
 	
+	public void testFactorizacionPivoteo() {
+		NumericMethod metodo = MethodFactory.createMethod("factorizacion gaussiana pivoteo");
+		double[][] a = {{-7, 2, -3, 4},
+                        {5, -1, 14, -1},
+                        {1, 9, -7, 13},
+                        {-12, 13, -8, -4}};
+		double[] b = {-12, 13, 31, -32};
+		
+		double[] expected = {2.8591626425051024, 0.7481455667844874, 0.08164484492457827, 1.6906954746851197};
+		Solution actual = metodo.calculate(a, b);
+		
+		assertFalse(actual.hasError());
+		assertEquals(Arrays.toString(expected), Arrays.toString((double[]) actual.getSolution()));
+	}
+	
 	public void testFactorizacionCrout() {
 		NumericMethod metodo = MethodFactory.createMethod("crout");
 		double[][] a = {{-7, 2, -3, 4},
