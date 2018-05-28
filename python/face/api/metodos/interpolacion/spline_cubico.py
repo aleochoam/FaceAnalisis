@@ -74,7 +74,7 @@ class SplinesCubicos(NumericMethod):
             funcion = str(polinomio[tramo-1])
             dominio = "{x0} <= x <= {x1}".format(
                 x0=str(X[tramo-1]),
-                x1=str(X[tramo])+']'
+                x1=str(X[tramo])
             )
 
             funcion_tramos.append([funcion, dominio])

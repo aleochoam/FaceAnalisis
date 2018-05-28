@@ -34,6 +34,7 @@ export class NewtonDifDivPage {
   n: any;
   input: string;
 
+  eval:any;
   funcion:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl : AlertController, public httpEcuacionesUnaVariableProvider: HttpEcuacionesUnaVariableProvider) {
@@ -84,6 +85,7 @@ export class NewtonDifDivPage {
   }
 
   private results(){
+    this.eval = this.dataReceivedPost['y_eval']
     this.funcion = this.dataReceivedPost['funcion'];
   }
 

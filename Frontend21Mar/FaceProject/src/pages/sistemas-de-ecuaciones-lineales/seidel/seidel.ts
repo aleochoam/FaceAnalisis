@@ -60,17 +60,18 @@ export class SeidelPage {
   }
 
   submitForm(){
+    this.postServer();
     console.log(this.datasubmit);
   }
 
   private presentAlert () {
     let alert = this.alertCtrl.create({
-      title: '¿Qué debo hacer?',
-      subTitle: ` <p>Ingresa los siguientes datos:</p>
+      title: 'Recuerda:',
+      subTitle: ` <p>Para que los métodos iterativos converjan a una única Solución:</p>
                   <ul>
-                    <li> <b>Dimensión:</b> Cantidad de variables a evaluar</li>
-                    <li> <b>Matriz:</b> Coeficientes de las variables a evaluar</li>
-                    <li><b>b:</b> Vector b de la ecuación Ax = b</li>
+                    <li>El radio Espectral de T debe ser <b>menor</b> que 1</li>
+                    <li>La norma de T debe ser <b>menor</b> que 1</li>
+                    <li>A, debe ser una matriz diagonal dominante</li>
                   </ul>`,
       buttons: ['OK']
     });

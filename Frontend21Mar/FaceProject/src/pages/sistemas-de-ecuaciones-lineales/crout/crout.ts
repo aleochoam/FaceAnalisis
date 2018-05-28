@@ -92,11 +92,24 @@ export class CroutPage {
   }
 
   private results(){
-    this.xs = this.dataReceivedPost['x'];
-    this.L = this.dataReceivedPost['L'];
-    this.U = this.dataReceivedPost['U'];
-    this.z = this.dataReceivedPost['z'];
-    console.log(this.dataReceivedPost);
+    if(this.dataReceivedPost['error'] == null ){
+      this.xs = this.dataReceivedPost['x'];
+      this.L = this.dataReceivedPost['L'];
+      this.U = this.dataReceivedPost['U'];
+      this.z = this.dataReceivedPost['z'];
+      console.log(this.dataReceivedPost);
+    }else{
+      this.showAlert("OJO!",this.dataReceivedPost['error']);
+    }
+  }
+
+  showAlert(error, subtitle) {
+    let alert = this.alertCtrl.create({
+      title: error,
+      subTitle: subtitle,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
   public postServer() {

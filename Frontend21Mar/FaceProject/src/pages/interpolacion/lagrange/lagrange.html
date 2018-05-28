@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color='dark'>
-    <ion-title>Diferenciaas Divididas</ion-title>
+    <ion-title>Lagrange</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -55,9 +55,18 @@
     </form>
   </ion-grid>
   <div *ngIf="showResult">
-      <p>La ecuación que interpola sobre los puntos es:</p>
-      <p>{{funcion}}</p>
-  </div>
+    <ion-card>
+        <ion-card-header>
+            <b>Ecuación Resultante:</b>
+        </ion-card-header>
+        <ion-card-content>
+            <b><em>{{funcion}}</em></b>
+            <br>
+            <b>F(x) Resultante:{{eval}}</b>
+           
+        </ion-card-content>
+      </ion-card>
+</div>
 </ion-content>
 
 

@@ -1,12 +1,14 @@
 import numpy as np
 from ..numeric_method import NumericMethod
 from .interpolacion_utils import process_params
+from ..ecuaciones_no_lineales import utils
 
 
 class NewtonDiferenciasDivididas(NumericMethod):
     def calculate(self, parameters):
         X = parameters["X"]
         Y = parameters["Y"]
+        x_eval = parameters["eval"]
 
         puntos = process_params(X, Y)
 
@@ -30,7 +32,8 @@ class NewtonDiferenciasDivididas(NumericMethod):
             k += 1
 
         funcion = self.generar_polinomio(matrix, puntos)
-        return {"funcion": funcion}
+        y_eval = utils.eval_f(funcion[7:], x_eval)
+        return {"funcion": funcion, "y_eval": round(y_eval, 2)}
 
     def generar_polinomio(self, matrix, puntos):
         funcion = "p(x) = "
@@ -39,7 +42,7 @@ class NewtonDiferenciasDivididas(NumericMethod):
         for i in range(len(matrix)):
             if i != 0:
                 x = np.round(puntos[i-1, 0], 2)
-                xs.append("(x - {x})".format(x=x))
+                xs.append("*(x - {x})".format(x=x))
 
             const = np.round(matrix[i, i+1], 3)
 

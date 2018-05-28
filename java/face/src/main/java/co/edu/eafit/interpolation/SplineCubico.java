@@ -62,7 +62,8 @@ public class SplineCubico implements NumericMethod {
 
 	    String[][] polinomio = new String[n-1][2];
 	    for (int j = 0; j < polinomio.length; j++) {
-			String tramo = String.format("%.1f*(x-%.1f)^3+*(x-%.1f)^2+%.1f*(x-%.1f)+%.1f",
+			String tramo = String.format("%.1f*(x-%.1f)^3+%.1f*(x-%.1f)^2+%.1f*(x-%.1f)+%.1f", 
+
 					a[j], x[j], b[j], x[j], c[j], x[j], d[j]);
 
 			String dominio = String.format("%.1f <= x <= %.1f", x[j], x[j+1]);

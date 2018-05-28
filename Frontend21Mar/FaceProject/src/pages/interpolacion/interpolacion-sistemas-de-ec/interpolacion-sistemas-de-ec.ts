@@ -33,6 +33,7 @@ export class InterpolacionSistemasDeEcPage {
   n: any;
   input: string;
 
+  eval:any;
   funcion:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl : AlertController, public httpEcuacionesUnaVariableProvider: HttpEcuacionesUnaVariableProvider) {
@@ -84,6 +85,7 @@ export class InterpolacionSistemasDeEcPage {
 
   private results(){
     this.funcion = this.dataReceivedPost['funcion'];
+    this.eval = this.dataReceivedPost['y_eval'];
   }
 
   public postServer() {
