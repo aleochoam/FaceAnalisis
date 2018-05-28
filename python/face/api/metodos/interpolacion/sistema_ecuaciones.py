@@ -30,7 +30,7 @@ class MetodoSistemaEcuaciones(NumericMethod):
         return {
             "funcion": funcion,
             "matriz": np.round(matriz_vandermonde, 4).tolist(),
-            "y_eval": round(y_eval, 2)
+            "y_eval": round(eval(y_eval), 2)
             }
 
     def generar_funcion(self, coeficientes):
