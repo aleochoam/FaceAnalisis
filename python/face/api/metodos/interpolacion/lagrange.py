@@ -1,5 +1,5 @@
 import numpy as np
-from sympy import sympify
+from sympy import sympify, simplify
 
 from ..numeric_method import NumericMethod
 from ..ecuaciones_no_lineales import utils
@@ -19,7 +19,7 @@ class Lagrange(NumericMethod):
         res = ["" for x in range(n)]
         numerador = ""
         denominador = ""
-        aux2 = ""
+        polinomio = ""
 
         # Se crea el arreglo, cada posicion es un y*Li(x)
         for i in range(0, n):
@@ -31,17 +31,21 @@ class Lagrange(NumericMethod):
                     denominador += ("("+str(x[i]) + "-" + str(x[j]) + ")*")
             numerador = numerador[:-1]
             denominador = denominador[:-1]
-            aux = str(y[i]) + "*" + numerador + "/" + denominador
+            aux = str(y[i]) + "*(" + numerador + ")/(" + denominador + ")"
             res[i] = aux
 
         # Se suman todos los y*Li(x)
         for i in res:
-            aux2 += "(" + i + ")" + "+"
-        aux2 = aux2[:-1]
+            polinomio += "(" + i + ")" + "+"
+        polinomio = polinomio[:-1]
 
-        # respuesta = "p(x) = " + str(sympify(aux2))
-        respuesta = "p(x) = " + str(aux2)
-        y_eval = utils.eval_f(aux2, x_eval)
+        polinomio = sympify(polinomio)
+        polinomio = simplify(polinomio)
+        polinomio = str(polinomio)
+        respuesta = "p(x) = " + polinomio
+
+        y_eval = utils.eval_f(polinomio, x_eval)
+        y_eval = round(eval(y_eval), 2)
 
         return {"funcion": respuesta, "y_eval": y_eval}
 
