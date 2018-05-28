@@ -83,9 +83,22 @@ export class GaussPivTotalPage {
 
 
   private results(){
+    if(this.dataReceivedPost['error'] == null ){
     this.xs = this.dataReceivedPost['x'];
     this.escalonada = this.dataReceivedPost['augmented'];
     console.log(this.escalonada);
+    }else{
+      this.showAlert("OJO!",this.dataReceivedPost['error']);
+    }
+  }
+
+  showAlert(error, subtitle) {
+    let alert = this.alertCtrl.create({
+      title: error,
+      subTitle: subtitle,
+      buttons: ['OK']
+    });
+    alert.present();
   }
   
   //Zona de Get y Post

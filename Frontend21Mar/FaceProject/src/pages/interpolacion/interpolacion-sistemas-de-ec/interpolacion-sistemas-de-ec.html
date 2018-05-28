@@ -40,7 +40,12 @@
             <td>
               <ion-input class="inputMatrix" type="number" [(ngModel)]="datasubmit.Y[i]" [ngModelOptions]="{standalone: true}"></ion-input>
             </td>
-        </tr>
+            <tr>
+                <p>Ingrese el valor de x a evaluar en la función:</p>
+                <td>
+                  <ion-input class="inputMatrix" type="number" [(ngModel)]="datasubmit.eval" [ngModelOptions]="{standalone: true}"></ion-input>
+                </td>
+            </tr>
       </table>
       
       <button ion-button type="submit" block>Calcular</button>
@@ -50,10 +55,13 @@
   <div *ngIf="showResult">
       <ion-card>
           <ion-card-header>
-              La ecuación que interpola sobre los puntos es:
+              <b>Ecuación Resultante:</b>
           </ion-card-header>
           <ion-card-content>
-              {{funcion}}
+              <b><em>{{funcion}}</em></b>
+              <br>
+              <b>F(x) Resultante:</b>
+              <b>{{eval}}</b>
           </ion-card-content>
         </ion-card>
   </div>
