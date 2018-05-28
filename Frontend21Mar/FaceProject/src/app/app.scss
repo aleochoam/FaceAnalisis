@@ -78,7 +78,16 @@
     color: black;
 }
 
+@font-face{
+    font-family: 'Barrio';
+    src: url('../assets/fonts/Barrio.woff2') format('woff2');
+}
 
+  /*  
+*{
+font-family: 'Barrio';
+}
+*/
 
 .cell {
     background-color: white;

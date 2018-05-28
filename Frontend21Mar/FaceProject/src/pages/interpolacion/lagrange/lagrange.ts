@@ -34,6 +34,7 @@ export class LagrangePage {
   n: any;
   input: string;
 
+  eval:any;
   funcion:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl : AlertController, public httpEcuacionesUnaVariableProvider: HttpEcuacionesUnaVariableProvider) {
@@ -86,6 +87,7 @@ export class LagrangePage {
 
   private results(){
     this.funcion = this.dataReceivedPost['funcion'];
+    this.eval = this.dataReceivedPost['y_eval'];
   }
 
   public postServer() {
