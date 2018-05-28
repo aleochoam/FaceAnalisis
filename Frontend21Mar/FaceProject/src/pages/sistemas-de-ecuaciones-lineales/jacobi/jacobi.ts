@@ -27,6 +27,8 @@ export class JacobiPage {
     x0:{},
   };
 
+  private contentTable = [];
+
   private dataReceivedGet  = {};
   private dataReceivedPost = {};
   matrix: Array<string> = [];
@@ -89,8 +91,26 @@ export class JacobiPage {
   }
 
   private results(){
+    if(this.dataReceivedPost['error'] == null ){
+      this.contentTable = this.dataReceivedPost['iteraciones'];
+      this.showResult = true;
+      
 
+    
+    }else{
+        this.showAlert("OJO!",this.dataReceivedPost['error']);
+      }
   }
+
+  showAlert(error, subtitle) {
+    let alert = this.alertCtrl.create({
+      title: error,
+      subTitle: subtitle,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+  
 
   public postServer() {
     this.httpEcuacionesUnaVariableProvider.post(this.datasubmit, this.apiUrl)
@@ -98,7 +118,6 @@ export class JacobiPage {
       this.dataReceivedPost = result;
       this.showResult = true;
       this.results();
-      console.log("Me llega rta en JACOBI ->")
       console.log(this.dataReceivedPost);
     }, (err) => {
       console.log(err);

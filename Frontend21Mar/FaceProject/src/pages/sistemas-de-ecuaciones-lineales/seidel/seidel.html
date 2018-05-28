@@ -66,6 +66,22 @@
         <button ion-button type="submit" block>Calcular</button>
   
       </form>
+
+      <div *ngIf="showResult">
+        <table>
+          <tr>
+            <th class = "style-t-t">i</th>
+            <th class = "style-t-t" *ngFor="let i of matrix"><div>X{{i}}</div></th>
+            <th class = "style-t-t">Error</th>
+          </tr>
+          <tr *ngFor="let i of contentTable"  class = "table-c">
+            <td  class = "style-t-c"><p class = "text-t-c"> {{i[0]}} </p></td>
+            <td  class = "style-t-c" *ngFor="let j of i[1]"><p class = "text-t-c" > {{j}} </p></td>  
+            <td  class = "style-t-c"><p class = "text-t-c"> {{i[2]}} </p></td>
+   
+          </tr> 
+        </table>
+      </div>
     </ion-scroll>
 
   </ion-content>

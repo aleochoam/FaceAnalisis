@@ -67,11 +67,10 @@ export class GaussSimplePage {
   private presentAlert () {
     let alert = this.alertCtrl.create({
       title: '¿Qué debo hacer?',
-      subTitle: ` <p>Ingresa los siguientes datos:</p>
+      subTitle: ` <p>Recuerda:</p>
                   <ul>
-                    <li> <b>Dimensión:</b> Cantidad de variables a evaluar</li>
-                    <li> <b>Matriz:</b> Coeficientes de las variables a evaluar</li>
-                    <li><b>b:</b> Vector b de la ecuación Ax = b</li>
+                    <li>La matriz A debe ser invertible</li>
+                    <li>Evite poner ceros en la diagonal</li>
                   </ul>`,
       buttons: ['OK']
     });

@@ -32,7 +32,7 @@ export class SorPage {
   matrix: Array<string> = [];
   n: any;
   input: string;
-
+  private contentTable = [];
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl : AlertController, public httpEcuacionesUnaVariableProvider: HttpEcuacionesUnaVariableProvider) {
     this.n = '';
   }
@@ -88,7 +88,22 @@ export class SorPage {
   }
 
   private results(){
+    if(this.dataReceivedPost['error'] == null ){
+      this.contentTable = this.dataReceivedPost['iteraciones'];
+      this.showResult = true;
 
+    }else{
+        this.showAlert("OJO!",this.dataReceivedPost['error']);
+      }
+  }
+
+  showAlert(error, subtitle) {
+    let alert = this.alertCtrl.create({
+      title: error,
+      subTitle: subtitle,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
   public postServer() {
