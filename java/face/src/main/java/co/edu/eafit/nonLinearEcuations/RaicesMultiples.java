@@ -18,7 +18,7 @@ public class RaicesMultiples implements NumericMethod {
 		double xa = (Double) args[3];
 		double tol = (Double) args[4];
         int n_iter = (Integer) args[5];
-		
+
         List<List<Object>> res = new ArrayList<List<Object>>();
         Evaluator eval = new Evaluator();
         int contador = 0;
@@ -60,16 +60,16 @@ public class RaicesMultiples implements NumericMethod {
         	iteracion = new ArrayList<Object>();
         	iteracion.add("Aproximado");
         	iteracion.add(xa);
-        	res.add(iteracion);        	
+        	res.add(iteracion);
         }else {
         	iteracion = new ArrayList<Object>();
         	iteracion.add("error");
         	iteracion.add("El método fracasó en " + n_iter + " iteraciones");
         	res.add(iteracion);
         }
-        
+
         return new NonLinearEcuationSolution(res);
-		
+
 	}
 
 	@Override

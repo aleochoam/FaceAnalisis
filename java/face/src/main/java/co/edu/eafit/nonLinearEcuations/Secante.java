@@ -16,13 +16,13 @@ public class Secante implements NumericMethod {
 		double x1 = (Double) args[2];
 		double tol = (Double) args[3];
 		int n_iter = (Integer) args[4];
-		
+
 		List<List<Object>> res = new ArrayList<List<Object>>();
 		int contador = 0;
 		double error = tol + 1;
 
 		Evaluator eval = new Evaluator();
- 
+
         double fx0 = eval.evalExpr(f, x0);
         if (fx0 == 0) {
         	List<Object> iteracion = new ArrayList<Object>();
@@ -33,7 +33,7 @@ public class Secante implements NumericMethod {
         }else {
         	double fx1 = eval.evalExpr(f, x1);
         	double den = fx1 - fx0;
-        	
+
         	while(error > tol && fx1 != 0 && den != 0 && contador < n_iter) {
         		List<Object> iteracion = new ArrayList<Object>();
         		iteracion.add(contador);
@@ -41,7 +41,7 @@ public class Secante implements NumericMethod {
         		iteracion.add(fx0);
         		iteracion.add(error);
         		res.add(iteracion);
-        		
+
         		double x2 = x1 - fx1 * (x1-x0) / den;
         		error = Math.abs(x2-x1);
         		x0 = x1;
@@ -50,7 +50,7 @@ public class Secante implements NumericMethod {
         		fx1 = eval.evalExpr(f, x1);
         		den = fx1 - fx0;
         		contador++;
-        		
+
         	}
         	List<Object> iteracion = new ArrayList<Object>();
     		iteracion.add(contador);
@@ -58,7 +58,7 @@ public class Secante implements NumericMethod {
     		iteracion.add(fx0);
     		iteracion.add(error);
     		res.add(iteracion);
-        
+
 	        if (fx1 == 0) {
 	        	iteracion = new ArrayList<Object>();
 	        	iteracion.add("Raiz");
@@ -75,7 +75,7 @@ public class Secante implements NumericMethod {
 	        	iteracion = new ArrayList<Object>();
 	        	iteracion.add("Error");
 	        	iteracion.add("fracasó en " + n_iter + "iteraciones");
-	        }	            
+	        }
         }
         return new NonLinearEcuationSolution(res);
 

@@ -13,14 +13,14 @@ import co.edu.eafit.Solution;
 
 
 public class Biseccion implements NumericMethod{
-    
+
     private final Evaluator eval;
     private final BufferedReader br;
-    
+
 
     public Biseccion() {
         eval = new Evaluator();
-        br = new BufferedReader(new InputStreamReader(System.in));        
+        br = new BufferedReader(new InputStreamReader(System.in));
     }
 
 
@@ -42,21 +42,21 @@ public class Biseccion implements NumericMethod{
     	double xs = (Double) args[2];
     	double tol = (Double) args[3];
     	int niter = (Integer) args[4];
-    	
+
         List<List<Object>> res = new ArrayList<List<Object>>();
-        
+
         double fxi, fxs, xm, fxm, error, xaux, contador, zero = 0;
-        
-        
+
+
         fxi = this.eval.evalExpr(fx, xi);
         fxs = this.eval.evalExpr(fx, xs);
 
         if (fxi == zero) {
             System.out.println(xi + " Es raiz");
-            
+
         } else if (fxs == zero) {
             System.out.println(xs + " Es raiz");
-            
+
         } else if ((fxi * fxs) < 0) {
             xm = (xi + xs) / 2.0;
             fxm = eval.evalExpr(fx, xm);
@@ -87,27 +87,27 @@ public class Biseccion implements NumericMethod{
             	iteracion.add("Raiz");
             	iteracion.add(xm);
                 //System.out.println(xm + " Es raiz");
-                
+
             } else if (error < tol){
             	List<Object> iteracion = new ArrayList<Object>();
             	iteracion.add(contador);
             	iteracion.add("Aproximación");
             	iteracion.add(xm);
                 // System.out.println(xm + " Es una aproximacion a una raiz con una tolerancia = " + tol + "\n");
-                
+
             } else {
             	List<Object> iteracion = new ArrayList<Object>();
             	iteracion.add(contador);
             	iteracion.add("Error");
             	iteracion.add("Fracaso en " + niter + " iteraciones\n");
 //                System.out.println("Fracaso en " + niter + " iteraciones\n");
-                
+
             }
         } else {
             System.out.println("El intervalo es inadecuado\n");
-            
+
         }
-         
+
         return new NonLinearEcuationSolution(res);
 
     }
@@ -115,16 +115,16 @@ public class Biseccion implements NumericMethod{
     public void imprimirTabla(List<List<Object>> outer){
         int lenOuter = outer.size();
         Object[][] table = new Double[lenOuter][];
-        
+
         for (int i = 0; i < lenOuter; i++) {
             List<Object> inner = outer.get(i);
             table[i] = new Object[] {inner.get(0), inner.get(1), inner.get(2), inner.get(3), inner.get(4), inner.get(5)};
         }
-        
+
         Object[] titulos = {"i", "xInf", "xSup", "xMed", "f(xMed)", "Error"};
         System.out.format("%2s%17s%17s%17s%26s%20s\n\n", titulos);
-     
-        
+
+
         for (final Object[] row : table) {
             System.out.format("%2s%17s%17s%17s%26s%20s\n", row);
         }
@@ -132,7 +132,7 @@ public class Biseccion implements NumericMethod{
 
 
     public void controller() throws IOException{
-        
+
         System.out.print("f(x) = ");
         String fx = br.readLine();
 
@@ -141,19 +141,19 @@ public class Biseccion implements NumericMethod{
         double xi = Double.parseDouble(xiStr);
 
         System.out.print("xs = ");
-        String xsStr = br.readLine();   
-        double xs = Double.parseDouble(xsStr);        
+        String xsStr = br.readLine();
+        double xs = Double.parseDouble(xsStr);
 
         System.out.print("tolerancia = ");
         String toleStr = br.readLine();
         double tole = Double.parseDouble(toleStr);
-        
+
         System.out.print("Num. Iteraciones = ");
         String niterStr = br.readLine();
         int niter = Integer.parseInt(niterStr);
 
         System.out.println("\n");
-        calculate(fx, xi, xs, tole, niter);        
+        calculate(fx, xi, xs, tole, niter);
     }
 
 

@@ -10,15 +10,15 @@ public class FactorizacionGaussiana implements NumericMethod {
 		double[][] A = (double[][]) args[0];
 		double[] b = (double[]) args[1];
 		int n = A.length;
-		
+
 		if(!MatrixUtils.esInvertible(A)) {
 			return new SystemOfEquationsSolution("La matriz no es invertible");
 		}
-		
+
 		double[][] augmented = MatrixUtils.aumentarMatriz(A, b);
 		double[][] U = new double[n][n];
 		double[][] L = MatrixUtils.identidad(n);
-		
+
 		for (int k = 0; k < n-1; k++) {
 			for (int i = k+1; i < n; i++) {
 				double multiplier = augmented[i][k] / augmented[k][k];
@@ -30,11 +30,11 @@ public class FactorizacionGaussiana implements NumericMethod {
 				}
 			}
 		}
-		
+
 		U = MatrixUtils.getA(augmented);
 		double[] z = MatrixUtils.sustitucionProgresiva(L, b);
 		double[] x = MatrixUtils.sustitucionRegresiva(U, z);
-		
+
 		return new SystemOfEquationsSolution(x);
 	}
 

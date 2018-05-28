@@ -39,16 +39,16 @@ class FactorizacionCholesky(NumericMethod):
                 suma3 = np.sum(L[k, p] * U[p, j] for p in range(0, k))
                 U[k, j] = (A[k, j] - suma3)/L[k, k]
 
+        z = sustitucion_progresiva(L, b)
+        x = sustitucion_regresiva(U, z)
+
         L = np.real(L)
         U = np.real(U)
 
-        # z = sustitucion_progresiva(L, b)
-        # x = sustitucion_regresiva(U, z)
-
         response["L"] = np.round(L, 4).tolist()
         response["U"] = np.round(U, 4).tolist()
-        # response["z"] = z.tolist()
-        # response["x"] = x.tolist()
+        response["z"] = z.tolist()
+        response["x"] = x.tolist()
 
         return response
 
