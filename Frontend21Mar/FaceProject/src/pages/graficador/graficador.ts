@@ -97,6 +97,8 @@ export class GraficadorPage {
                 borderWidth: 0.5
             }]
         },  
+
+        
     
         options: {
             scales: {

@@ -29,9 +29,13 @@ export class RaicesMultiplesPage {
   private root;
   private visibleRoot;
 
-  private titlesTable = ['i', 'xi', 'f(xi)', 'Error'];
+  private titlesTable = ['i', 'xi', 'Error'];
+  private titlesTableComplete = ['i', 'xi', 'f(xi)', 'Error'];
   private contentTable = [];
   private visibleTable;
+  private visibleTableComplete;
+  private selectTable;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public httpEcuacionesUnaVariableProvider: HttpEcuacionesUnaVariableProvider) {
     this.dataSubmit['fx'] = '';
@@ -42,6 +46,8 @@ export class RaicesMultiplesPage {
     this.dataSubmit['nIters'] = '';
 
     this.visibleTable = false;
+    this.visibleTableComplete = false;
+    this.selectTable = false;
     this.visibleRoot = false;
   }
 
@@ -91,15 +97,10 @@ export class RaicesMultiplesPage {
 
   ayuda() {
     let alert = this.alertCtrl.create({
-      title: '¿Qué debo hacer?',
-      subTitle: ` <p>Ingresa los siguientes datos:</p>
-                  <ul>
-                    <li><b>fx:</b> Función a evaluar</li>
-                    <li><b>xa, xb:</b> Intervalo inicial</li>
-                    <li><b>Tolerancia:</b> Calidad de respuesta</li>
-                    <li><b>Num. Iters:</b> Veces ejecutadas</b> </li>
-                    <li><b>Absoluto:</b> Error Absoluto</b> </li>
-                    <li><b>Relativo:</b> Error Relativo</b> </li>
+      title: 'Consejos!',
+      subTitle: ` <ul>
+                    <li>El método de Newton y de la secante, ante la presencia de raíces múltiples convergen linealmente y pueden fallar.</li>
+                    <br>
                   </ul>`,
       buttons: ['OK']
     });
@@ -122,13 +123,15 @@ export class RaicesMultiplesPage {
 
     if (this.contentTable.length != 0) {
       this.root = this.dataReceivedPost['aproximado'];
-
-      this.visibleTable = true;
       this.visibleRoot = true;
+      this.elegirTabla();
+      
 
     } else {
       this.visibleTable = false;
       this.visibleRoot = false;
+      this.visibleTableComplete = false;
+      
       this.showAlert("Fallo", this.dataReceivedPost['error']);
     }
 
@@ -154,4 +157,15 @@ export class RaicesMultiplesPage {
       });
   }
 
+  elegirTabla(){
+    if (this.selectTable == true){      
+      this.visibleTableComplete = true;
+      this.visibleTable = false;
+    }else{
+      this.visibleTableComplete = false;
+      this.visibleTable = true;
+    }
+  }
+
+  
 }
