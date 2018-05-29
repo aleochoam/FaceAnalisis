@@ -5,8 +5,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EcuacionesUnaVariablePage } from '../ecuaciones-una-variable/ecuaciones-una-variable';
 import { SistemasDeEcuacionesLinealesPage } from '../sistemas-de-ecuaciones-lineales/sistemas-de-ecuaciones-lineales';
 import { InterpolacionPage } from '../interpolacion/interpolacion';
-import { IntegracionNumericaPage } from '../integracion-numerica/integracion-numerica';
-import { EcuacionesDiferencialesPage } from '../ecuaciones-diferenciales/ecuaciones-diferenciales';
+
+
 import { GraficadorPage } from '../graficador/graficador';
 
 /**
@@ -40,15 +40,6 @@ export class MetodosNumericosPage {
 
   public goInterpolacion(){
     this.navCtrl.push(InterpolacionPage);
-  }
-
-  public goIntegracionNumerica(){
-    this.navCtrl.push(IntegracionNumericaPage);
-  }
-
-  public goEcuacionesDiferenciales(){
-    this.navCtrl.push(EcuacionesDiferencialesPage);
-
   }
 
   public goGraficador(){

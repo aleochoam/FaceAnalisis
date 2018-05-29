@@ -26,10 +26,15 @@ export class BiseccionPage {
   private root;
   private visibleRoot;
 
-  private titlesTable = ['i', 'x Inf', 'x Sup', 'x Med', 'f(xMed)', 'Error'];
-  private contentTable = [];
+  private titlesTable = ['i', 'x Med', 'Error'];
   private visibleTable;
 
+  private titlesTableComplete = ['i', 'x Inf', 'x Sup', 'x Med', 'f(xMed)', 'Error'];
+  private visibleTableComplete;
+
+  private contentTable = [];
+  private selectTable;
+  
 
 
   public constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public httpEcuacionesUnaVariableProvider: HttpEcuacionesUnaVariableProvider) {
@@ -41,7 +46,10 @@ export class BiseccionPage {
     this.dataSubmit['tipo_error'] = '';
 
     this.visibleTable = false;
+    this.visibleTableComplete = false;
     this.visibleRoot = false;
+    this.selectTable = false;
+    
   }
 
 
@@ -124,12 +132,12 @@ export class BiseccionPage {
 
     if (this.contentTable.length != 0) {
       this.root = this.dataReceivedPost['aproximados'];
-
-      this.visibleTable = true;
       this.visibleRoot = true;
+      this.elegirTabla();
 
     } else {
       this.visibleTable = false;
+      this.visibleTableComplete = false;
       this.visibleRoot = false;
       this.showAlert("Fallo", this.dataReceivedPost['error']);
     }
@@ -156,6 +164,17 @@ export class BiseccionPage {
         console.log(err);
       });
   }
+
+  elegirTabla(){
+    if (this.selectTable == true){      
+      this.visibleTableComplete = true;
+      this.visibleTable = false;
+    }else{
+      this.visibleTableComplete = false;
+      this.visibleTable = true;
+    }
+  }
+
 
 }
 
