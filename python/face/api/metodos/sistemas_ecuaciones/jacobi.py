@@ -1,7 +1,7 @@
 import numpy as np
 
 from ..numeric_method import NumericMethod
-from .matrix_utils import *
+from .matrix_utils import process_params, radio_espectral, ceros_en_diagonal, get_inverse_D
 
 
 class Jacobi(NumericMethod):
