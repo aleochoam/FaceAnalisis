@@ -26,6 +26,8 @@ export class BusquedasIncrementalesPage {
   private contentTable = [];
   private visibleTable;
 
+  
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public httpEcuacionesUnaVariableProvider: HttpEcuacionesUnaVariableProvider) {
     this.dataSubmit['fx'] = '';
     this.dataSubmit['x0'] = '';
@@ -85,15 +87,14 @@ export class BusquedasIncrementalesPage {
 
   ayuda() {
     let alert = this.alertCtrl.create({
-      title: '¿Qué debo hacer?',
-      subTitle: ` <p>Ingresa los siguientes datos:</p>
-                  <ul>
-                    <li><b>fx:</b> Función a evaluar</li>
-                    <li><b>xa, xb:</b> Intervalo inicial</li>
-                    <li><b>Tolerancia:</b> Calidad de respuesta</li>
-                    <li><b>Num. Iters:</b> Veces ejecutadas</b> </li>
-                    <li><b>Absoluto:</b> Error Absoluto</b> </li>
-                    <li><b>Relativo:</b> Error Relativo</b> </li>
+      title: 'Consejos!',
+      subTitle: ` <ul>
+                    <li>f(x) debe ser una función continua</li>
+                    <br>
+                    <li>Si f(x) está definida en [a,b] y se cumple que: f(a) * f(b) < 0, entonces existe algún Xm en [a,b] que es raíz</li>
+                    <br>  
+                    <li>Existe raíz única si se cumple que f es continua en [a,b], f(a) * f(b) < 0, f es diferenciable en (a,b) y f'(x) no cambia de signo para todo x que pertenece [a,b]</li>
+                    
                   </ul>`,
       buttons: ['OK']
     });
@@ -115,7 +116,7 @@ export class BusquedasIncrementalesPage {
     this.contentTable = this.dataReceivedPost['intervalos'];
 
     if (this.contentTable.length != 0) {
-      this.root = (this.contentTable.length == 1) ? "Se encontró 1 intervalo" : "Se encontró los siguientes intervalos";
+      this.root = (this.contentTable.length == 1) ? "Se encontró 1 intervalo:" : "Se encontró los siguientes intervalos:";
 
       this.visibleTable = true;
       this.visibleRoot = true;

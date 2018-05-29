@@ -7,33 +7,42 @@
 </ion-header>
 
   <ion-content padding class ="pantalla">
+
+
     <ion-list>
-      <br>
-      <button ion-item (click)="goEcuacionesUnaVariable()">
-          <ion-icon name="analytics"></ion-icon>
-          <h2 class = "titulo"><b>Ecuaciones de una variable</b></h2>
-      </button>
-      <br>
-      <button ion-item (click)="goSistemasDeEcuacionesLineales()" >
-          <ion-icon name="book"></ion-icon>
-          <h2 class = "titulo"><b>Ecuaciones Lineales</b></h2>
-      </button>
-      <br>
-      <button ion-item (click)="goInterpolacion()" >
-          <ion-icon name="analytics"></ion-icon>
-          <h2 class = "titulo"><b>Interpolación</b></h2>
-      </button>
-      <br>
-      <button ion-item (click)="goIntegracionNumerica()" >
-          <ion-icon name="book"></ion-icon>
-          <h2 class = "titulo"><b>Integración Numérica</b></h2>
-      </button>
-      <br>
-      <button ion-item (click)="goEcuacionesDiferenciales()" >
-          <ion-icon name="analytics"></ion-icon>
-          <h2 class = "titulo"><b>Ecuaciones Diferenciales</b></h2>
-      </button>
-      <br>
+    
+        <ion-card>
+            <ion-card-header>
+                <button ion-button block color="primary" (click)="goEcuacionesUnaVariable()"> Ecuaciones de una variable </button>
+            </ion-card-header>
+            <ion-card-content>
+                Dada una función f de variable real y una ecuación f(x) = 0, encontrarás métodos para hallar el conjunto de valores de x que hacen cierta la igualdad.                
+            </ion-card-content>
+        </ion-card>
+      
+      
+      
+      <ion-card>
+            <ion-card-header>
+                <button ion-button block color="primary" (click)="goSistemasDeEcuacionesLineales()"> Sistema de Ecuaciones </button>    
+            </ion-card-header>
+            <ion-card-content>
+              Dado un conjunto de m ecuaciones lineales con n incógnitas, cuya solucion es un conjunto de valores para las incógnitas con el que satisfacen todas las ecuaciones.
+            </ion-card-content>
+      </ion-card>
+    
+      
+          
+      <ion-card>
+          <ion-card-header>
+                <button ion-button block color="primary" (click)="goInterpolacion()" > Interpolación</button>
+          </ion-card-header>
+          <ion-card-content>
+            Dado un conjunto de puntos logramos formar funciones a tramos que los interpolan ayudándonos a saber valores en f(x).
+          </ion-card-content>
+      </ion-card>
+      
+    
     </ion-list>
   
 </ion-content>

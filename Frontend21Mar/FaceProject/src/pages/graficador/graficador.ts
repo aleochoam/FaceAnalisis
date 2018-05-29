@@ -90,6 +90,7 @@ export class GraficadorPage {
         data: {
             datasets: [{
                 data: points,
+                fill: false,
                 borderColor: [
                   '#001f51',
                 ],

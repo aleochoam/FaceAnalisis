@@ -12,8 +12,6 @@ import { MetodosNumericosPage } from '../pages/metodos-numericos/metodos-numeric
 import { EcuacionesUnaVariablePage } from '../pages/ecuaciones-una-variable/ecuaciones-una-variable';
 import { SistemasDeEcuacionesLinealesPage } from '../pages/sistemas-de-ecuaciones-lineales/sistemas-de-ecuaciones-lineales';
 import { InterpolacionPage } from '../pages/interpolacion/interpolacion';
-import { IntegracionNumericaPage } from '../pages/integracion-numerica/integracion-numerica';
-import { EcuacionesDiferencialesPage } from '../pages/ecuaciones-diferenciales/ecuaciones-diferenciales';
 import { GraficadorPage } from '../pages/graficador/graficador';
 import { BusquedasIncrementalesPage } from '../pages/unidad-1/busquedas-incrementales/busquedas-incrementales';
 import { BiseccionPage } from '../pages/unidad-1/biseccion/biseccion';
@@ -51,8 +49,6 @@ import { HttpClientModule } from '@angular/common/http';
     EcuacionesUnaVariablePage,
     SistemasDeEcuacionesLinealesPage,
     InterpolacionPage,
-    IntegracionNumericaPage,
-    EcuacionesDiferencialesPage,
     GraficadorPage,
     BusquedasIncrementalesPage,
     BiseccionPage,
@@ -94,8 +90,6 @@ import { HttpClientModule } from '@angular/common/http';
     EcuacionesUnaVariablePage,
     SistemasDeEcuacionesLinealesPage,
     InterpolacionPage,
-    IntegracionNumericaPage,
-    EcuacionesDiferencialesPage,
     GraficadorPage,
     BusquedasIncrementalesPage,
     BiseccionPage,
