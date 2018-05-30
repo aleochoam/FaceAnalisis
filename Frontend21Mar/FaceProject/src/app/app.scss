@@ -1,6 +1,4 @@
 // http://ionicframework.com/docs/theming/
-
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,126 +12,100 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-
 //Disennos para la tabla del titulo
-
 //Texto Tabla Titulo
-.text-t-t{
-    margin-top:    0%; 
-    margin-bottom: 0%;
-    text-align: center;
-    font-style: oblique;
-    font-weight: bold;    
-    color: white;
+
+
+.text-t-t {
+  margin-top: 0%;
+  margin-bottom: 0%;
+  text-align: center;
+  font-style: oblique;
+  font-weight: bolder;
+  color: white;
 }
 
-//Estilo Tabla Titulo
-.style-t-t{
-    border-style: solid;
-    border-width: 1px;
-    color: white; 
-    background-color: #0b8c7f;   
+.text-t-c {
+  margin-top: 0%;
+  margin-bottom: 0%;
+  text-align: left;
 }
 
-//Tabla Titulo
-.table-t{
-    padding-bottom: 0%;
-    text-align: center;
-    padding-left: 5px;
-    padding-right: 5px; 
-}
-
-
-//Disennos para la tabla del contenido
-
-//Texto Tabla Contenido
-.text-t-c{
-    margin-top: 0%; 
-    margin-bottom: 0%;
-    text-align: left;     
+.style-t-t {
+  border-style: solid;
+  border-width: 1px;
+  background-color: #0b8c7f;
+  padding: 8px;
+  text-align: center;
+  color: white;
+  border-color: gray;
 }
 
 ////Estilo Tabla Contenido
-.style-t-c{
-    border-style: solid;
-    border-width: 1px;
-    background-color: white   
-}
-
-//Tabla de contenido
-.table-c{
-    padding-top: 0%;
-    padding-left: 5px;
-    padding-right: 5px;
+.style-t-c {
+  border-style: solid;
+  border-width: 1px;
+  background-color: white;
+  padding: 8px;
+  text-align: center;
+  color: black;
+  border-color: gray;
 }
 
 // Uso general
 .pantalla {
-    background-color: #f48c42;
+  background-color: #f48c42;
 }
 
-.pregunta{
-    background-color:white;
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
+.pregunta {
+  background-color: white;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
 }
 
-.iconoPregunta{
-    color: black;
+.iconoPregunta {
+  color: black;
 }
 
-@font-face{
-    font-family: 'Barrio';
-    src: url('../assets/fonts/Barrio.woff2') format('woff2');
+@font-face {
+  font-family: 'Barrio';
+  src: url('../assets/fonts/Barrio.woff2') format('woff2');
 }
 
-
-
-  /*  
-*{
-font-family: 'Barrio';
-}
-*/
 
 .cell {
-    background-color: white;
-    margin: 3%;
-    width: fit-content;
+  background-color: white;
+  margin: 3%;
+  width: fit-content;
 }
 
-
-.matriz{
-    background-color:white;
+.matriz {
+  background-color: white;
 }
 
 .inputMatrix {
-    background-color: white;
-    margin: 3px;
-    width: 50px;
-    border-radius: 5%;
+  background-color: white;
+  margin: 3px;
+  width: 50px;
+  border-radius: 5%;
 }
 
-
-    .auxGrid{
-     padding: 5px;   
-    }
-
-ion-scroll { white-space: nowrap; }
-
-ion-app.md [padding] .scroll-content{
-    padding-left: 10px;
-    padding-top: 0%;
+.auxGrid {
+  padding: 5px;
 }
 
+ion-scroll {
+  white-space: nowrap;
+}
+
+ion-app.md [padding] .scroll-content {
+  padding-left: 10px;
+  padding-top: 0%;
+}
 
 table {
-    border-collapse: collapse;
-    width: 100%;
-    
-    
+  border-collapse: collapse;
+  width: 100%;
 }
 
-td, th {
-    padding: 8px;
-}

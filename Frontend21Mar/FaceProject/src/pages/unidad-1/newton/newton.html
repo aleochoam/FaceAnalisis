@@ -118,13 +118,13 @@
           <div class="auxGrid" *ngIf="visibleTable">
               <ion-scroll scrollX="true" scrollY="true" zoom="true" style="height:100vh;">          
                   <table>
-                      <tr class="table-t">          
+                      <tr>          
                           <th class="style-t-t"> <p class="text-t-t"> {{titlesTable[0]}} </p>  </th>
                           <th class="style-t-t"> <p class="text-t-t"> {{titlesTable[1]}} </p>  </th>
                           <th class="style-t-t"> <p class="text-t-t"> {{titlesTable[2]}} </p>  </th>
                           <th class="style-t-t"> <p class="text-t-t"> {{titlesTable[3]}} </p>  </th>
                       </tr>
-                      <tr  *ngFor="let i of contentTable" class="table-c">
+                      <tr  *ngFor="let i of contentTable">
                           <th class="style-t-c"> <p class="text-t-c"> {{i[0]}} </p> </th>
                           <th class="style-t-c"> <p class="text-t-c"> {{i[1]}} </p> </th>
                           <th class="style-t-c"> <p class="text-t-c"> {{i[2]}} </p> </th>
