@@ -53,9 +53,6 @@ class FalsePosition(NumericMethod):
             iteracion = \
                 [contador, str(xa), str(xb), str(xm), fxm_fm, err_fm]
 
-            if contador == 1:
-                iteracion[5] = ""
-
             response["iteraciones"].append(iteracion)
 
             if fxa * fxm < 0:
