@@ -115,4 +115,4 @@ def es_diagonalmente_dominante(A):
 
 
 def es_definida_positiva(A):
-    return np.all(np.linalg.eifvals(A) > 0)
+    return np.all(np.linalg.eigvals(A) > 0)
