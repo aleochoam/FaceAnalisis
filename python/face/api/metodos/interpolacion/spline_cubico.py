@@ -2,15 +2,18 @@ import numpy as np
 import sympy as sp
 
 from ..numeric_method import NumericMethod
-from .interpolacion_utils import eval_params
+from .interpolacion_utils import eval_params, evaluar_splines
 
 
 class SplinesCubicos(NumericMethod):
     def calculate(self, parameters):
         X = parameters["X"]
         Y = parameters["Y"]
+        x_eval = eval(parameters["eval"])
 
         X, Y = eval_params(X, Y)
+        puntos = np.column_stack((X, Y))
+        print(puntos)
         n = len(X)
 
         # Valores h
@@ -66,7 +69,8 @@ class SplinesCubicos(NumericMethod):
             polinomio.append(ptramo)
 
         funcion = self.generar_ecuacion(polinomio, X, n)
-        return {"funcion": funcion}
+        y_eval = evaluar_splines(funcion, puntos, x_eval)
+        return {"funcion": funcion, "y_eval": y_eval}
 
     def generar_ecuacion(self, polinomio, X, n):
         funcion_tramos = []
