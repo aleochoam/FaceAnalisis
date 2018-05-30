@@ -23,7 +23,7 @@ def call_method(request, method_name):
             return JsonResponse({"Ayuda": method.get_description()})
         else:
             params = body2dict(request)
-            # print("PARAMS ", params)
+            print("LOG PARAMS ", params)
             response = method.calculate(params)
             # print("RESPONSE: ", response)
             return JsonResponse(response)
