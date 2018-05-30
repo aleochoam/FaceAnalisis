@@ -33,8 +33,9 @@ class Secante(NumericMethod):
         den = fx1 - fx0
 
         while error > tol and fx1 != 0 and den != 0 and contador < n_iter:
-            err_fm = "{e:.2e}".format(e=error) if contador != 0 else ""
-            iteracion = [contador, str(x0), str(fx0), err_fm]
+            err_fm = "{e:.2e}".format(e=error) if contador != 0 and contador != 1 else ""
+            fx0_fm = "{fx0:.2e}".format(fx0=fx0)
+            iteracion = [contador, str(x0), fx0_fm, err_fm]
 
             response["iteraciones"].append(iteracion)
 

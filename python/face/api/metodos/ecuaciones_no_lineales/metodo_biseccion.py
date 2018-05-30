@@ -58,13 +58,6 @@ class Bisection(NumericMethod):
             iteracion = [contador, str(xa), str(xb), str(xm), fxm_fm, err_fm]
 
             response["iteraciones"].append(iteracion)
-            # print("Contador: ", contador)
-            # print("xa: {}".format(xa))
-            # print("xb: {}".format(xb))
-            # print("xm: {}".format(xm))
-            # print("fxm: {}".format(fxm))
-            # print("error: {}".format(error))
-            # print("--------------------")
 
             if fxa * fxm < 0:
                 xb = xm
@@ -84,7 +77,8 @@ class Bisection(NumericMethod):
             contador = contador + 1
 
         err_fm = "{e:.2e}".format(e=error) if contador != 0 else ""
-        iteracion = [contador, str(xa), str(xb), str(xm), str(fxm), err_fm]
+        fxm_fm = "{fxm:.2e}".format(fxm=fxm)
+        iteracion = [contador, str(xa), str(xb), str(xm), fxm_fm, err_fm]
         response["iteraciones"].append(iteracion)
 
         if fxm == 0:
