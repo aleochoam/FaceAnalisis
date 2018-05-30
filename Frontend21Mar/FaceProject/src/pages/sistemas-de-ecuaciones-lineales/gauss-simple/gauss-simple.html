@@ -50,28 +50,28 @@
         </form>
     
 
-      <div *ngIf="showResult">
-        <p>La solución al sistema es:</p>
-        <table  class="table" align="center">
-          <tr class="table"><th *ngFor="let i of matrix" class="table">
-              X{{i}}
-            </th></tr>
-          <tr class="table">
-            <td *ngFor="let j of xs" class="table">
-            <p>{{j}}</p>
-          </td>
-          </tr>
-        </table>
-        <p>La Matriz escalonada:</p>
+        <div *ngIf="showResult">
+          <p>La solución al sistema es:</p>
+          <table  class="table" align="center">
+            <tr class="table"><th *ngFor="let i of matrix" class="style-t-t">
+                X{{i}}
+              </th></tr>
+            <tr class="table">
+              <td *ngFor="let j of xs" class="style-t-c">
+              <p>{{j}}</p>
+            </td>
+            </tr>
+          </table>
+          <p>La Matriz escalonada:</p>
         
         <table class="table" align="center">
           <tr *ngFor="let i of escalonada" class="table">
-            <td *ngFor="let j of i" class="table">
+            <td *ngFor="let j of i" class="style-t-c">
               {{j}}
             </td>
           </tr>
         </table>
-      </div>
+        </div>
     </ion-scroll>
 
 </ion-content>

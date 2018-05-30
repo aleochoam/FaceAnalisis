@@ -52,11 +52,11 @@
     <div *ngIf="showResult">
       <p>La solución al sistema es:</p>
       <table  class="table" align="center">
-        <tr class="table"><th *ngFor="let i of matrix" class="table">
+        <tr class="table"><th *ngFor="let i of matrix" class="style-t-t">
             X{{i}}
           </th></tr>
         <tr class="table">
-          <td *ngFor="let j of xs" class="table">
+          <td *ngFor="let j of xs" class="style-t-c">
           <p>{{j}}</p>
         </td>
         </tr>
@@ -64,11 +64,11 @@
 
       <p>z:</p>
       <table  class="table" align="center">
-        <tr class="table"><th *ngFor="let i of matrix" class="table">
+        <tr class="table"><th *ngFor="let i of matrix" class="style-t-t">
             Z{{i}}
           </th></tr>
         <tr class="table">
-          <td *ngFor="let j of z" class="table">
+          <td *ngFor="let j of z" class="style-t-c">
           <p>{{j}}</p>
         </td>
         </tr>
@@ -78,7 +78,7 @@
       
       <table class="table" align="center" class = "matriz">
         <tr *ngFor="let i of L" class="table">
-          <td *ngFor="let j of i" class="table">
+          <td *ngFor="let j of i" class="style-t-c">
             {{j}}
           </td>
         </tr>
@@ -88,12 +88,13 @@
       
       <table class="table" align="center" class = "matriz">
         <tr *ngFor="let i of U" class="table">
-          <td *ngFor="let j of i" class="table">
+          <td *ngFor="let j of i" class="style-t-c">
             {{j}}
           </td>
         </tr>
       </table>
 
     </div>
+    
   </ion-scroll>
 </ion-content>

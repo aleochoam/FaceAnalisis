@@ -29,7 +29,7 @@ export class RaicesMultiplesPage {
   private root;
   private visibleRoot;
 
-  private titlesTable = ['i', 'xi', 'f(xi)', 'Error'];
+  private titlesTable = ['i', 'xi', 'Error'];
   private contentTable = [];
   private visibleTable;
 
