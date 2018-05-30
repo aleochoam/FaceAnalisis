@@ -45,6 +45,7 @@ export class InterpolacionSistemasDeEcPage {
     console.log('ionViewDidLoad GaussSimplePage');
   }
   createMatrix() {
+    this.showResult = false;
     this.matrix = [];
     this.datasubmit = {
       X: {},

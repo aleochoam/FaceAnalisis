@@ -46,13 +46,14 @@ export class LagrangePage {
     console.log('ionViewDidLoad GaussSimplePage');
   }
   createMatrix() {
+    this.showResult = false;
     this.matrix = [];
    this.datasubmit = {
       X : {},
       Y : {},
       eval: "",
     };
-    
+
     this.matrix = [];
     this.input = "<ion-input class='cell'></ion-input>";
     for (let i = 0; i < this.n; i++) {

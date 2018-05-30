@@ -44,6 +44,7 @@ export class Splines3Page {
     console.log('ionViewDidLoad GaussSimplePage');
   }
   createMatrix() {
+    this.showResult = false;
     this.matrix = [];
     this.datasubmit = {
       X: {},

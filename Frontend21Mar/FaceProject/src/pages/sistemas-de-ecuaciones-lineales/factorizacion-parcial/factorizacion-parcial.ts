@@ -44,6 +44,7 @@ export class FactorizacionParcialPage {
   }
   
   createMatrix() {
+    this.showResult = false;
     this.matrix = [];
     this.datasubmit = {
       A : {},

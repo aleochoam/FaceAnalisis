@@ -43,6 +43,7 @@ export class GaussPivParcialPage {
     console.log('ionViewDidLoad GaussSimplePage');
   }
   createMatrix() {
+    this.showResult = false;
     this.matrix = [];
     this.datasubmit = {
       A : {},

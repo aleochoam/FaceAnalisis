@@ -45,6 +45,7 @@ export class GaussPivTotalPage {
     console.log('ionViewDidLoad GaussPivTotalPage');
   }
   createMatrix() {
+    this.showResult = false;
     this.matrix = [];
     this.datasubmit = {
       A : {},

@@ -41,6 +41,7 @@ export class SorPage {
     console.log('ionViewDidLoad GaussSimplePage');
   }
   createMatrix() {
+    this.showResult = false;
     this.datasubmit = {
       A : {},
       b : {},

@@ -44,6 +44,7 @@ export class DoolittlePage {
   }
   
   createMatrix() {
+    this.showResult = false;
     this.matrix = [];
     this.datasubmit = {
       A : {},
