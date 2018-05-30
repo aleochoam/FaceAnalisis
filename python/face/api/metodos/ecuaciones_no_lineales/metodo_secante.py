@@ -11,7 +11,7 @@ class Secante(NumericMethod):
         x0 = eval(params["x0"])
         x1 = eval(params["x1"])
         f = params["fx"]
-        tipo_error = params["tipo_error"]
+        tipo_error = eval(params["tipo_error"])
 
         calcular_error = error_relativo if tipo_error == 2 else error_absoluto
 

@@ -2,13 +2,14 @@ import numpy as np
 from sympy import sympify
 
 from ..numeric_method import NumericMethod
-from .interpolacion_utils import process_params
+from .interpolacion_utils import process_params, evaluar_splines
 
 
 class SplinesCuadraticos(NumericMethod):
     def calculate(self, parameters):
         X = parameters["X"]
         Y = parameters["Y"]
+        x_eval = eval(parameters["eval"])
 
         puntos = process_params(X, Y)
 
@@ -57,7 +58,8 @@ class SplinesCuadraticos(NumericMethod):
 
         sol = np.linalg.solve(matrix, vector_independiente)
         funcion = self.generar_ecuacion(sol, puntos)
-        return {"funcion": funcion}
+        y_eval = evaluar_splines(funcion, puntos, x_eval)
+        return {"funcion": funcion, "y_eval": y_eval}
 
     def generar_ecuacion(self, coeficientes, puntos):
         funcion_partes = []
@@ -65,11 +67,13 @@ class SplinesCuadraticos(NumericMethod):
         n = len(puntos) - 1
 
         for i in range(0, n*3, 3):
-            funcion = "{a}x^2 + {b}x + {c}".format(
+            funcion = "{a}*x**2 + {b}*x + {c}".format(
                 a=coeficientes[i],
                 b=coeficientes[i+1],
                 c=coeficientes[i+2],
             )
+
+            funcion = str(sympify(funcion).expand())
             funcion_partes.append([funcion, "{x0} <= x <= {x1}".format(
                     x0=puntos[i//3, 0],
                     x1=puntos[i//3+1, 0]

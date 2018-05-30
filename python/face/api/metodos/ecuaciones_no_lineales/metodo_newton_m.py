@@ -13,7 +13,7 @@ class Newton2Method(NumericMethod):
         f = params["fx"]
         f_prima = params["dfx"]
         f_dos_prima = params["d2fx"]
-        tipo_error = params["tipo_error"]
+        tipo_error = eval(params["tipo_error"])
 
         calcular_error = error_relativo if tipo_error == 2 else error_absoluto
 
@@ -36,7 +36,9 @@ class Newton2Method(NumericMethod):
 
         while error > tol and fx != 0 and contador < n_iter:
             err_fm = "{e:.2e}".format(e=error) if contador != 0 else ""
-            iteracion = [contador, str(xa), err_fm]
+            fx_fm = "{fx:.2e}".format(fx=fx)
+
+            iteracion = [contador, str(xa), fx_fm, err_fm]
 
             response["iteraciones"].append(iteracion)
 
@@ -51,7 +53,9 @@ class Newton2Method(NumericMethod):
             xa = xn
             contador = contador + 1
 
-        iteracion = [contador, str(xa), str(error)]
+        fx_fm = "{fx:.2e}".format(fx=fx)
+        err_fm = "{e:.2e}".format(e=error) if contador != 0 else ""
+        iteracion = [contador, str(xa), fx_fm, err_fm]
         response["iteraciones"].append(iteracion)
 
         if fx == 0:
