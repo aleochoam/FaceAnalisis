@@ -121,7 +121,6 @@ export class NewtonPage {
         }
         
       }else{
-        console.l
         this.showAlert("Fallo", this.dataReceivedPost['error']);
         this.contentTable = [];       
         this.visibleTable = false;
