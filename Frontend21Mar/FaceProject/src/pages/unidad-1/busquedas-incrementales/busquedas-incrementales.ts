@@ -22,11 +22,10 @@ export class BusquedasIncrementalesPage {
   private root;
   private visibleRoot;
 
-  private titlesTable = ['x', 'y'];
-  private contentTable = [];
+  private titlesTable;
+  private contentTable;
   private visibleTable;
 
-  
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public httpEcuacionesUnaVariableProvider: HttpEcuacionesUnaVariableProvider) {
     this.dataSubmit['fx'] = '';
@@ -34,8 +33,12 @@ export class BusquedasIncrementalesPage {
     this.dataSubmit['delta'] = '';
     this.dataSubmit['nIters'] = '';
 
-    this.visibleTable = false;
+    this.root = "";
     this.visibleRoot = false;
+
+    this.titlesTable = ['Xa', 'Xb'];
+    this.contentTable = [];
+    this.visibleTable = false;
   }
 
   goGraficador() {
@@ -59,7 +62,6 @@ export class BusquedasIncrementalesPage {
   }
 
   ionViewDidLoad() {
-
   }
 
 
@@ -79,7 +81,6 @@ export class BusquedasIncrementalesPage {
       this.showAlert("Error", "El campo Iters no puede estar vacío");
 
     } else {
-      this.contentTable = [];
       this.postServer();
     }
   }
@@ -113,20 +114,28 @@ export class BusquedasIncrementalesPage {
 
 
   completeTable() {
-    this.contentTable = this.dataReceivedPost['intervalos'];
+    
+      if(this.dataReceivedPost['error'] == ""){
 
-    if (this.contentTable.length != 0) {
-      this.root = (this.contentTable.length == 1) ? "Se encontró 1 intervalo:" : "Se encontró los siguientes intervalos:";
+        this.contentTable = this.dataReceivedPost['intervalos'];
 
-      this.visibleTable = true;
-      this.visibleRoot = true;
-
-    } else {
-      this.visibleTable = false;
-      this.visibleRoot = false;
-      this.contentTable = [];
-      this.showAlert("Fallo", this.dataReceivedPost['error']);
-    }
+        if (this.contentTable.length != 0){
+          this.root = (this.contentTable.length == 1) ? "Se encontró 1 intervalo:" : "Se encontró "+ this.contentTable.length +" intervalos:";
+          this.visibleTable = true;
+          this.visibleRoot = true;  
+        }else{
+          this.showAlert("Fallo", this.dataReceivedPost['error']);
+          this.visibleTable = false;
+          this.visibleRoot = false;
+          this.contentTable = [];          
+        }
+        
+      }else{
+        this.showAlert("Fallo", this.dataReceivedPost['error']);
+        this.contentTable = [];       
+        this.visibleTable = false;
+        this.visibleRoot = false;           
+      }
 
   }
 
@@ -143,9 +152,10 @@ export class BusquedasIncrementalesPage {
   postServer() {
     this.httpEcuacionesUnaVariableProvider.post(this.dataSubmit, this.apiUrl)
       .then(result => {
-        this.dataReceivedPost = result;
-        console.log(result);
+        this.dataReceivedPost = result;        
+        console.log("Traigo del server:" + JSON.stringify(this.dataReceivedPost));
         this.completeTable();
+        
       }, (err) => {
         console.log(err);
       });

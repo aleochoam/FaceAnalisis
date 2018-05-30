@@ -110,18 +110,7 @@
                 </ion-card>
             </ion-col>
           </ion-row>
-          
       
-          <ion-row>      
-            <ion-col col-12>
-              <ion-list *ngIf="visibleTable || visibleTableComplete" >
-                <ion-item>
-                  <ion-label>Tabla Completa</ion-label>
-                  <ion-toggle [(ngModel)]="selectTable" (ionChange)="elegirTabla()"></ion-toggle>
-                </ion-item>
-              </ion-list>
-            </ion-col>
-          </ion-row>
           
 </ion-grid>
       
@@ -137,7 +126,7 @@
                       <tr  *ngFor="let i of contentTable" class="table-c">
                           <th class="style-t-c"> <p class="text-t-c"> {{i[0]}} </p> </th>
                           <th class="style-t-c"> <p class="text-t-c"> {{i[1]}} </p> </th>
-                          <th class="style-t-c"> <p class="text-t-c"> {{i[3]}} </p> </th>
+                          <th class="style-t-c"> <p class="text-t-c"> {{i[2]}} </p> </th>
                       </tr>
                   </table>               
               </ion-scroll> 
@@ -145,24 +134,6 @@
           
         
       
-          <div class="auxGrid" *ngIf="visibleTableComplete">
-              <ion-scroll scrollX="true" scrollY="true" zoom="true" style="height:100vh;">          
-                  <table>
-                      <tr class="table-t">          
-                          <th class="style-t-t"> <p class="text-t-t"> {{titlesTableComplete[0]}} </p>  </th>
-                          <th class="style-t-t"> <p class="text-t-t"> {{titlesTableComplete[1]}} </p>  </th>
-                          <th class="style-t-t"> <p class="text-t-t"> {{titlesTableComplete[2]}} </p>  </th>
-                          <th class="style-t-t"> <p class="text-t-t"> {{titlesTableComplete[3]}} </p>  </th>
-                      </tr>                
-                      <tr  *ngFor="let i of contentTable" class="table-c">
-                          <th class="style-t-c"> <p class="text-t-c"> {{i[0]}} </p> </th>
-                          <th class="style-t-c"> <p class="text-t-c"> {{i[1]}} </p> </th>
-                          <th class="style-t-c"> <p class="text-t-c"> {{i[2]}} </p> </th>
-                          <th class="style-t-c"> <p class="text-t-c"> {{i[3]}} </p> </th>
-                      </tr>
-                  </table>               
-              </ion-scroll> 
-          </div>
           
           
       

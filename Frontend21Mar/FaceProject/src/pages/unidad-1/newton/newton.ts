@@ -104,22 +104,29 @@ export class NewtonPage {
   }
 
   completeTable() {
-    console.log(this.dataReceivedPost);
-    this.contentTable = this.dataReceivedPost['iteraciones'];
+    
+      if(this.dataReceivedPost['error'] == ""){
 
-    if (this.contentTable.length != 0) {
-      this.root = this.dataReceivedPost['aproximado'];
-      this.visibleRoot = true;
-      this.elegirTabla();
-      
+        this.contentTable = this.dataReceivedPost['iteraciones'];
 
-    } else {
-      this.visibleTable = false;
-      this.visibleRoot = false;
-      this.visibleTableComplete = false;
-      
-      this.showAlert("Fallo", this.dataReceivedPost['error']);
-    }
+        if (this.contentTable.length != 0){
+          this.root = this.dataReceivedPost['aproximado'];
+          this.visibleTable = true;
+          this.visibleRoot = true;  
+        }else{
+          this.showAlert("Fallo", this.dataReceivedPost['error']);
+          this.visibleTable = false;
+          this.visibleRoot = false;
+          this.contentTable = [];          
+        }
+        
+      }else{
+        console.l
+        this.showAlert("Fallo", this.dataReceivedPost['error']);
+        this.contentTable = [];       
+        this.visibleTable = false;
+        this.visibleRoot = false;           
+      }
   }
 
 

@@ -31,10 +31,9 @@ export class PuntoFijoPage {
   private visibleRoot;
   
   private titlesTable  = ['i', 'xi', 'Error'];
-  private titlesTableComplete  = ['i', 'xi', 'f(xi)', 'Error'];
   private contentTable = [];
   private visibleTable;
-  private visibleTableComplete;
+  
 
   private selectTable;
 
@@ -45,7 +44,6 @@ export class PuntoFijoPage {
     this.dataSubmit['nIters'] = '';
     
     this.visibleTable = false;
-    this.visibleTableComplete = false;
     this.visibleRoot  = false;
   }
 
@@ -103,23 +101,30 @@ export class PuntoFijoPage {
     alert.present();
   }
 
+
   completeTable() {
-    console.log(this.dataReceivedPost);
-    this.contentTable = this.dataReceivedPost['iteraciones'];
+    
+      if(this.dataReceivedPost['error'] == ""){
 
-    if (this.contentTable.length != 0) {
-      this.root = this.dataReceivedPost['aproximado'];
-      this.visibleRoot = true;
-      this.elegirTabla();
-      
+        this.contentTable = this.dataReceivedPost['iteraciones'];
 
-    } else {
-      this.visibleTable = false;
-      this.visibleRoot = false;
-      this.visibleTableComplete = false;
-      
-      this.showAlert("Fallo", this.dataReceivedPost['error']);
-    }
+        if (this.contentTable.length != 0){
+          this.root = this.dataReceivedPost['aproximado'];
+          this.visibleTable = true;
+          this.visibleRoot = true;  
+        }else{
+          this.showAlert("Fallo", this.dataReceivedPost['error']);
+          this.visibleTable = false;
+          this.visibleRoot = false;
+          this.contentTable = [];          
+        }
+        
+      }else{
+        this.showAlert("Fallo", this.dataReceivedPost['error']);
+        this.contentTable = [];       
+        this.visibleTable = false;
+        this.visibleRoot = false;           
+      }
   }
 
 
@@ -144,15 +149,7 @@ export class PuntoFijoPage {
       });
   }
 
-  elegirTabla(){
-    if (this.selectTable == true){      
-      this.visibleTableComplete = true;
-      this.visibleTable = false;
-    }else{
-      this.visibleTableComplete = false;
-      this.visibleTable = true;
-    }
-  }
+
 
 
   ayuda() {

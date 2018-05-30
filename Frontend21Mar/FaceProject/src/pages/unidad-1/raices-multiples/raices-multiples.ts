@@ -19,7 +19,7 @@ import { AlertController } from 'ionic-angular';
 })
 export class RaicesMultiplesPage {
 
-  private apiUrl = 'http://165.227.197.6:8000/api/newton2/';
+  private apiUrl = 'http://165.227.197.6:8080/api/newton2/';
 
   private dataSubmit = {};
 
@@ -30,7 +30,7 @@ export class RaicesMultiplesPage {
   private visibleRoot;
 
   private titlesTable = ['i', 'xi', 'Error'];
-  private titlesTableComplete = ['i', 'xi', 'f(xi)', 'Error'];
+
   private contentTable = [];
   private visibleTable;
   private visibleTableComplete;
@@ -52,7 +52,7 @@ export class RaicesMultiplesPage {
   }
 
 
-  verification() {
+  submitForm() {
     if (this.dataSubmit['fx'] == '') {
       this.showAlert("Error", 'El campo f(x) no puede estar vacío');
 
@@ -151,6 +151,7 @@ export class RaicesMultiplesPage {
     this.httpEcuacionesUnaVariableProvider.post(this.dataSubmit, this.apiUrl)
       .then(result => {
         this.dataReceivedPost = result;
+        console.log(this.dataReceivedPost);
         this.completeTable();
       }, (err) => {
         console.log(err);
