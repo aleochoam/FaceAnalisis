@@ -31,9 +31,13 @@ export class SecantePage {
   private root;
   private visibleRoot;
 
-  private titlesTable = ['i', 'xi', 'f(xi)', 'Error'];
+  private titlesTable = ['i', 'xi', 'Error'];
+  private titlesTableComplete = ['i', 'xi', 'f(xi)', 'Error'];
+
   private contentTable = [];
   private visibleTable;
+  private visibleTableComplete;
+  private selectTable;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public httpEcuacionesUnaVariableProvider: HttpEcuacionesUnaVariableProvider) {
     this.dataSubmit['fx'] = '';
@@ -43,7 +47,9 @@ export class SecantePage {
     this.dataSubmit['nIters'] = '';
 
     this.visibleTable = false;
+    this.visibleTableComplete = false;
     this.visibleRoot = false;
+    this.selectTable = false;
   }
 
   goGraficador() {
@@ -98,16 +104,15 @@ export class SecantePage {
 
   ayuda() {
     let alert = this.alertCtrl.create({
-      title: '¿Qué debo hacer?',
-      subTitle: ` <p>Ingresa los siguientes datos:</p>
-                    <ul>
-                      <li><b>fx:</b> Función a evaluar</li>
-                      <li><b>xa, xb:</b> Intervalo inicial</li>
-                      <li><b>Tolerancia:</b> Calidad de respuesta</li>
-                      <li><b>Num. Iters:</b> Veces ejecutadas</b> </li>
-                      <li><b>Absoluto:</b> Error Absoluto</b> </li>
-                      <li><b>Relativo:</b> Error Relativo</b> </li>
-                    </ul>`,
+      title: 'Consejos!',
+      subTitle: ` <ul>
+                    <li>Este método se define como una variación del método de Newton. A partir de la ecuación iterativa que define Newton, sustituimos la derivada por una expresión que la aproxima.</li>
+                    <br>
+                    <li>En el método de la secante la susesión que se genera es estricta en el sentido que para hallar Xn+1 se utilizan los valores previos Xn y Xn-1 sin importar las características que posean.</li>
+                    <br>
+                    <li>El método se la secante presenta convergencia Superlineal</li>
+                    <br>
+                  </ul>`,
       buttons: ['OK']
     });
     alert.present();
@@ -160,5 +165,15 @@ export class SecantePage {
       }, (err) => {
         console.log(err);
       });
+  }
+
+  elegirTabla(){
+    if (this.selectTable == true){      
+      this.visibleTableComplete = true;
+      this.visibleTable = false;
+    }else{
+      this.visibleTableComplete = false;
+      this.visibleTable = true;
+    }
   }
 }

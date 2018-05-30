@@ -30,9 +30,13 @@ export class PuntoFijoPage {
   private root;
   private visibleRoot;
   
-  private titlesTable  = ['i', 'xi', 'f(xi)', 'Error'];
+  private titlesTable  = ['i', 'xi', 'Error'];
+  private titlesTableComplete  = ['i', 'xi', 'f(xi)', 'Error'];
   private contentTable = [];
   private visibleTable;
+  private visibleTableComplete;
+
+  private selectTable;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public httpEcuacionesUnaVariableProvider: HttpEcuacionesUnaVariableProvider) {
     this.dataSubmit['fx'] = '';
@@ -41,6 +45,7 @@ export class PuntoFijoPage {
     this.dataSubmit['nIters'] = '';
     
     this.visibleTable = false;
+    this.visibleTableComplete = false;
     this.visibleRoot  = false;
   }
 
@@ -104,13 +109,15 @@ export class PuntoFijoPage {
 
     if (this.contentTable.length != 0) {
       this.root = this.dataReceivedPost['aproximado'];
-
-      this.visibleTable = true;
       this.visibleRoot = true;
+      this.elegirTabla();
+      
 
     } else {
       this.visibleTable = false;
       this.visibleRoot = false;
+      this.visibleTableComplete = false;
+      
       this.showAlert("Fallo", this.dataReceivedPost['error']);
     }
   }
@@ -135,5 +142,32 @@ export class PuntoFijoPage {
       }, (err) => {
         console.log(err);
       });
+  }
+
+  elegirTabla(){
+    if (this.selectTable == true){      
+      this.visibleTableComplete = true;
+      this.visibleTable = false;
+    }else{
+      this.visibleTableComplete = false;
+      this.visibleTable = true;
+    }
+  }
+
+
+  ayuda() {
+    let alert = this.alertCtrl.create({
+      title: 'Consejos!',
+      subTitle: ` <ul>
+                    <li>Buscamos solucionar el problema de x = g(x)</li>
+                    <br>
+                    <li>Si g es una funcion continua en el intervalo [a,b] y para todo x que pertenece [a,b] se cumple que g(x) pertenece [a,b] entonces g tiene un punto fijo en [a,b]</li>
+                    <br>
+                    <li>Si para todo x que pertenece (a,b) se cumple que g'(x) existe en (a,b) y |g'(x)| <= k < 1 entonces g tiene un único punto fijo p en [a,b]</li>
+                    <br>
+                  </ul>`,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 }
