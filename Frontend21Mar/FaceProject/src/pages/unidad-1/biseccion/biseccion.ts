@@ -130,20 +130,30 @@ export class BiseccionPage {
 
 
   completeTable() {
-    this.contentTable = this.dataReceivedPost['iteraciones'];
+    
+      if(this.dataReceivedPost['error'] == ""){
 
-    if (this.contentTable.length != 0) {
-      this.root = this.dataReceivedPost['aproximados'];
-      this.visibleRoot = true;
-      this.elegirTabla();
+        this.contentTable = this.dataReceivedPost['iteraciones'];
 
-    } else {
-      this.visibleTable = false;
-      this.visibleTableComplete = false;
-      this.visibleRoot = false;
-      this.showAlert("Fallo", this.dataReceivedPost['error']);
-    }
-
+        if (this.contentTable.length != 0){
+          this.root = this.dataReceivedPost['aproximados'];
+          this.elegirTabla();
+          this.visibleRoot = true;  
+        }else{
+          this.showAlert("Fallo", this.dataReceivedPost['error']);
+          this.visibleTable = false;
+          this.visibleTableComplete = false;
+          this.visibleRoot = false;
+          this.contentTable = [];          
+        }
+        
+      }else{
+        this.showAlert("Fallo", this.dataReceivedPost['error']);
+        this.contentTable = [];       
+        this.visibleTable = false;
+        this.visibleTableComplete = false;
+        this.visibleRoot = false;           
+      }
   }
 
   //Zona de get y post
