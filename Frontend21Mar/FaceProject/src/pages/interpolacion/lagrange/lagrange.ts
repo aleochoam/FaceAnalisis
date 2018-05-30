@@ -52,6 +52,7 @@ export class LagrangePage {
       Y : {},
       eval: "",
     };
+    
     this.matrix = [];
     this.input = "<ion-input class='cell'></ion-input>";
     for (let i = 0; i < this.n; i++) {

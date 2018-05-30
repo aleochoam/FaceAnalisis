@@ -85,7 +85,6 @@ export class InterpolacionSistemasDeEcPage {
   }
 
 
-
   private presentAlert () {
     let alert = this.alertCtrl.create({
       title: '¿Qué debo hacer?',
