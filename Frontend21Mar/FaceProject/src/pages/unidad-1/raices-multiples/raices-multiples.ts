@@ -29,7 +29,7 @@ export class RaicesMultiplesPage {
   private root;
   private visibleRoot;
 
-  private titlesTable = ['i', 'xi', 'Error'];
+  private titlesTable = ['i', 'xi', 'f(x)', 'Error'];
   private contentTable = [];
   private visibleTable;
 
@@ -112,21 +112,29 @@ export class RaicesMultiplesPage {
   }
 
 
-  completeTable() {
-    this.contentTable = this.dataReceivedPost['iteraciones'];
+     completeTable() {
+    
+      if(this.dataReceivedPost['error'] == ""){
 
-    if (this.contentTable.length != 0) {
-      this.root = this.dataReceivedPost['aproximado'];
+        this.contentTable = this.dataReceivedPost['iteraciones'];
 
-      this.visibleTable = true;
-      this.visibleRoot = true;
-
-    } else {
-      this.visibleTable = false;
-      this.visibleRoot = false;
-      this.showAlert("Fallo", this.dataReceivedPost['error']);
-    }
-
+        if (this.contentTable.length != 0){
+          this.root = this.dataReceivedPost['aproximado'];
+          this.visibleTable = true;
+          this.visibleRoot = true;  
+        }else{
+          this.showAlert("Fallo", this.dataReceivedPost['error']);
+          this.visibleTable = false;
+          this.visibleRoot = false;
+          this.contentTable = [];          
+        }
+        
+      }else{
+        this.showAlert("Fallo", this.dataReceivedPost['error']);
+        this.contentTable = [];       
+        this.visibleTable = false;
+        this.visibleRoot = false;           
+      }
   }
 
   //Zona de get y post
