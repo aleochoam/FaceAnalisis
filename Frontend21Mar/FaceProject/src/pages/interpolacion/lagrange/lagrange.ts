@@ -23,6 +23,7 @@ export class LagrangePage {
   datasubmit = {
     X : {},
     Y : {},
+    eval: "",
   };
 
   //Datos recibidos por el servidor
@@ -46,6 +47,12 @@ export class LagrangePage {
   }
   createMatrix() {
     this.matrix = [];
+   this.datasubmit = {
+      X : {},
+      Y : {},
+      eval: "",
+    };
+    this.matrix = [];
     this.input = "<ion-input class='cell'></ion-input>";
     for (let i = 0; i < this.n; i++) {
       this.matrix.push(String(i));
@@ -58,9 +65,24 @@ export class LagrangePage {
     return this.n;
   }
 
+  showAlert(error, subtitle) {
+    let alert = this.alertCtrl.create({
+      title: error,
+      subTitle: subtitle,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
   submitForm(){
+    console.log(this.datasubmit);
+    if(this.datasubmit['eval'] == ''){
+      console.log("TRUE");
+      this.showAlert("OJO!","El punto a evaluar en la función es obligatorio");
+    }else{
     console.log(this.datasubmit)
     this.postServer();
+    }
   }
 
   private presentAlert () {
