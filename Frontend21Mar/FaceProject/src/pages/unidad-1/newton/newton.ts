@@ -28,15 +28,12 @@ export class NewtonPage {
 
   private root;
   private visibleRoot;
-
-  private titlesTable = ['i', 'xi', 'Error'];
-  private titlesTableComplete = ['i', 'xi', 'f(xi)', 'Error'];
-
+  private titlesTable = ['i', 'xi', 'f(xi)', 'Error'];
+  
   private contentTable = [];
   private visibleTable;
-  private visibleTableComplete;
-  private selectTable;
-
+  
+  
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public httpEcuacionesUnaVariableProvider: HttpEcuacionesUnaVariableProvider) {
     this.dataSubmit['fx'] = '';
@@ -47,9 +44,7 @@ export class NewtonPage {
     this.dataSubmit['tipo_error'] = '';
 
     this.visibleTable = false;
-    this.visibleTableComplete = false;
     this.visibleRoot = false;
-    this.selectTable = false;
   }
 
   goGraficador() {
@@ -151,15 +146,7 @@ export class NewtonPage {
   }
 
 
-  elegirTabla(){
-    if (this.selectTable == true){      
-      this.visibleTableComplete = true;
-      this.visibleTable = false;
-    }else{
-      this.visibleTableComplete = false;
-      this.visibleTable = true;
-    }
-  }
+
 
   ayuda() {
     let alert = this.alertCtrl.create({
