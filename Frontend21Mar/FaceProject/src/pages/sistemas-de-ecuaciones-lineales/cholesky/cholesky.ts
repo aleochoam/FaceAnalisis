@@ -73,7 +73,7 @@ export class CholeskyPage {
       subTitle: ` <p>Recuerda:</p>
                   <ul>
                     <li>La matriz A debe ser invertible</li>
-                    <li>La matriz A debe ser Diagonal Dominante</li>
+                    <li>La matriz A debe ser definida Positiva</li>
                   </ul>`,
       buttons: ['OK']
     });
