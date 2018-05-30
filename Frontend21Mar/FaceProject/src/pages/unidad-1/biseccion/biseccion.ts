@@ -98,18 +98,20 @@ export class BiseccionPage {
     }
   }
 
-
   ayuda() {
     let alert = this.alertCtrl.create({
-      title: '¿Qué debo hacer?',
-      subTitle: ` <p>Ingresa los siguientes datos:</p>
-                  <ul>
-                    <li><b>fx:</b> Función a evaluar</li>
-                    <li><b>xa, xb:</b> Intervalo inicial</li>
-                    <li><b>Tolerancia:</b> Calidad de respuesta</li>
-                    <li><b>Num. Iters:</b> Veces ejecutadas</b> </li>
-                    <li><b>Absoluto:</b> Error Absoluto</b> </li>
-                    <li><b>Relativo:</b> Error Relativo</b> </li>
+      title: 'Consejos!',
+      subTitle: ` <ul>
+                    <li>f(x) debe ser una función continua</li>
+                    <br>
+                    <li>Para encontrar un intervalo adecuado [a,b] ayúdese de búsquedas incrementales</li>
+                    <br>
+                    <li>Existe raíz única si se cumple que f es continua en [a,b], f(a) * f(b) < 0, f es diferenciable en (a,b) y f'(x) no cambia de signo para todo x que pertenece [a,b]</li>
+                    <br>
+                    <li>La cota para el error absoluto en cada etapa es En = (En - 1) / 2</li>
+                    <br>
+                    <li>Para saber el número de iteraciones donde converge se aplica la formula iters > (log(b-a) - log(tol))/2 </li>
+                    <br>
                   </ul>`,
       buttons: ['OK']
     });
@@ -128,20 +130,30 @@ export class BiseccionPage {
 
 
   completeTable() {
-    this.contentTable = this.dataReceivedPost['iteraciones'];
+    
+      if(this.dataReceivedPost['error'] == ""){
 
-    if (this.contentTable.length != 0) {
-      this.root = this.dataReceivedPost['aproximados'];
-      this.visibleRoot = true;
-      this.elegirTabla();
+        this.contentTable = this.dataReceivedPost['iteraciones'];
 
-    } else {
-      this.visibleTable = false;
-      this.visibleTableComplete = false;
-      this.visibleRoot = false;
-      this.showAlert("Fallo", this.dataReceivedPost['error']);
-    }
-
+        if (this.contentTable.length != 0){
+          this.root = this.dataReceivedPost['aproximados'];
+          this.elegirTabla();
+          this.visibleRoot = true;  
+        }else{
+          this.showAlert("Fallo", this.dataReceivedPost['error']);
+          this.visibleTable = false;
+          this.visibleTableComplete = false;
+          this.visibleRoot = false;
+          this.contentTable = [];          
+        }
+        
+      }else{
+        this.showAlert("Fallo", this.dataReceivedPost['error']);
+        this.contentTable = [];       
+        this.visibleTable = false;
+        this.visibleTableComplete = false;
+        this.visibleRoot = false;           
+      }
   }
 
   //Zona de get y post

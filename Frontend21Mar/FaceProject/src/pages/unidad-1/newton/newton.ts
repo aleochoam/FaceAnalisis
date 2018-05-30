@@ -104,20 +104,29 @@ export class NewtonPage {
   }
 
   completeTable() {
-    console.log(this.dataReceivedPost);
-    this.contentTable = this.dataReceivedPost['iteraciones'];
+    
+      if(this.dataReceivedPost['error'] == ""){
 
-    if (this.contentTable.length != 0) {
-      this.root = this.dataReceivedPost['aproximado'];
-      this.visibleRoot = true;
-      this.elegirTabla();
-      
+        this.contentTable = this.dataReceivedPost['iteraciones'];
 
-    } else {
-      this.visibleTable = false;
-      this.visibleRoot = false;
-      this.showAlert("Fallo", this.dataReceivedPost['error']);
-    }
+        if (this.contentTable.length != 0){
+          this.root = this.dataReceivedPost['aproximado'];
+          this.visibleTable = true;
+          this.visibleRoot = true;  
+        }else{
+          this.showAlert("Fallo", this.dataReceivedPost['error']);
+          this.visibleTable = false;
+          this.visibleRoot = false;
+          this.contentTable = [];          
+        }
+        
+      }else{
+        console.l
+        this.showAlert("Fallo", this.dataReceivedPost['error']);
+        this.contentTable = [];       
+        this.visibleTable = false;
+        this.visibleRoot = false;           
+      }
   }
 
 
@@ -136,6 +145,7 @@ export class NewtonPage {
       .then(result => {
         this.dataReceivedPost = result;
         this.completeTable();
+        console.log(this.dataReceivedPost);
       }, (err) => {
         console.log(err);
       });
@@ -150,5 +160,21 @@ export class NewtonPage {
       this.visibleTableComplete = false;
       this.visibleTable = true;
     }
+  }
+
+  ayuda() {
+    let alert = this.alertCtrl.create({
+      title: 'Consejos!',
+      subTitle: ` <ul>
+                    <li>Desde el punto de vista práctico el método se comporta como un método de punto fijo, la diferencia radica en que se conoce la estructura de la función g(x)</li>
+                    <br>
+                    <li>Debemos garantizar que Xn sea una buena aproximación.</li>
+                    <br>
+                    <li>Cuando el método converge, en cada etapa se duplica aproximadamente el número de cifras obtenidas de la etapa anterior.</li>
+                    <br>
+                  </ul>`,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 }

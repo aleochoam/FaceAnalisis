@@ -102,3 +102,13 @@ def get_inverse_D(D):
         D = 1/D
         D = np.diag(D)
         return D
+
+
+def es_diagonalmente_dominante(A):
+    D = np.diag(np.abs(A))  # Find diagonal coefficients
+    S = np.sum(np.abs(A), axis=1) - D  # Find row sum without diagonal
+    if np.all(D > S):
+        return True
+    else:
+        return False
+    return

@@ -28,7 +28,7 @@ def call_method(request, method_name):
             # print("RESPONSE: ", response)
             return JsonResponse(response)
     except SympifyError as e:
-        return JsonResponse({"error": "Verifique los datos de entrada"})
+        return JsonResponse({"error": "Verifique la funcion de entrada"})
     except KeyError as e:
         return JsonResponse({"error": e})
     # except Exception as e:

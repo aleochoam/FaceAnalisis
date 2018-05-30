@@ -31,9 +31,12 @@ export class ReglaFalsaPage {
   private root;
   private visibleRoot;
 
-  private titlesTable = ['i', 'x Inf', 'x Sup', 'x Med', 'f(xMed)', 'Error'];
+  private titlesTable = ['i', 'x Med', 'Error'];
+  private titlesTableComplete = ['i', 'x Inf', 'x Sup', 'x Med', 'f(xMed)', 'Error'];
   private contentTable = [];
   private visibleTable;
+  private visibleTableComplete;
+  private selectTable;
 
 
 
@@ -46,7 +49,10 @@ export class ReglaFalsaPage {
     this.dataSubmit['tipo_error'] = '';
 
     this.visibleTable = false;
+    this.visibleTableComplete = false;
+
     this.visibleRoot = false;
+    this.selectTable = false;
   }
 
   goGraficador() {
@@ -95,21 +101,19 @@ export class ReglaFalsaPage {
 
   ayuda() {
     let alert = this.alertCtrl.create({
-      title: '¿Qué debo hacer?',
-      subTitle: ` <p>Ingresa los siguientes datos:</p>
-                    <ul>
-                      <li><b>fx:</b> Función a evaluar</li>
-                      <li><b>xa, xb:</b> Intervalo inicial</li>
-                      <li><b>Tolerancia:</b> Calidad de respuesta</li>
-                      <li><b>Num. Iters:</b> Veces ejecutadas</b> </li>
-                      <li><b>Absoluto:</b> Error Absoluto</b> </li>
-                      <li><b>Relativo:</b> Error Relativo</b> </li>
-                    </ul>`,
+      title: 'Consejos!',
+      subTitle: ` <ul>
+                    <li>Este mértodo convera todas las características y condiciones que posee el método de la bisección excepto por la forma de calcular el punto intermedio del intervalo.</li>
+                    <br>
+                    <li>Decimos que los métodos por intervalos cerrados siempre convergen, algunas veces Regla Falsa puede ser una mejora de Bisección</li>
+                    <br>
+                    <li>El problema de los métodos por intervalos cerrados es la lentitud de convergencia, es decir, requieren muchas iteraciones.</li>
+                    <br>
+                  </ul>`,
       buttons: ['OK']
     });
     alert.present();
   }
-
 
   showAlert(error, subtitle) {
     let alert = this.alertCtrl.create({
@@ -122,20 +126,30 @@ export class ReglaFalsaPage {
 
 
   completeTable() {
-    this.contentTable = this.dataReceivedPost['iteraciones'];
+    
+      if(this.dataReceivedPost['error'] == ""){
 
-    if (this.contentTable.length != 0) {
-      this.root = this.dataReceivedPost['aproximados'];
+        this.contentTable = this.dataReceivedPost['iteraciones'];
 
-      this.visibleTable = true;
-      this.visibleRoot = true;
-
-    } else {
-      this.visibleTable = false;
-      this.visibleRoot = false;
-      this.showAlert("Fallo", this.dataReceivedPost['error']);
-    }
-
+        if (this.contentTable.length != 0){
+          this.root = this.dataReceivedPost['aproximados'];
+          this.elegirTabla();
+          this.visibleRoot = true;  
+        }else{
+          this.showAlert("Fallo", this.dataReceivedPost['error']);
+          this.visibleTable = false;
+          this.visibleTableComplete = false;
+          this.visibleRoot = false;
+          this.contentTable = [];          
+        }
+        
+      }else{
+        this.showAlert("Fallo", this.dataReceivedPost['error']);
+        this.contentTable = [];       
+        this.visibleTable = false;
+        this.visibleTableComplete = false;
+        this.visibleRoot = false;           
+      }
   }
 
   //Zona de get y post
@@ -156,6 +170,16 @@ export class ReglaFalsaPage {
       }, (err) => {
         console.log(err);
       });
+  }
+
+  elegirTabla(){
+    if (this.selectTable == true){      
+      this.visibleTableComplete = true;
+      this.visibleTable = false;
+    }else{
+      this.visibleTableComplete = false;
+      this.visibleTable = true;
+    }
   }
 
 

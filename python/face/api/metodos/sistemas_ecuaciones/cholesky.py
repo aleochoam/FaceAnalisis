@@ -2,7 +2,7 @@ import numpy as np
 from numpy.lib.scimath import sqrt as csqrt
 
 from ..numeric_method import NumericMethod
-from .matrix_utils import no_es_invertible, process_params
+from .matrix_utils import no_es_invertible, process_params, es_diagonalmente_dominante
 
 
 class FactorizacionCholesky(NumericMethod):
@@ -15,6 +15,10 @@ class FactorizacionCholesky(NumericMethod):
 
         if no_es_invertible(A):
             response["error"] = "La matriz no es invertible"
+            return response
+
+        if not es_diagonalmente_dominante(A):
+            response["error"] = "La matriz no es estricamente diagonalmente dominate"
             return response
 
         n = len(A)
@@ -46,8 +50,8 @@ class FactorizacionCholesky(NumericMethod):
 
         response["L"] = np.round(L, 4).tolist()
         response["U"] = np.round(U, 4).tolist()
-        response["z"] = z.tolist()
-        response["x"] = x.tolist()
+        response["z"] = np.round(np.real(z), 4).tolist()
+        response["x"] = np.round(np.real(x), 4).tolist()
 
         return response
 

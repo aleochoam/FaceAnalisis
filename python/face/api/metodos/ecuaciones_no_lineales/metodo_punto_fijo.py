@@ -15,7 +15,7 @@ class FixedPoint(NumericMethod):
         xa = float(parameters["x0"])
         n_iter = int(parameters["nIters"])
         tol = eval(parameters["tol"])
-        tipo_error = parameters["tipo_error"]
+        tipo_error = eval(parameters["tipo_error"])
 
         calcular_error = error_relativo if tipo_error == 2 else error_absoluto
 
