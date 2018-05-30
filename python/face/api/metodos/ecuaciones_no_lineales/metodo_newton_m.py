@@ -13,7 +13,7 @@ class Newton2Method(NumericMethod):
         f = params["fx"]
         f_prima = params["dfx"]
         f_dos_prima = params["d2fx"]
-        tipo_error = params["tipo_error"]
+        tipo_error = eval(params["tipo_error"])
 
         calcular_error = error_relativo if tipo_error == 2 else error_absoluto
 

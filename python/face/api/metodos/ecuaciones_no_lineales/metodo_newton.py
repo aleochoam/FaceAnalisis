@@ -12,7 +12,7 @@ class NewtonMethod(NumericMethod):
         n_iter = eval(params["nIters"])
         f = params["fx"]
         f_prima = params["dfx"]
-        tipo_error = params["tipo_error"]
+        tipo_error = eval(params["tipo_error"])
 
         calcular_error = error_relativo if tipo_error == 2 else error_absoluto
 
