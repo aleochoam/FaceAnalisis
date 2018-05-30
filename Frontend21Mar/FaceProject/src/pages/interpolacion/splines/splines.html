@@ -47,12 +47,7 @@
               <ion-input class="inputMatrix" type="number" [(ngModel)]="datasubmit.eval" [ngModelOptions]="{standalone: true}"></ion-input>
             </td>
           </tr>
-          <tr>
-              <p>Ingrese el valor de x a evaluar en la función:</p>
-              <td>
-                <ion-input class="inputMatrix" type="number" [(ngModel)]="datasubmit.eval" [ngModelOptions]="{standalone: true}"></ion-input>
-              </td>
-          </tr>
+
       </table>
       
       <button ion-button type="submit" block>Calcular</button>
@@ -69,6 +64,9 @@
             <div *ngFor="let i of funcion">
               <b><em>{{i}}</em></b>
             </div>
+            <br>
+            <b>F(x) Resultante:</b>
+            <b>{{eval}}</b>
           </ion-card-content>
         </ion-card>
 
