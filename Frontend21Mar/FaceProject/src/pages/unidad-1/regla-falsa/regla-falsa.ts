@@ -103,7 +103,7 @@ export class ReglaFalsaPage {
     let alert = this.alertCtrl.create({
       title: 'Consejos!',
       subTitle: ` <ul>
-                    <li>Este mértodo convera todas las características y condiciones que posee el método de la bisección excepto por la forma de calcular el punto intermedio del intervalo.</li>
+                    <li>Este mértodo conserva todas las características y condiciones que posee el método de la bisección excepto por la forma de calcular el punto intermedio del intervalo.</li>
                     <br>
                     <li>Decimos que los métodos por intervalos cerrados siempre convergen, algunas veces Regla Falsa puede ser una mejora de Bisección</li>
                     <br>

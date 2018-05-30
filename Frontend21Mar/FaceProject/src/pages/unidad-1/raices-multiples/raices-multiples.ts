@@ -91,15 +91,10 @@ export class RaicesMultiplesPage {
 
   ayuda() {
     let alert = this.alertCtrl.create({
-      title: '¿Qué debo hacer?',
-      subTitle: ` <p>Ingresa los siguientes datos:</p>
-                  <ul>
-                    <li><b>fx:</b> Función a evaluar</li>
-                    <li><b>xa, xb:</b> Intervalo inicial</li>
-                    <li><b>Tolerancia:</b> Calidad de respuesta</li>
-                    <li><b>Num. Iters:</b> Veces ejecutadas</b> </li>
-                    <li><b>Absoluto:</b> Error Absoluto</b> </li>
-                    <li><b>Relativo:</b> Error Relativo</b> </li>
+      title: 'Consejos!',
+      subTitle: ` <ul style="text-align: justify">
+                    <li>Se dice que Xv es una raíz de multiplicidad m de f si y sólo si f(x) puede escribirse como f(X)=(X-Xv)^m * q(X) en donde q(Xv) != . Si m = 1, se le llama raíz simple.</li>                    
+                    <li>Los métodos de Newton y Secante pueden Fallar. Ralston y Rabinowitz han propuesto: Adicionar un factor que exprese la multiplicidad m de la raiz que se busca con el metodo de Newton, la segunda alternativa está dada por la aplicaicón del metodo de Newton a una función auxiliar u, mediante la cual se pueden detectar las raíces de la ecuación f(x)=0 </li>
                   </ul>`,
       buttons: ['OK']
     });
