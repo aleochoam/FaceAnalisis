@@ -16,6 +16,9 @@ class SplinesCubicos(NumericMethod):
         print(puntos)
         n = len(X)
 
+        if n < 4:
+            return {"error": "Se necesitan minimo 4 puntos"}
+
         # Valores h
         h = np.zeros([n-1])
         for j in range(0, n-1, 1):
