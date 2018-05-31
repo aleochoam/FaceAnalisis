@@ -34,14 +34,14 @@ class SOR(NumericMethod):
             response["error"] = "El radio espectral de la matriz T es mayor  1, reorganice la matriz"
             return response
 
-        while dispersion > tol and contador <= iteraciones:
+        while dispersion > tol and contador < iteraciones:
             x1 = np.matmul(T, x0) + C
-            dispersion = np.linalg.norm(x1 - x0, 2)
 
             disp_fmt = "{e:.2e}".format(e=dispersion) if contador != 0 else ""
             iteracion = [contador, x0.tolist(), disp_fmt]
             response["iteraciones"].append(iteracion)
 
+            dispersion = np.linalg.norm(x1 - x0, 2)
             x0 = x1.copy()
             contador = contador + 1
         iteracion = [contador, x0.tolist(), dispersion]

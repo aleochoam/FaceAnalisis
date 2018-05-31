@@ -35,7 +35,9 @@ class Newton2Method(NumericMethod):
         d2fx = f_dos_prima.evalf(subs={x: xa})
         denominador = (dfx**2)-(fx*d2fx)
 
-        while error > tol and fx != 0 and contador < n_iter and denominador != 0:
+        while ((error > tol) and (fx != 0) and (denominador != 0) and
+               (contador < n_iter)):
+
             err_fm = "{e:.2e}".format(e=error) if contador != 0 else ""
             fx_fm = "{fx:.2e}".format(fx=fx)
 
