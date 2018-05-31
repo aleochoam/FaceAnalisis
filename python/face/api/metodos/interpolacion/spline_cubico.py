@@ -69,7 +69,11 @@ class SplinesCubicos(NumericMethod):
             polinomio.append(ptramo)
 
         funcion = self.generar_ecuacion(polinomio, X, n)
-        y_eval = evaluar_splines(funcion, puntos, x_eval)
+        try:
+            y_eval = evaluar_splines(funcion, puntos, x_eval)
+        except Exception as e:
+            return {"funcion": funcion, "error": str(e)}
+
         return {"funcion": funcion, "y_eval": y_eval}
 
     def generar_ecuacion(self, polinomio, X, n):

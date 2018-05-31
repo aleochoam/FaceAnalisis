@@ -24,7 +24,10 @@ class SplinesLineales(NumericMethod):
             funcion.append([splines[i], "{x0} <= x <= {x1}".format(
                 x0=puntos[i][0], x1=puntos[i+1][0])])
 
-        y_eval = evaluar_splines(funcion, puntos, x_eval)
+        try:
+            y_eval = evaluar_splines(funcion, puntos, x_eval)
+        except Exception as e:
+            return {"funcion": funcion, "error": str(e)}
         return {"funcion": funcion, "y_eval": y_eval}
 
     #  y = f(x1) + ((f(x1) -f(x0))/(x1-x0))(x-1)

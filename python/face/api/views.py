@@ -23,14 +23,14 @@ def call_method(request, method_name):
             return JsonResponse({"Ayuda": method.get_description()})
         else:
             params = body2dict(request)
-            print("LOG PARAMS ", params)
+            # print("LOG PARAMS ", params)
             response = method.calculate(params)
             # print("RESPONSE: ", response)
             return JsonResponse(response)
     except SympifyError as e:
         return JsonResponse({"error": "Verifique la funcion de entrada"})
     except KeyError as e:
-        return JsonResponse({"error": e})
+        return JsonResponse({"error": str(e)})
     # except Exception as e:
         # print(e)
         # return JsonResponse({"error": str(e)})

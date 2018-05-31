@@ -32,3 +32,4 @@ def evaluar_splines(funcion, puntos, x_eval):
         if x_eval >= puntos[i][0] and x_eval <= puntos[i+1][0]:
             y_eval = eval_f(funcion[i][0], x_eval)
             return y_eval
+    raise Exception("El x a evaluar no hace parte del dominio del spline")
