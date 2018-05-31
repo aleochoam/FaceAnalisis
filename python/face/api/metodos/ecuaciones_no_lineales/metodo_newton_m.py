@@ -33,8 +33,9 @@ class Newton2Method(NumericMethod):
         fx = f.evalf(subs={x: xa})
         dfx = f_prima.evalf(subs={x: xa})
         d2fx = f_dos_prima.evalf(subs={x: xa})
+        denominador = (dfx**2)-(fx*d2fx)
 
-        while error > tol and fx != 0 and contador < n_iter:
+        while error > tol and fx != 0 and contador < n_iter and denominador != 0:
             err_fm = "{e:.2e}".format(e=error) if contador != 0 else ""
             fx_fm = "{fx:.2e}".format(fx=fx)
 
@@ -42,14 +43,14 @@ class Newton2Method(NumericMethod):
 
             response["iteraciones"].append(iteracion)
 
-            xn = xa - (fx*dfx)/(dfx**2 - fx * d2fx)
+            xn = xa - (fx*dfx)/denominador
 
             fx = f.evalf(subs={x: xn})
             dfx = f_prima.evalf(subs={x: xn})
             d2fx = f_dos_prima.evalf(subs={x: xn})
+            denominador = (dfx**2)-(fx*d2fx)
 
             error = calcular_error(xn, xa)
-            # error = abs(xn-xa)
             xa = xn
             contador = contador + 1
 
@@ -64,6 +65,9 @@ class Newton2Method(NumericMethod):
 
         elif error < tol:
             response["aproximado"] = str(xn)
+        elif denominador == 0:
+            response["error"] = "Denominador es igual a cero"
+
         else:
             response["error"] = "El método fracasó en {} iteraciones"\
                 .format(n_iter)
