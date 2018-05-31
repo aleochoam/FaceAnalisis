@@ -1,7 +1,7 @@
 import numpy as np
 
 from ..numeric_method import NumericMethod
-from .matrix_utils import *
+from .matrix_utils import process_params, ceros_en_diagonal, radio_espectral
 
 
 class Seidel(NumericMethod):
@@ -43,7 +43,8 @@ class Seidel(NumericMethod):
             x0 = x1.copy()
             contador = contador + 1
 
-        iteracion = [contador, x0.tolist(), dispersion]
+        disp_fmt = "{e:.2e}".format(e=dispersion) if contador != 0 else ""
+        iteracion = [contador, x0.tolist(), disp_fmt]
         response["iteraciones"].append(iteracion)
 
         if dispersion < tol:

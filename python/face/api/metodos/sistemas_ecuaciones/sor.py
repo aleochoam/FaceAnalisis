@@ -44,7 +44,9 @@ class SOR(NumericMethod):
             dispersion = np.linalg.norm(x1 - x0, 2)
             x0 = x1.copy()
             contador = contador + 1
-        iteracion = [contador, x0.tolist(), dispersion]
+
+        disp_fmt = "{e:.2e}".format(e=dispersion) if contador != 0 else ""
+        iteracion = [contador, x0.tolist(), disp_fmt]
         response["iteraciones"].append(iteracion)
 
         if dispersion < tol:
