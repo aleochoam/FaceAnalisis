@@ -71,6 +71,7 @@ export class SorPage {
                   <ul>
                     <li>El radio Espectral de T debe ser <b>menor</b> que 1</li>
                     <li>La norma de T debe ser <b>menor</b> que 1</li>
+                    <li>w debe estar entre 0 < w < 2</li>
                   </ul>
                   <p><b>Para medir la dispersión se usa norma 2</b></p>`,
       buttons: ['OK']
