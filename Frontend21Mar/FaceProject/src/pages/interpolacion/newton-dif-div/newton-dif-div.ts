@@ -88,9 +88,11 @@ export class NewtonDifDivPage {
   private presentAlert () {
     let alert = this.alertCtrl.create({
       title: '¿Qué debo hacer?',
-      subTitle: ` <p>Ingresa los siguientes datos:</p>
+      subTitle: ` <p>Recomendamos:</p>
                   <ul>
                     <li> <b>Cantidad de Puntos:</b>Cantidad de puntos que se tienen para interpolar</li>
+                    <li> <b>El punto a evaluar en la función debe estar en el intervalo!</b></li>
+
                   </ul>`,
       buttons: ['OK']
     });
@@ -108,8 +110,16 @@ export class NewtonDifDivPage {
   }
 
   private results(){
-    this.eval = this.dataReceivedPost['y_eval']
-    this.funcion = this.dataReceivedPost['funcion'];
+    if(this.dataReceivedPost['error'] == null ){
+      this.funcion = this.dataReceivedPost['funcion'];
+      this.eval = this.dataReceivedPost['y_eval'];
+      
+
+    
+    }else{
+        this.showAlert("OJO!",this.dataReceivedPost['error']);
+        this.funcion = this.dataReceivedPost['funcion'];
+      }
   }
 
   public postServer() {
