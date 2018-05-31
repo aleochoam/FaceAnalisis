@@ -92,6 +92,7 @@ class SplinesCubicos(NumericMethod):
         coeficientes = np.round(coeficientes, 2)
         n = len(puntos) - 1
 
+        j = 0
         for i in range(0, n*4, 4):
             funcion = "{a}*x**3 + {b}*x**2 + {c}*x + {d}".format(
                 a=coeficientes[i],
@@ -102,8 +103,10 @@ class SplinesCubicos(NumericMethod):
 
             funcion = str(sympify(funcion).expand())
             funcion_partes.append([funcion, "{x0} <= x <= {x1}".format(
-                    x0=puntos[i//3, 0],
-                    x1=puntos[i//3+1, 0]
+                    x0=puntos[j, 0],
+                    x1=puntos[j+1, 0]
                 )])
+
+            j += 1
 
         return funcion_partes
