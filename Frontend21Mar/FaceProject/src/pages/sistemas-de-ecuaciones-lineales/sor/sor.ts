@@ -71,8 +71,8 @@ export class SorPage {
                   <ul>
                     <li>El radio Espectral de T debe ser <b>menor</b> que 1</li>
                     <li>La norma de T debe ser <b>menor</b> que 1</li>
-                    <li>A, debe ser una matriz diagonal dominante</li>
-                  </ul>`,
+                  </ul>
+                  <p><b>Para medir la dispersión se usa norma 2</b></p>`,
       buttons: ['OK']
     });
     alert.present();
