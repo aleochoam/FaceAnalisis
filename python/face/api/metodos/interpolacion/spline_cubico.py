@@ -1,8 +1,8 @@
 import numpy as np
-import sympy as sp
+from sympy import sympify
 
 from ..numeric_method import NumericMethod
-from .interpolacion_utils import eval_params, evaluar_splines
+from .interpolacion_utils import process_params, evaluar_splines
 
 
 class SplinesCubicos(NumericMethod):
@@ -11,67 +11,75 @@ class SplinesCubicos(NumericMethod):
         Y = parameters["Y"]
         x_eval = eval(parameters["eval"])
 
-        X, Y = eval_params(X, Y)
-        puntos = np.column_stack((X, Y))
-        print(puntos)
-        n = len(X)
+        puntos = process_params(X, Y)
 
-        if n < 4:
-            return {"error": "Se necesitan minimo 4 puntos"}
+        n = len(puntos) - 1
+        puntos = np.array(puntos)
+        matrix = np.zeros((n*4, n*4))
+        vector_independiente = np.zeros(n*4)
 
-        # Valores h
-        h = np.zeros([n-1])
-        for j in range(0, n-1, 1):
-            h[j] = X[j+1]-X[j]
+        #  Ecuaciones de interpolacion
+        j = 0
+        k = 0
+        for i in range(0, n*2-1, 2):
+            matrix[i, j+0] = puntos[k, 0] ** 3
+            matrix[i, j+1] = puntos[k, 0] ** 2
+            matrix[i, j+2] = puntos[k, 0]
+            matrix[i, j+3] = 1
 
-        # Sistema de ecuaciones
-        A = np.zeros([n-2, n-2])
-        B = np.zeros([n-2])
-        S = np.zeros([n])
+            matrix[i+1, j+0] = puntos[k+1, 0] ** 3
+            matrix[i+1, j+1] = puntos[k+1, 0] ** 2
+            matrix[i+1, j+2] = puntos[k+1, 0]
+            matrix[i+1, j+3] = 1
 
-        A[0,  0] = 2*(h[0]+h[1])
-        A[0,  1] = h[1]
-        B[0] = 6*((Y[2]-Y[1])/h[1] - (Y[1]-Y[0])/h[0])
+            j += 4
+            k += 1
 
-        for i in range(1, n-3, 1):
-            A[i, i-1] = h[i]
-            A[i, i] = 2*(h[i]+h[i+1])
-            A[i, i+1] = h[i+1]
-            B[i] = 6*((Y[i+2]-Y[i+1])/h[i+1] - (Y[i+1]-Y[i])/h[i])
+        # Ecuaciones de suavidad de primera derivada
+        j = 1
+        k = 0
+        for i in range(n*2, n*3-1):
+            matrix[i][k + 0] = 3 * puntos[j, 0]**2
+            matrix[i][k + 1] = 2 * puntos[j, 0]
+            matrix[i][k + 2] = 1
 
-        A[n-3, n-4] = h[n-3]
-        A[n-3, n-3] = 2*(h[n-3]+h[n-2])
-        B[n-3] = 6*((Y[n-1]-Y[n-2])/h[n-2] - (Y[n-2]-Y[n-3])/h[n-3])
+            matrix[i][k + 3+1] = - 3 * puntos[j, 0]**2
+            matrix[i][k + 4+1] = - 2 * puntos[j, 0]
+            matrix[i][k + 5+1] = - 1
+            j += 1
+            k += 4
 
-        # Resolver sistema de ecuaciones
-        r = np.linalg.solve(A, B)
+        #  Ecuaciones de suavidad en concavidad
+        j = 1
+        k = 0
+        for i in range(n*3-1, n*4-2):
+            matrix[i][k + 0] = 6 * puntos[j, 0]
+            matrix[i][k + 1] = 2
 
-        # S
-        for j in range(1, n-1, 1):
-            S[j] = r[j-1]
-        S[0] = 0
-        S[n-1] = 0
+            matrix[i][k + 3+1] = - 6 * puntos[j, 0]
+            matrix[i][k + 4+1] = - 2
+            j += 1
+            k += 4
 
-        # Coeficientes
-        a = np.zeros([n-1])
-        b = np.zeros([n-1])
-        c = np.zeros([n-1])
-        d = np.zeros([n-1])
-        for j in range(0, n-1, 1):
-            a[j] = (S[j+1]-S[j])/(6*h[j])
-            b[j] = S[j]/2
-            c[j] = (Y[j+1]-Y[j])/h[j] - (2*h[j]*S[j]+h[j]*S[j+1])/6
-            d[j] = Y[j]
+        # segunda derivada = 0 en los extremos
+        matrix[n*4-2, 0] = 6 * puntos[0, 0]
+        matrix[n*4-2, 1] = 2
 
-        # Polinomio trazador
-        x = sp.Symbol('x')
-        polinomio = []
-        for j in range(0, n-1, 1):
-            ptramo = a[j]*(x-X[j])**3 + b[j]*(x-X[j])**2 + c[j]*(x-X[j]) + d[j]
-            ptramo = ptramo.expand()
-            polinomio.append(ptramo)
+        matrix[n*4-1, n*4-4] = 6 * puntos[n, 0]
+        matrix[n*4-1, n*4-3] = 2
 
-        funcion = self.generar_ecuacion(polinomio, X, n)
+        # vector independiente
+        vector_independiente[0] = puntos[0, 1]
+        j = 1
+        for i in range(1, n):
+            vector_independiente[j] = puntos[i, 1]
+            vector_independiente[j+1] = puntos[i, 1]
+            j += 2
+        vector_independiente[n*2-1] = puntos[n, 1]
+
+        sol = np.linalg.solve(matrix, vector_independiente)
+        funcion = self.generar_ecuacion(sol, puntos)
+
         try:
             y_eval = evaluar_splines(funcion, puntos, x_eval)
         except Exception as e:
@@ -79,15 +87,23 @@ class SplinesCubicos(NumericMethod):
 
         return {"funcion": funcion, "y_eval": y_eval}
 
-    def generar_ecuacion(self, polinomio, X, n):
-        funcion_tramos = []
-        for tramo in range(1, n, 1):
-            funcion = str(polinomio[tramo-1])
-            dominio = "{x0} <= x <= {x1}".format(
-                x0=str(X[tramo-1]),
-                x1=str(X[tramo])
+    def generar_ecuacion(self, coeficientes, puntos):
+        funcion_partes = []
+        coeficientes = np.round(coeficientes, 2)
+        n = len(puntos) - 1
+
+        for i in range(0, n*4, 4):
+            funcion = "{a}*x**3 + {b}*x**2 + {c}*x + {d}".format(
+                a=coeficientes[i],
+                b=coeficientes[i+1],
+                c=coeficientes[i+2],
+                d=coeficientes[i+3],
             )
 
-            funcion_tramos.append([funcion, dominio])
+            funcion = str(sympify(funcion).expand())
+            funcion_partes.append([funcion, "{x0} <= x <= {x1}".format(
+                    x0=puntos[i//3, 0],
+                    x1=puntos[i//3+1, 0]
+                )])
 
-        return funcion_tramos
+        return funcion_partes
