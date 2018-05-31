@@ -55,6 +55,10 @@ class SplinesCuadraticos(NumericMethod):
             vector_independiente[j] = puntos[i, 1]
             vector_independiente[j+1] = puntos[i, 1]
             j += 2
+        vector_independiente[n*2-1] = puntos[n, 1]
+
+        print(matrix)
+        print(vector_independiente)
 
         sol = np.linalg.solve(matrix, vector_independiente)
         funcion = self.generar_ecuacion(sol, puntos)
